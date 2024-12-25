@@ -1,5 +1,5 @@
 """
-WSGI config for ErdPSL project.
+WSGI config for ErdPL project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

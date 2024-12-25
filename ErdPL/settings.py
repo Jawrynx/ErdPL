@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ErdPSL.wsgi.application'
+WSGI_APPLICATION = 'ErdPL.wsgi.application'
 
 
 # Database
