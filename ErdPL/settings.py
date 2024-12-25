@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ErdPSL.urls'
+ROOT_URLCONF = 'ErdPL.urls'
 
 TEMPLATES = [
     {
