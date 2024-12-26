@@ -11,11 +11,11 @@ body {
 }
 
 :root {
-    --erdpl-background: #0d1518; /* Black background color */
-    --erdpl-text-primary: #f9f3e5; /* White text color */
-    --erdpl-text-secondary: #ef6f28; /* Orange text color */
-    --erdpl-text-tertiary: #236770; /* Blue text color */
-    --erdpl-text-quaternary: #144a54; /* Green text color */
+    --erdpl-background: #181818; /* Black background color */
+    --erdpl-text-primary: #FFFFFF; /* White text color */
+    --erdpl-text-secondary: #FF5733; /* Orange text color */
+    --erdpl-text-tertiary: #006595; /* Blue text color */
+    --erdpl-text-quaternary: #009643; /* Green text color */
 }
 
 
@@ -32,13 +32,9 @@ body {
 
 /* Navbar */
 
-nav img {
-    height: 70px;
-}
-
 header {
     background-color: var(--erdpl-background);
-    color: var(--erdpl-text-primary);
+    color: white;
 }
 
 nav {
@@ -72,14 +68,14 @@ nav li,
 
 nav li:hover,
 #user-links li:hover {
-    background-color: var(--erdpl-text-quaternary);
+    background-color: darkslategray;
     transition: ease-in-out 0.3s;
 }
 
 nav li a,
 #user-links li a {
     text-decoration: none;
-    color: var(--erdpl-text-primary);
+    color: white;
     font-size: 1.2rem;
     padding: 10px;
 }
@@ -195,8 +191,8 @@ nav li a,
 /* Footer */
 
 footer {
-    background-color: var(--erdpl-background);
-    color: var(--erdpl-text-primary);
+    background-color: black;
+    color: #fff;
     padding: 20px 0;
     text-align: center;
 }
@@ -215,26 +211,14 @@ footer {
 .social-media li {
     display: inline-block;
     margin: 0 10px;
-    background-color: var(--erdpl-text-quaternary);
-    padding: 10px 15px;
+    background-color: darkslategray;
+    padding: 10px;
     border-radius: 15px;
-    transition: ease-in-out 0.3s;
-}
-
-.social-media li:hover {
-    background-color: var(--erdpl-text-tertiary);
-    transition: ease-in-out 0.3s;
 }
 
 .social-media a {
-    color: var(--erdpl-text-primary);
+    color: #fff;
     text-decoration: none;
-    transition: ease-in-out 0.3s;
-}
-
-.social-media a:hover {
-    color: var(--erdpl-text-secondary);
-    transition: ease-in-out 0.3s;
 }
 
 .social-media i {
