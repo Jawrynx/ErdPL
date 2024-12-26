@@ -1,3 +1,5 @@
+/* General Styling */
+
 html, body, * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +9,22 @@ html, body, * {
 body {
     font-family: 'Ubuntu', sans-serif;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Navbar */
 
 header {
     background-color: black;
@@ -126,4 +144,77 @@ nav li a,
     nav ul { 
         display: none; 
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main Content */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+
+footer {
+    background-color: black;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.social-media {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.social-media li {
+    display: inline-block;
+    margin: 0 10px;
+    background-color: darkslategray;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.social-media a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-media i {
+    font-size: 20px;
 }

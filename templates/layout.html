@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c15e7f6444.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <title>
         {% block title %}
@@ -49,7 +50,15 @@
     {% endblock %}
     </main>
     <footer>
-
+        <div class="container">
+            <p>&copy; 2024 ErdPL. All rights reserved.</p>
+            <ul class="social-media">
+                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
     </footer>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
