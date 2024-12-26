@@ -176,8 +176,48 @@ nav li a,
 
 /* Main Content */
 
+/* Home Page */
+
+.home-banner {
+    background-color: var(--erdpl-background);
+    color: var(--erdpl-text-primary);
+    padding: 150px 100px;
+    text-align: left;
+}
 
 
+.home-banner > h1 > span,
+.home-banner a > span {
+    color: var(--erdpl-text-secondary);
+}
+
+.home-banner h1 {
+    font-size: 4rem;
+}
+
+.home-banner p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.home-banner a {
+    color: var(--erdpl-text-primary);
+    transition: ease-in-out 0.3s;
+    font-size: 1.5rem;
+    background-color: var(--erdpl-text-quaternary);
+    border-radius: 15px;
+    border: 1px solid var(--erdpl-text-tertiary);
+    padding: 10px;
+    text-decoration: none;
+}
+
+
+.home-banner a:hover {
+    background-color: var(--erdpl-text-tertiary);
+    border: 1px solid var(--erdpl-text-quaternary);
+    color: var(--erdpl-text-secondary);
+    transition: ease-in-out 0.3s;
+}
 
 
 
