@@ -1,0 +1,1 @@
+web: gunicorn ErdPL.wsgi:application 
