@@ -13,14 +13,34 @@
 </head>
 <body>
     <header>
-        <h2>ErdPL</h3>
         <nav>
+            <h2>ErdPL</h2>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/">Scores</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
+            <ul id="user-links">
+                <li><a href="">Login</a></li>
+                <li><a href="">Register</a></li>
+            </ul>
+            <div id="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div> 
+            <div id="mobile-nav"> 
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Scores</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li class="breaker"><span class="bar"></span></li>
+                    <li><a href="">Login</a></li>
+                    <li id="nav-edge"><a href="">Register</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
     <main>
@@ -31,5 +51,6 @@
     <footer>
 
     </footer>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
