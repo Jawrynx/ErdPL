@@ -219,6 +219,60 @@ nav li a,
     transition: ease-in-out 0.3s;
 }
 
+/* Results Tables */
+
+.latest-results {
+    text-align: center;
+    background-color: var(--erdpl-text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.latest-results h1 {
+    background-color: var(--erdpl-text-quaternary);
+    color: var(--erdpl-text-primary);
+    padding: 50px;
+    width: 100%;
+    font-size: 4rem;
+    margin-bottom: 50px;
+}
+
+.latest-results > table {
+    margin-bottom: 50px;
+    background-color: var(--erdpl-background);
+    border-radius: 25px;
+    padding: 10px;
+}
+
+/* Creates borders on the tables automatically */
+
+.latest-results > table > tbody > tr:first-child > td:first-child {
+    border-top-left-radius: 15px;
+}
+
+.latest-results > table > tbody > tr:first-child > td:last-child {
+    border-top-right-radius: 15px;
+}
+
+.latest-results > table > tbody > tr:last-child > td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+.latest-results > table > tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+.latest-results > table > thead > tr > th,
+.latest-results > table > tbody > tr > td {
+    padding: 5px 20px;
+    background-color: var(--erdpl-text-primary);
+}
+
+.latest-results > table > thead > tr > th {
+    background-color: var(--erdpl-background);
+    color: var(--erdpl-text-primary);
+}
 
 
 
