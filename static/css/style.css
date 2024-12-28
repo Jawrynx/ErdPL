@@ -143,19 +143,6 @@ nav li a,
     background-color: black;
 }
 
-@media (max-width: 992px) { 
-    #mobile-nav.active { 
-        display: block; 
-    }
-    #menu-toggle {
-        display: block;
-    }
-
-    nav ul { 
-        display: none; 
-    }
-}
-
 
 
 
@@ -333,4 +320,55 @@ footer {
 
 .social-media i {
     font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 460px) {
+    .latest-results > table > thead > tr > th,
+    .latest-results > table > tbody > tr > td {
+        padding: 2px 5px;
+    }
+
+    .home-banner h1 {
+        font-size: 2.5rem;
+    }
+
+    .home-banner p {
+        font-size: 1rem;
+    }
+
+    .home-banner a {
+        font-size: 1rem;
+        padding: 2px;
+    }
+}
+
+@media (max-width: 992px) { 
+    #mobile-nav.active { 
+        display: block; 
+    }
+    #menu-toggle {
+        display: block;
+    }
+
+    nav ul { 
+        display: none; 
+    }
 }
