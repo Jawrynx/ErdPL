@@ -84,6 +84,22 @@ nav li a,
     padding: 10px;
 }
 
+.red-nav {
+    background-color: rgb(112, 36, 1);
+}
+
+.red-nav:hover {
+    background-color: rgb(179, 0, 0);
+}
+
+.left {
+    border-bottom-left-radius: 15px;
+}
+
+.right {
+    border-bottom-right-radius: 15px;
+}
+
 /* Mobile Nav */
 
 #menu-toggle {
