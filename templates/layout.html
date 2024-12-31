@@ -16,7 +16,7 @@
     <header id="header" class="">
         <nav>
             {% comment %} <h2>ErdPL</h2> {% endcomment %}
-            <img class="logo" src="../media/logo.jpeg" alt="ErdPL">
+            <img class="logo" src="{% get_media_prefix %}logo.jpeg" alt="ErdPL">
             <ul>
                 <li class="left right"><a href="/">Home</a></li>
                 <li class="red-nav left"><a href="/">Scores</a></li>
@@ -25,7 +25,7 @@
             </ul>
             <ul id="user-links">
                 <li class="left"><a href="">Login</a></li>
-                <li><a href="">Register</a></li>
+                <li><a href="{% url 'users:register' %}">Register</a></li>
             </ul>
             <div id="menu-toggle">
                 <span class="bar"></span>
