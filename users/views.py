@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+from .forms import CustomUserCreationForm
+from .forms import ProfileEditForm
+
 from .models import Profile, CustomUser
 from django.urls import reverse
 
@@ -52,3 +57,24 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("home")
+
+@login_required
+def edit_profile(request, username):
+    if request.method == 'POST':
+        user = request.user  # Get the current user
+        profile = user.profile
+        form = ProfileEditForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Your profile has been updated!')
+            return redirect('users:profile', username=username) 
+
+    else:
+        user = request.user
+        profile = user.profile
+        form = ProfileEditForm(instance=profile)
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'users/edit_profile.html', context)

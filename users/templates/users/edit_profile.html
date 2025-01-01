@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Edit Profile
+{% endblock %}
+
+{% block content %}
+  <div class="edit-profile-container">
+    <h1>Edit Profile</h1>
+    <form method="post" enctype="multipart/form-data" id="edit-profile-form">
+      {% csrf_token %}
+
+      <label for="id_fullname">Full Name:</label>
+      <input type="text" id="id_fullname" name="fullname" value="{{ form.fullname.value }}" />
+
+      <label for="id_phone_number">Phone Number:</label>
+      <input type="text" id="id_phone_number" name="phone_number" value="{{ form.phone_number.value }}" />
+
+      <label for="id_profile_picture">Profile Picture:</label>
+      <input type="file" id="id_profile_picture" name="profile_picture" />
+
+      <label for="id_bio">Bio:</label>
+      <textarea id="id_bio" name="bio">{{ form.bio.value }}</textarea>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    const username = '{{ username }}'
+    const editProfileForm = document.getElementById('edit-profile-form')
+    
+    editProfileForm.addEventListener('submit', async (event) => {
+      event.preventDefault() // Prevent default form submission
+    
+      try {
+        const formData = new FormData(editProfileForm)
+        const username = 'Toenail2' // Replace with actual username logic
+    
+        const response = await fetch(`/users/profile/${username}/edit_profile/`, {
+          method: 'POST',
+          body: formData
+        })
+    
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+    
+        // Redirect after successful POST
+        window.location.href = '../'
+      } catch (error) {
+        console.error('Error:', error)
+        // Handle error, e.g., display an error message to the user
+      }
+    })
+  </script>
+{% endblock %}

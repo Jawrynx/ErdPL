@@ -13,6 +13,10 @@
                 {% if profile.profile_picture %}
                     <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.username }}'s Profile Picture" style="max-width: 200px;">
                 {% endif %}
+                <br>
+                {% if request.user == profile.user %}
+                    <a href="{% url 'users:edit_profile' username=profile.user.username %}">Edit Profile</a>
+                {% endif %}
             </div>
             <div class="profile-info">
                 <p><strong>Full Name:</strong> {{ profile.fullname }}</p>
