@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, get_user_model
-from .models import Profile
+from .models import Profile, CustomUser
 from django.urls import reverse
 
 def register_view(request):
@@ -14,13 +14,17 @@ def register_view(request):
 
             Profile.objects.create(user=user)
 
-            return redirect('users:profile')
+            username = user.username
+
+            profile_url = reverse('users:profile', kwargs={'username': username})
+
+            return redirect(profile_url)
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/register.html', { "form": form })
 
-def profile_view(request):
-    user = request.user
+def profile_view(request, username):
+    user = get_object_or_404(CustomUser, username=username)
     profile = user.profile
 
     return render(request, 'users/profile.html', {'profile': profile})

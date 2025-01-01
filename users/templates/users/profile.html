@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Profile</h1>
+    <h2>{{ profile.user.username }}'s Profile</h2>
+
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.username }}'s Profile Picture" style="max-width: 200px;">
+    {% endif %}
+
+    <p><strong>Full Name:</strong> {{ profile.fullname }}</p>
+    <p><strong>Phone:</strong> {{ profile.phone_number }}</p>
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
 {% endblock %}
