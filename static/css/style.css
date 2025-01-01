@@ -369,7 +369,7 @@ footer {
 
 
 
-/* Profile Page */
+/* Profile Pages */
 
 .profile-container {
     text-align: center;
@@ -379,12 +379,12 @@ footer {
     margin: 50px;
     padding: 20px;
     border-radius: 25px;
-    min-width: 60%;
+    min-width: 80%;
 }
 
 .profile-banner {
     background-color: rgba(0,0,0,0.7);
-    padding: 50px;
+    padding: 25px;
     margin-right: 20px;
     color: white;
     border-radius: 15px;
@@ -392,11 +392,14 @@ footer {
 }
 
 .profile-info {
-    text-align: left;
+    text-align: center;
     background-color: var(--erdpl-text-primary);
-    padding: 50px;
+    padding: 25px;
     border-radius: 15px;
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .center {
@@ -404,6 +407,38 @@ footer {
     flex-direction: column;
     align-items: center;
     background-color: var(--erdpl-background);
+}
+
+.profile-banner img {
+    border-radius: 50%;
+    margin: 25px;
+}
+
+.profile-banner a {
+    text-decoration: none;
+    color: var(--erdpl-text-secondary);
+    background-color: var(--erdpl-text-tertiary);
+    border-radius: 8px;
+    border: 1px solid var(--erdpl-text-primary);
+    padding: 8px;
+    font-size: 1.2rem;
+    transition: 0.2s ease-in-out;
+}
+
+.profile-banner a:hover {
+    background-color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
+    transition: 0.2s ease-in-out;
+}
+
+.profile-banner h2 {
+    background-color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    font-size: 2.5rem;
+    text-shadow: 1px 0px 5px darkred;
 }
 
 
@@ -458,5 +493,20 @@ footer {
 
     nav ul { 
         display: none; 
+    }
+
+    /* Profile Pages */
+
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-banner,
+    .profile-info {
+        width: 100%;
+    }
+
+    .profile-info {
+        margin-top: 25px;
     }
 }
