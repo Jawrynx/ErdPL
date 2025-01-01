@@ -9,10 +9,17 @@ def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST) 
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.save()
             login(request, user)
 
-            Profile.objects.create(user=user)
+            profile = Profile.objects.create(
+                user=user,
+                fullname=request.POST.get('fullname', ''), 
+                profile_picture=request.FILES.get('profile_picture', None), 
+                phone_number=request.POST.get('phone_number', ''), 
+                bio=request.POST.get('bio', '')
+            )
 
             username = user.username
 

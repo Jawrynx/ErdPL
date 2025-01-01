@@ -362,6 +362,68 @@ footer {
 
 
 
+
+
+
+
+
+
+
+/* Profile Page */
+
+.profile-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: var(--erdpl-text-secondary);
+    margin: 50px;
+    padding: 20px;
+    border-radius: 25px;
+    min-width: 60%;
+}
+
+.profile-banner {
+    background-color: rgba(0,0,0,0.7);
+    padding: 50px;
+    margin-right: 20px;
+    color: white;
+    border-radius: 15px;
+    width: 40%;
+}
+
+.profile-info {
+    text-align: left;
+    background-color: var(--erdpl-text-primary);
+    padding: 50px;
+    border-radius: 15px;
+    width: 60%;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--erdpl-background);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* MEDIA QUERIES */
 
 @media (max-width: 460px) {
