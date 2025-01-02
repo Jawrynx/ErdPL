@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="center">
-        <div class="outer">
+    <div class="center" id="login-center">
+        <div class="outer" id="login-outer">
             <div class="form-container">
                 <h1>Login</h1>
                 <form class="form-with-validation" action="{% url 'users:login' %}" method="post">

@@ -10,6 +10,17 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+main {
+    position: relative;
+    top: 80px;
+    z-index: 1;
+}
+
+footer {
+    position: relative;
+    top: 80px;
+}
+
 :root {
     --erdpl-background: #0d1518; /* Black background color */
     --erdpl-text-primary: #f9f3e5; /* White text color */
@@ -40,6 +51,9 @@ nav img {
 header {
     background-color: var(--erdpl-background);
     color: var(--erdpl-text-primary);
+    position: fixed;
+    width: 100%;
+    z-index: 2;
 }
 
 nav {
@@ -471,8 +485,14 @@ footer {
     margin-top: 10px;
     background-color: var(--erdpl-text-tertiary);
     padding: 15px;
+    padding-bottom: 25px;
     border-radius: 10px;
+    box-shadow: 1px 1px 3px 1px rgb(175, 175, 175);
     color: var(--erdpl-text-primary);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-container > h1 {
@@ -480,6 +500,7 @@ footer {
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 10px;
+    font-size: 2.5rem;
 }
 
 .form-container > form > button {
@@ -495,7 +516,7 @@ footer {
     transition: 0.3s ease-in-out;
 }
 
-.form-container > form > button:hover {
+.form-submit:hover {
     background-color: var(--erdpl-text-secondary);
     transition: 0.3s ease-in-out;
 }
@@ -503,12 +524,14 @@ footer {
 .form-container > form > div > input {
     padding: 5px 0px;
     border-radius: 5px;
-    max-width: 200px;
+    max-width: 250px;
+    width: 100%;
 }
 
 .form-container > form > div > label {
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .form-container > form > ul > li {
@@ -521,9 +544,27 @@ footer {
     border: 2px solid darkred;
 }
 
+.helptext {
+    margin: 10px;
+    background-color: blue;
+    color: var(--erdpl-text-primary);
+    border: 1px solid rgb(0, 191, 255);
+    padding: 8px;
+    border-radius: 8px;
+}
 
+#id_password1_helptext {
+    padding-left: 25px;
+    text-align: left;
+}
 
+#login-outer {
+    min-width: 400px;
+}
 
+#login-center {
+    height: 80vh;
+}
 
 
 
@@ -563,7 +604,7 @@ footer {
 
 /* MEDIA QUERIES */
 
-@media (max-width: 460px) {
+@media (max-width: 490px) {
     .latest-results > table > thead > tr > th,
     .latest-results > table > tbody > tr > td {
         padding: 2px 5px;
@@ -579,11 +620,33 @@ footer {
 
     .home-banner a {
         font-size: 1.3rem;
-        padding: 5px;
+        padding: 10px;
     }
+
+
+    /* Login / Registration Forms */
+    #login-outer,
+    .outer {
+        min-width: 0px;
+        width: 100%;
+    }
+
+    .form-container > h1 {
+        font-size: 1.8rem;
+    }
+
+    .helptext {
+        font-size: 0.8rem;
+    }
+
 }
 
 @media (max-width: 992px) { 
+    main,
+    footer {
+        top: 70px;
+    }
+
     #mobile-nav.active { 
         display: block; 
         top: 70px;
