@@ -406,6 +406,7 @@ footer {
     border-radius: 15px;
     width: 40%;
     margin-right: 25px;
+    height: 450px;
 }
 
 .profile-info,
@@ -428,9 +429,14 @@ footer {
     background-color: var(--erdpl-background);
 }
 
-.profile-banner img {
+.profile-banner img,
+.edit-profile-banner img {
     border-radius: 50%;
-    margin: 25px;
+    margin: 25px 0;
+    max-height: 250px;
+    max-width: 250px;
+    height: 100%;
+    width: 100%;
 }
 
 .profile-banner a {
@@ -458,10 +464,6 @@ footer {
     padding: 10px;
     font-size: 2.5rem;
     text-shadow: 1px 0px 5px darkred;
-}
-
-.edit-profile-container > form > .edit-profile-banner > input {
-    margin-top: 160px;
 }
 
 .edit-profile-container > form > .edit-profile-banner > h1 {
@@ -607,7 +609,7 @@ footer {
 
 #login-center,
 .profile-center {
-    height: 80vh;
+    height: 120vh;
 }
 
 
@@ -681,6 +683,11 @@ footer {
 
     .helptext {
         font-size: 0.8rem;
+    }
+
+    .profile-container,
+    .edit-profile-container > form {
+        margin: 30px 0;
     }
 
 }

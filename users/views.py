@@ -76,5 +76,6 @@ def edit_profile(request, username):
 
     context = {
         'form': form,
+        'profile': profile,
     }
     return render(request, 'users/edit_profile.html', context)

@@ -12,6 +12,11 @@
         <div class="edit-profile-banner">
           <h1>Edit Profile</h1>
           <label for="id_profile_picture">Profile Picture:</label>
+          {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="Current Profile Picture">
+          {% else %}
+            <img src="../../../../media/profile_default.jpeg">
+          {% endif %}
           <input type="file" id="id_profile_picture" name="profile_picture" />
         </div>
         <div class="edit-profile-info">
