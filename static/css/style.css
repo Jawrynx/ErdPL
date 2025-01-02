@@ -16,6 +16,7 @@ body {
     --erdpl-text-secondary: #ef6f28; /* Orange text color */
     --erdpl-text-tertiary: #236770; /* Blue text color */
     --erdpl-text-quaternary: #144a54; /* Green text color */
+    --erdpl-color-green: #8BC34A; 
 }
 
 
@@ -440,6 +441,107 @@ footer {
     font-size: 2.5rem;
     text-shadow: 1px 0px 5px darkred;
 }
+
+
+
+/* Logins & Registrations */
+
+
+.form-container {
+    background-color: var(--erdpl-text-primary);
+    padding: 25px; 
+    border-radius: 15px; 
+    margin: 20px;
+}
+
+.outer {
+    background-color: var(--erdpl-color-green);
+    border-radius: 25px;
+    margin: 50px;
+}
+
+.form-container > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container > form > div {
+    text-align: right;
+    margin-top: 10px;
+    background-color: var(--erdpl-text-tertiary);
+    padding: 15px;
+    border-radius: 10px;
+    color: var(--erdpl-text-primary);
+}
+
+.form-container > h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-container > form > button {
+    margin-top: 25px;
+    width: 90px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: rgb(240, 240, 240);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+}
+
+.form-container > form > button:hover {
+    background-color: var(--erdpl-text-secondary);
+    transition: 0.3s ease-in-out;
+}
+
+.form-container > form > div > input {
+    padding: 5px 0px;
+    border-radius: 5px;
+    max-width: 200px;
+}
+
+.form-container > form > div > label {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.form-container > form > ul > li {
+    width: 300px;
+    list-style: none;
+    background-color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
+    border-radius: 5px;
+    padding: 5px;
+    border: 2px solid darkred;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
