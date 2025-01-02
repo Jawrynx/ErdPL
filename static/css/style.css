@@ -386,7 +386,8 @@ footer {
 
 /* Profile Pages */
 
-.profile-container {
+.profile-container,
+.edit-profile-container > form {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -397,16 +398,18 @@ footer {
     min-width: 80%;
 }
 
-.profile-banner {
+.profile-banner,
+.edit-profile-banner {
     background-color: rgba(0,0,0,0.7);
     padding: 25px;
-    margin-right: 20px;
     color: white;
     border-radius: 15px;
     width: 40%;
+    margin-right: 25px;
 }
 
-.profile-info {
+.profile-info,
+.edit-profile-info {
     text-align: center;
     background-color: var(--erdpl-text-primary);
     padding: 25px;
@@ -415,6 +418,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .center {
@@ -431,7 +435,7 @@ footer {
 
 .profile-banner a {
     text-decoration: none;
-    color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
     background-color: var(--erdpl-text-tertiary);
     border-radius: 8px;
     border: 1px solid var(--erdpl-text-primary);
@@ -447,13 +451,24 @@ footer {
 }
 
 .profile-banner h2 {
-    background-color: var(--erdpl-text-secondary);
+    background-color: var(--erdpl-background);
     color: var(--erdpl-text-primary);
     border-radius: 8px;
     width: 100%;
     padding: 10px;
     font-size: 2.5rem;
     text-shadow: 1px 0px 5px darkred;
+}
+
+.edit-profile-container > form > .edit-profile-banner > input {
+    margin-top: 160px;
+}
+
+.edit-profile-container > form > .edit-profile-banner > h1 {
+    background-color: var(--erdpl-background);
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 8px;
 }
 
 
@@ -516,19 +531,47 @@ footer {
     transition: 0.3s ease-in-out;
 }
 
+.edit-profile-container > form > .edit-profile-info > button {
+    margin-top: 25px;
+    width: 120px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: rgb(240, 240, 240);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+}
+
+.edit-profile-container > form > .edit-profile-info > button:hover {
+    background-color: var(--erdpl-text-secondary);
+    transition: 0.3s ease-in-out;
+}
+
+#id_profile_picture {
+    border: none;
+}
+
 .form-submit:hover {
     background-color: var(--erdpl-text-secondary);
     transition: 0.3s ease-in-out;
 }
 
-.form-container > form > div > input {
+.form-container > form > div > input,
+.edit-profile-container > form > .edit-profile-info > input,
+.edit-profile-container > form > .edit-profile-banner > input,
+.edit-profile-container > form > .edit-profile-info > textarea {
     padding: 5px 0px;
     border-radius: 5px;
     max-width: 250px;
     width: 100%;
+    border: 2px solid black;
 }
 
-.form-container > form > div > label {
+.form-container > form > div > label,
+.edit-profile-container > form > .edit-profile-banner > label,
+.edit-profile-container > form > .edit-profile-info > label {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.1rem;
@@ -562,7 +605,8 @@ footer {
     min-width: 400px;
 }
 
-#login-center {
+#login-center,
+.profile-center {
     height: 80vh;
 }
 
@@ -673,5 +717,21 @@ footer {
 
     .profile-info {
         margin-top: 25px;
+    }
+
+    .edit-profile-container > form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edit-profile-info,
+    .edit-profile-banner {
+        width: 100%;
+    }
+
+    .edit-profile-banner {
+        margin-bottom: 25px;
+        margin-right: 0px;
     }
 }

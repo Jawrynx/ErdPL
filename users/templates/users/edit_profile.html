@@ -5,25 +5,28 @@
 {% endblock %}
 
 {% block content %}
-  <div class="edit-profile-container">
-    <h1>Edit Profile</h1>
-    <form method="post" enctype="multipart/form-data" id="edit-profile-form">
-      {% csrf_token %}
-
-      <label for="id_fullname">Full Name:</label>
-      <input type="text" id="id_fullname" name="fullname" value="{{ form.fullname.value }}" />
-
-      <label for="id_phone_number">Phone Number:</label>
-      <input type="text" id="id_phone_number" name="phone_number" value="{{ form.phone_number.value }}" />
-
-      <label for="id_profile_picture">Profile Picture:</label>
-      <input type="file" id="id_profile_picture" name="profile_picture" />
-
-      <label for="id_bio">Bio:</label>
-      <textarea id="id_bio" name="bio">{{ form.bio.value }}</textarea>
-
-      <button type="submit">Save Changes</button>
-    </form>
+  <div class="center profile-center">
+    <div class="edit-profile-container">
+      <form method="post" enctype="multipart/form-data" id="edit-profile-form">
+        {% csrf_token %}
+        <div class="edit-profile-banner">
+          <h1>Edit Profile</h1>
+          <label for="id_profile_picture">Profile Picture:</label>
+          <input type="file" id="id_profile_picture" name="profile_picture" />
+        </div>
+        <div class="edit-profile-info">
+          <label for="id_fullname">Full Name:</label>
+          <input type="text" id="id_fullname" name="fullname" value="{{ form.fullname.value }}" />
+          <br>
+          <label for="id_phone_number">(Optional) Phone Number:</label>
+          <input type="text" id="id_phone_number" name="phone_number" value="{{ form.phone_number.value }}" />
+          <br>
+          <label for="id_bio">Bio:</label>
+          <textarea id="id_bio" name="bio">{{ form.bio.value }}</textarea>
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
   </div>
 {% endblock %}
 
