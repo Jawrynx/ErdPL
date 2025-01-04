@@ -26,5 +26,12 @@
                 <p><strong>Bio:</strong> {{ profile.bio }}</p>
             </div>
         </div>
+        {% if request.user == profile.user %}
+        <div class="profile-teams-buttons left right">
+            <a href="#">Join Team</a>
+            <a href="#">Create Team</a>
+            <a href="#">Leave Team</a>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}

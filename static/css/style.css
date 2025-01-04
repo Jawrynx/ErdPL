@@ -41,7 +41,6 @@ footer {
 
 
 
-
 /* Navbar */
 
 nav img {
@@ -392,7 +391,7 @@ footer {
     display: flex;
     justify-content: center;
     background-color: var(--erdpl-text-secondary);
-    margin: 50px;
+    margin: 50px 50px 0px 50px;
     padding: 20px;
     border-radius: 25px;
     min-width: 80%;
@@ -612,6 +611,37 @@ footer {
     height: 120vh;
 }
 
+.profile-teams-buttons {
+    background-color: rgb(0, 8, 24);
+    padding: 20px 100px;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    border-left: 3px solid var(--erdpl-text-secondary);
+    border-right: 3px solid var(--erdpl-text-secondary);
+    border-bottom: 3px solid var(--erdpl-text-secondary);
+}
+
+.profile-teams-buttons > a {
+    background-color: var(--erdpl-text-secondary);
+    text-decoration: none;
+    color: var(--erdpl-text-primary);
+    border: 3px solid var(--erdpl-text-primary);
+    padding: 25px;
+    margin: 0px 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.profile-teams-buttons > a:hover {
+    background-color: darkred;
+    transition: 0.3s ease-in-out;
+}
+
 
 
 
@@ -708,7 +738,7 @@ footer {
     .profile-container,
     .edit-profile-container,
     .edit-profile-container > form {
-        margin: 30px 0;
+        margin: 30px 0px 0px 0px;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -749,6 +779,17 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .profile-teams-buttons {
+        padding: 15px;
+        width: 85%;
+    }
+
+    .profile-teams-buttons > a {
+        margin: 0px 5px;
+        font-size: 1rem;
+        padding: 5px;
     }
 }
 
@@ -810,6 +851,16 @@ footer {
     .edit-profile-container {
         max-width: 100%;
         width: 70%;
-        margin: 30px 0;
+        margin: 30px 0px 0px 0px;
+    }
+
+    .profile-teams-buttons {
+        padding: 5px;
+    }
+
+    .profile-teams-buttons > a {
+        font-size: 1.2rem;
+        margin: 0 5px;
+        padding: 10px;
     }
 }
