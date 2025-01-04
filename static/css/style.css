@@ -651,6 +651,26 @@ footer {
 /* MEDIA QUERIES */
 
 @media (max-width: 490px) {
+
+    main,
+    footer {
+        top: 70px;
+    }
+
+    #mobile-nav.active { 
+        display: block; 
+        top: 70px;
+        transition: 0.3s ease-in-out;
+    }
+    #menu-toggle {
+        display: block;
+    }
+
+    nav ul { 
+        display: none; 
+    }
+
+
     .latest-results > table > thead > tr > th,
     .latest-results > table > tbody > tr > td {
         padding: 2px 5px;
@@ -686,13 +706,53 @@ footer {
     }
 
     .profile-container,
+    .edit-profile-container,
     .edit-profile-container > form {
         margin: 30px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
+    .profile-banner,
+    .profile-info {
+        width: 100%;
+    }
+
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-banner {
+        margin-right: 0;
+    }
+
+    .profile-info {
+        margin-top: 25px;
+    }
+
+    .edit-profile-container > form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edit-profile-info,
+    .edit-profile-banner {
+        width: 100%;
+    }
+
+    .edit-profile-banner {
+        margin-bottom: 25px;
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-@media (max-width: 992px) { 
+@media (max-width: 992px) and (min-width: 490px) { 
     main,
     footer {
         top: 70px;
@@ -730,6 +790,7 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0;
     }
 
     .edit-profile-info,
@@ -740,5 +801,15 @@ footer {
     .edit-profile-banner {
         margin-bottom: 25px;
         margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-container,
+    .edit-profile-container {
+        max-width: 100%;
+        width: 70%;
+        margin: 30px 0;
     }
 }
