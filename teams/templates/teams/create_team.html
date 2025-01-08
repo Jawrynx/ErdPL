@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Create a New Team
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+        <div class="outer">
+            <div class="form-container">
+                <h1>Create a New Team</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ team_creation_form.as_p }} 
+                    <p>Are you the team captain? <input type="checkbox" name="is_captain" required></p> 
+                    <div class="form-group"> 
+                        <label for="id_division">Select Division:</label>
+                        <select id="id_division" name="division">
+                            <option value="">-- Select Division --</option>
+                            {% for division in divisions %}
+                                <option value="{{ division.id }}">{{ division.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button class="form-submit">Create Team</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

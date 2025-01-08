@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ team.name }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ team.name }}</h2>
+    <p>Captain: {{ team.captain.username }}</p>
+
+    <h3>Team Members:</h3>
+    <ul>
+        {% for member in team.members.all %}
+            <li>{{ member.username }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if team.division %}
+        <p>Division: {{ team.division.name }}</p>
+    {% endif %}
+
+    {% if request.user == team.captain %} 
+        <a href="#">Edit Team</a> 
+        <a href="#">Delete Team</a> 
+    {% endif %} 
+
+{% endblock %}

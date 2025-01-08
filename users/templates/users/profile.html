@@ -29,7 +29,7 @@
         {% if request.user == profile.user %}
         <div class="profile-teams-buttons left right">
             <a href="#">Join Team</a>
-            <a href="#">Create Team</a>
+            <a href="{% url 'teams:create' %}">Create Team</a> 
             <a href="#">Leave Team</a>
         </div>
         {% endif %}
