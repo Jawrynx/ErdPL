@@ -8,6 +8,7 @@ from .forms import CustomUserCreationForm
 from .forms import ProfileEditForm
 
 from .models import Profile, CustomUser
+from teams.models import Team
 from django.urls import reverse
 
 def register_view(request):
@@ -39,7 +40,17 @@ def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)
     profile = user.profile
 
-    return render(request, 'users/profile.html', {'profile': profile})
+    try:
+        user_team = Team.objects.filter(members=user).first()
+    except Team.DoesNotExist:
+        user_team = None
+
+    context = {
+        'profile': profile,
+        'user_team': user_team,
+    }
+
+    return render(request, 'users/profile.html', context)
 
 def login_view(request):
     if request.method == "POST":

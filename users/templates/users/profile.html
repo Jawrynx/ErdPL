@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title%}
+{% block title %}
     Profile
 {% endblock %}
 
@@ -26,12 +26,28 @@
                 <p><strong>Bio:</strong> {{ profile.bio }}</p>
             </div>
         </div>
-        {% if request.user == profile.user %}
-        <div class="profile-teams-buttons left right">
-            <a href="#">Join Team</a>
-            <a href="{% url 'teams:create' %}">Create Team</a> 
-            <a href="#">Leave Team</a>
+        <div class="profile-teams-buttons left right" id='profile-team-container'>
+            {% if user_team %}
+                <p>
+                    <div class="team-inner">
+                        <strong>Team:</strong>
+                        <a href="{% url 'teams:detail' team_id=user_team.id %}">
+                            {% if user_team.team_image %}
+                                <img src="{{ user_team.team_image.url }}" alt="{{ profile.user.team.name }} Image" class="team-profile-image">
+                            {% endif %}
+                            <span>{{ user_team.name }}</span>
+                        </a>
+                    </div>
+                </p>
+                {% if request.user == profile.user %}
+                    <div id='leave-button'><a href="#">Leave Team</a></div>
+                {% endif %}
+            {% else %}
+                {% if request.user == profile.user %}
+                    <a href="#">Join Team</a>
+                    <a href="{% url 'teams:create' %}">Create Team</a>
+                {% endif %}
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 {% endblock %}
