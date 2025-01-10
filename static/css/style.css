@@ -711,7 +711,7 @@ footer {
 
 #leave-button {
     position: absolute;
-    width: 50%;
+    width: 40%;
 }
 
 #leave-button > a {
@@ -783,7 +783,7 @@ footer {
 
     #mobile-nav.active { 
         display: block; 
-        top: 70px;
+        top: 74px;
         transition: 0.3s ease-in-out;
     }
     #menu-toggle {
@@ -885,6 +885,38 @@ footer {
         font-size: 1rem;
         padding: 5px;
     }
+
+    #profile-team-container > .team-inner > strong {
+        font-size: 1.2rem;
+        width: 20%;
+        min-height: 88px;
+        margin-left: 2px;
+    }
+
+    #profile-team-container > .team-inner > a > span {
+        font-size: 1.2rem;
+    }
+
+    #profile-team-container > .team-inner > a > img {
+        height: 75px;
+    }
+
+    #leave-button {
+        width: 40%;
+        right: 160px;
+    }
+
+    #leave-button > a {
+        font-size: 0.8rem;
+        top: 143px;
+
+    }
+
+    .team-inner > a {
+        padding: 7px;
+        width: 80%;
+        margin: 2px;
+    }
 }
 
 @media (max-width: 992px) and (min-width: 490px) { 
@@ -895,7 +927,7 @@ footer {
 
     #mobile-nav.active { 
         display: block; 
-        top: 70px;
+        top: 74px;
         transition: 0.3s ease-in-out;
     }
     #menu-toggle {
@@ -956,5 +988,33 @@ footer {
         font-size: 1.2rem;
         margin: 0 5px;
         padding: 10px;
+    }
+
+
+    #profile-team-container > .team-inner > strong {
+        font-size: 1.5rem;
+        width: 20%;
+    }
+
+    #profile-team-container > .team-inner > a > span {
+        font-size: 1.5rem;
+    }
+
+    #profile-team-container > .team-inner > a > img {
+        height: 75px;
+    }
+
+    #leave-button {
+        width: 30%;
+        left: 140px;
+    }
+
+    #leave-button > a {
+        top: 172px;
+    }
+
+    .team-inner > a {
+        padding: 7px;
+        width: 80%;
     }
 }

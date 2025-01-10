@@ -45,9 +45,12 @@ def profile_view(request, username):
     except Team.DoesNotExist:
         user_team = None
 
+    teams = Team.objects.all()
+
     context = {
         'profile': profile,
         'user_team': user_team,
+        'teams': teams,
     }
 
     return render(request, 'users/profile.html', context)
