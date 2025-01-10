@@ -5,23 +5,37 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{{ team.name }}</h2>
-    <p>Captain: {{ team.captain.username }}</p>
+    <div class="center profile-center">
+        <div class="profile-container" id='team-container'>
+            <div class="profile-banner">
+                <h2>{{ team.name }}</h2>
+                {% if team.team_image %}
+                    <img src="{{ team.team_image.url }}" alt="{{ team.name }} Image" class="team-profile-image">
+                {% else %}
+                    <img src="../../../media/team_default.png" alt="Blank Team Photo" class="team-profile-image">
+                {% endif %}
+                
+                <p>Captain:<a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
+            </div>
+            <div class="profile-info">
+                <h3>Team Members:</h3>
+                <ul>
+                    {% for member in team.members.all %}
+                        <li><a href="{% url 'users:profile' username=member.username %}">{{ member.username }}</a></li>
+                    {% endfor %}
+                </ul>
 
-    <h3>Team Members:</h3>
-    <ul>
-        {% for member in team.members.all %}
-            <li>{{ member.username }}</li>
-        {% endfor %}
-    </ul>
-
-    {% if team.division %}
-        <p>Division: {{ team.division.name }}</p>
-    {% endif %}
-
-    {% if request.user == team.captain %} 
-        <a href="#">Edit Team</a> 
-        <a href="#">Delete Team</a> 
-    {% endif %} 
+                {% if team.division %}
+                    <p>Division: {{ team.division.name }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% if request.user == team.captain %} 
+            <div class="profile-teams-buttons left right">
+                <a href="#">Edit Team</a> 
+                <a href="#">Delete Team</a> 
+            </div>
+        {% endif %} 
+    </div>
 
 {% endblock %}

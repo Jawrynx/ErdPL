@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title%}
+{% block title %}
     Profile
 {% endblock %}
 
@@ -26,12 +26,41 @@
                 <p><strong>Bio:</strong> {{ profile.bio }}</p>
             </div>
         </div>
-        {% if request.user == profile.user %}
-        <div class="profile-teams-buttons left right">
-            <a href="#">Join Team</a>
-            <a href="{% url 'teams:create' %}">Create Team</a> 
-            <a href="#">Leave Team</a>
+        <div class="profile-teams-buttons left right" id='profile-team-container'>
+            {% if user_team %}
+                <p>
+                    <div class="team-inner">
+                        <strong>Team:</strong>
+                        <a href="{% url 'teams:detail' team_id=user_team.id %}">
+                            {% if user_team.team_image %}
+                                <img src="{{ user_team.team_image.url }}" alt="{{ profile.user.team.name }} Image" class="team-profile-image">
+                            {% else %}
+                                <img src="../../../media/team_default.png" alt="Blank Team Photo" class="team-profile-image">
+                            {% endif %}
+                            <span>{{ user_team.name }}</span>
+                        </a>
+                    </div>
+                </p>
+                {% if request.user == profile.user and request.user != user_team.captain %}
+                    <div id='leave-button'><a href="{% url 'teams:leave' team_id=user_team.id %}">Leave Team</a></div>
+                {% endif %}
+            {% else %}
+                {% if request.user == profile.user %}
+                    <a id="join-link">Join Team</a>
+                    <form id="join-team-form" method="post" action="" style="display: none;"> 
+                        {% csrf_token %}
+                        <select name="team_id" id="team_id_select">
+                            <option value="">Select Team</option>
+                            {% for team in teams %}
+                                <option value="{{ team.id }}">{{ team.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Join</button>
+                    </form>
+                    
+                    <a href="{% url 'teams:create' %}">Create Team</a>
+                {% endif %}
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 {% endblock %}
