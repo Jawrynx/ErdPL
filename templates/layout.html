@@ -20,7 +20,7 @@
             <ul>
                 <li class="left right"><a href="/">Home</a></li>
                 <li class="red-nav left"><a href="/">Scores</a></li>
-                <li class="red-nav right"><a href="/">Fixtures</a></li>
+                <li class="red-nav right"><a href="{% url 'fixtures:fixtures_home' %}">Fixtures</a></li>
                 <li class="left right"><a href="/contact">Contact</a></li>
             </ul>
             <ul id="user-links">
@@ -41,7 +41,7 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/">Scores</a></li>
-                    <li><a href="/">Fixtures</a></li>
+                    <li><a href="{% url 'fixtures:fixtures_home' %}">Fixtures</a></li>
                     <li class="no-border"><a href="/contact">Contact</a></li>
                     <li class="breaker no-border"><span class="bar"></span></li>
                     {% if user.is_authenticated %}

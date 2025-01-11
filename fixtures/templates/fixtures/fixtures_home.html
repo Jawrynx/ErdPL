@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Fixtures: Division 1
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+        <div class="outer-2">
+            <h1>Division 1 Fixtures</h1>
+            <table class="fixture-table">
+                <thead class="fixture-head">
+                    <tr class="fixture-row">
+                        <th>Date</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>H / A (?)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fixture in fixtures %}
+                        <tr>
+                            <td>{{ fixture.date }}</td>
+                            <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>
+                            <td><a href="{% url 'teams:detail' team_id=fixture.away_team.id %}">{{ fixture.away_team }}</a></td>
+                            <td>{{ fixture.home_or_away }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -843,9 +843,48 @@ footer {
 }
 
 
+/* Fixtures & Scores */
 
+.fixture-table {
+    background-color: var(--erdpl-text-secondary);
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 15px;
+    padding: 5px;
+}
 
+.fixture-table td {
+    background-color: var(--erdpl-text-primary);
+}
 
+.fixture-table > tbody > tr:last-child > td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.fixture-table > tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.fixture-head > tr > th {
+    text-transform: uppercase;
+}
+
+.outer-2 {
+    background-color: darkred;
+    margin-top: 100px;
+    text-align: center;
+    padding: 25px;
+    border-radius: 25px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outer-2 > h1 {
+    text-transform: uppercase;
+    color: var(--erdpl-text-primary);
+}
 
 
 
