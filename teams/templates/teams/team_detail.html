@@ -15,21 +15,33 @@
                     <img src="../../../media/team_default.png" alt="Blank Team Photo" class="team-profile-image">
                 {% endif %}
                 
-                <p>Captain:<a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
+                <p><strong>Captain:</strong><a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
             </div>
             <div class="profile-info">
                 <h3>Team Members:</h3>
                 <ul>
                     {% for member in team.members.all %}
-                        <li><a href="{% url 'users:profile' username=member.username %}">{{ member.username }}</a></li>
+                        <li>
+                            <a href="{% url 'users:profile' username=member.username %}">
+                                <img src="{% if member.profile.profile_picture %}{{ member.profile.profile_picture.url }}{% else %}../../../media/profile_default.jpeg{% endif %}" alt="{{ member.username }} Profile Picture" class="profile-image">
+                                <span>{{ member.username }}</span>
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
 
                 {% if team.division %}
-                    <p>Division: {{ team.division.name }}</p>
+                    <p><strong>Division:</strong> {{ team.division.name }}</p>
                 {% endif %}
             </div>
         </div>
+        {% if request.user in team.members.all and request.user != team.captain %}
+            <div id='team-button'><a href="{% url 'teams:leave' team_id=team.id %}">Leave Team</a></div>
+        {% endif %}
+        {% if request.user not in team.members.all %}
+            <div id='team-button-2'><a href="{% url 'teams:join' team_id=team.id %}">Join Team</a></div>
+        {% endif %}
+
         {% if request.user == team.captain %} 
             <div class="profile-teams-buttons left right">
                 <a href="#">Edit Team</a> 

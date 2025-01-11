@@ -405,7 +405,6 @@ footer {
     border-radius: 15px;
     width: 40%;
     margin-right: 25px;
-    height: 450px;
 }
 
 .profile-info,
@@ -736,9 +735,112 @@ footer {
     background-color: darkred;
 }
 
+#team-button {
+    background-color: var(--erdpl-text-secondary);
+    padding: 10px;
+    position: relative;
+    left: 30%;
+    transition: 0.3s ease-in-out;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid darkred;
+    border-right: 1px solid darkred;
+    border-left: 1px solid darkred;
+}
 
+#team-button > a {
+    text-decoration: none;
+    color: var(--erdpl-text-primary);
+}
 
+#team-button:hover {
+    transition: 0.3s ease-in-out;
+    background-color: darkred;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
 
+#team-button-2 {
+    background-color: rgb(0, 157, 255);
+    text-transform: uppercase;
+    padding: 10px;
+    position: relative;
+    left: 30%;
+    transition: 0.3s ease-in-out;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid darkred;
+    border-right: 1px solid darkred;
+    border-left: 1px solid darkred;
+}
+
+#team-button-2 > a {
+    text-decoration: none;
+    color: var(--erdpl-text-primary);
+    border-radius: 5px;
+}
+
+#team-button-2:hover {
+    transition: 0.3s ease-in-out;
+    background-color: blue;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#team-container > div.profile-info > ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+#team-container > div.profile-info > ul > li {
+    list-style: none;
+    background-color: var(--erdpl-text-quaternary);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+#team-container > .profile-info > ul > li > a {
+    color: var(--erdpl-text-primary);
+    text-decoration: none;
+}
+
+#team-container > div.profile-info > ul > li > a > img {
+    max-height: 32px;
+    border-radius: 50%;
+}
+
+#team-container > div.profile-info > ul > li > a > span {
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+}
+
+#team-container > div.profile-info > p,
+#team-container > div.profile-banner > p {
+    margin-top: 20px;
+}
+
+#team-container > div.profile-info > h3 {
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+#team-container > div.profile-banner > p > a {
+    color: var(--erdpl-text-secondary);
+    margin-left: 5px;
+}
+
+#team-container > div.profile-banner > p,
+#team-container > div.profile-info > p {
+    font-size: 1.2rem;
+}
 
 
 
@@ -912,12 +1014,29 @@ footer {
 
     }
 
+    #team-button,
+    #team-button-2 {
+        left: 20%;
+    }
+
     .team-inner > a {
         padding: 7px;
         width: 80%;
         margin: 2px;
     }
+
+    #team-container > div.profile-info > ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #team-container > div.profile-info > ul > li {
+        padding: 10px;
+    }
 }
+
+
 
 @media (max-width: 992px) and (min-width: 490px) { 
     main,
@@ -1011,6 +1130,11 @@ footer {
 
     #leave-button > a {
         top: 172px;
+    }
+
+    #team-button,
+    #team-button-2 {
+        left: 25%;
     }
 
     .team-inner > a {
