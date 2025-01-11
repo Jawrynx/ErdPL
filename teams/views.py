@@ -46,7 +46,6 @@ def leave_team(request, team_id):
     team.members.remove(request.user)
     return redirect('teams:detail', team_id=team_id)
 
-@login_required
 def team_detail(request, team_id):
     team = get_object_or_404(Team, pk=team_id) 
     context = {'team': team}
