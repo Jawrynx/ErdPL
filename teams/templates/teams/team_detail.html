@@ -47,7 +47,30 @@
                 <a href="#">Edit Team</a> 
                 <a href="#">Delete Team</a> 
             </div>
-        {% endif %} 
+        {% endif %}
+        <div class="team-fixtures">
+            <h1>{{ team.name }}: Fixtures</h1>
+            <table class="fixture-table">
+                <thead class="fixture-head">
+                    <tr class="fixture-row">
+                        <th>Date</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>H / A (?)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fixture in team_fixtures %}
+                    <tr>
+                        <td>{{ fixture.date }}</td>
+                        <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>
+                        <td><a href="{% url 'teams:detail' team_id=fixture.away_team.id %}">{{ fixture.away_team }}</a></td>
+                        <td>{{ fixture.home_or_away }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}

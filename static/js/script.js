@@ -8,6 +8,8 @@ menuToggle.addEventListener('click', () => {
     navBar.classList.toggle('mobile-active');
 });
 
+// For joining teams to prevent error and correctly select the right team
+
 $(document).ready(function(){
     $("#join-link").click(function(){
       $("#join-team-form").toggle();
@@ -29,3 +31,20 @@ $(document).ready(function(){
       }
     });
   });
+
+
+// Create Team Form Validation
+
+const isCaptainInput = document.getElementById('team-captain-input');
+const teamSubmitButton = document.getElementById('team-submit-button');
+const notCaptainError = document.getElementById('team-form-error-message');
+
+isCaptainInput.addEventListener('change', () => {
+  if (!isCaptainInput.checked) {
+    notCaptainError.classList.remove('hidden'); 
+    teamSubmitButton.classList.add('hidden'); 
+  } else {
+    notCaptainError.classList.add('hidden'); 
+    teamSubmitButton.classList.remove('hidden'); 
+  }
+});

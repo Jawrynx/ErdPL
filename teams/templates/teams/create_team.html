@@ -8,11 +8,12 @@
     <div class="center">
         <div class="outer">
             <div class="form-container">
-                <h1>Create a New Team</h1>
-                <form method="post">
+                <h1 class='title-primary'>Create a New Team</h1>
+                <form method="post" id="create-team-form">
                     {% csrf_token %}
                     {{ team_creation_form.as_p }} 
-                    <p>Are you the team captain? <input type="checkbox" name="is_captain" required></p> 
+                    <p class="" id='team-form-error-message'>YOU MUST BE TEAM CAPTAIN TO REGISTER A TEAM, PLEASE GET YOUR CAPTAIN TO CREATE YOUR TEAM!</p>
+                    <p>Are you the team captain? <input type="checkbox" name="is_captain" id='team-captain-input' required></p> 
                     <div class="form-group"> 
                         <label for="id_division">Select Division:</label>
                         <select id="id_division" name="division">
@@ -22,7 +23,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <button class="form-submit">Create Team</button>
+                    <button class="form-submit hidden" id="team-submit-button">Create Team</button>
                 </form>
             </div>
         </div>

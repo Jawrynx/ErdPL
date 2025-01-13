@@ -6,19 +6,21 @@ html, body, * {
     padding: 0;
 }
 
+html {
+    background-color: var(--erdpl-background);
+    height: 100%;
+}
+
 body {
     font-family: 'Ubuntu', sans-serif;
+    height: 100%;
 }
 
 main {
     position: relative;
     top: 80px;
     z-index: 1;
-}
-
-footer {
-    position: relative;
-    top: 80px;
+    min-height: 100vh;
 }
 
 :root {
@@ -28,6 +30,34 @@ footer {
     --erdpl-text-tertiary: #236770; /* Blue text color */
     --erdpl-text-quaternary: #144a54; /* Green text color */
     --erdpl-color-green: #8BC34A; 
+
+    /* Lightened versions of primary colors */
+    --erdpl-text-primary-light: #f2f0e7;
+    --erdpl-text-secondary-light: #ffd19a;
+    --erdpl-text-tertiary-light: #72b2c4;
+    --erdpl-text-quaternary-light: #57a1af;
+
+    /* Darkened versions of primary colors */
+    --erdpl-text-primary-dark: #e6e2d9;
+    --erdpl-text-secondary-dark: #d95f19;
+    --erdpl-text-tertiary-dark: #194c52;
+    --erdpl-text-quaternary-dark: #0d3239;
+
+    /* Accent colors */
+    --erdpl-color-accent-1: #f48fb1; /* Pink */
+    --erdpl-color-accent-2: #6c757d; /* Gray */ 
+
+    /* Background variations */
+    --erdpl-background-darker: #080c0d;
+    --erdpl-background-lighter: #1a2225; 
+
+    /* Additional Green Shades */
+    --erdpl-green-light: #a8e063; 
+    --erdpl-green-dark: #336530;
+}
+
+.hidden {
+    display: none;
 }
 
 
@@ -318,6 +348,9 @@ footer {
     color: var(--erdpl-text-primary);
     padding: 20px 0;
     text-align: center;
+    position: relative; 
+    top: 100%;
+    width: 100%; 
 }
 
 .container {
@@ -516,6 +549,89 @@ footer {
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 2.5rem;
+}
+
+.title-primary {
+    background-color: var(--erdpl-text-quaternary-dark);
+    color: var(--erdpl-text-primary);
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+/* CREATE TEAM FORM */
+
+
+#create-team-form {
+    margin-top: 25px;
+}
+
+#create-team-form > p:nth-child(2) {
+    background-color: var(--erdpl-text-tertiary);
+    width: 100%;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#create-team-form > p:nth-child(2) > label {
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+#create-team-form > p:nth-child(2) > input {
+    border-radius: 3px;
+    position: relative;
+    bottom: 2px;
+    padding: 3px 20px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--erdpl-background);
+}
+
+#create-team-form > p:nth-child(4) {
+    background-color: var(--erdpl-text-quaternary-light);
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: var(--erdpl-text-primary);
+}
+
+#create-team-form > p:nth-child(4) > input {
+    scale: 1.5;
+    margin-left: 10px;
+}
+
+#team-form-error-message {
+    background-color: var(--erdpl-text-secondary-dark);
+    color: var(--erdpl-text-primary);
+    text-align: center;
+    padding: 10px ;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#team-submit-button {
+    width: 60%;
+}
+
+#create-team-form > p,
+#create-team-form > div > label {
+    font-size: 1.2rem;
+}
+
+#create-team-form > div > select {
+    margin-top: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
 }
 
 .form-container > form > button {
@@ -886,6 +1002,26 @@ footer {
     color: var(--erdpl-text-primary);
 }
 
+.team-fixtures {
+    background-color: darkred;
+    width: 80%;
+    padding: 50px;
+    border-radius: 25px;
+    border: 2px solid red;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.team-fixtures > h1 {
+    color: var(--erdpl-text-primary);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3rem;
+}
+
+body > main > div > div.team-fixtures > table > tbody > tr > td {
+    text-align: center;
+}
 
 
 
@@ -917,8 +1053,7 @@ footer {
 
 @media (max-width: 490px) {
 
-    main,
-    footer {
+    main {
         top: 70px;
     }
 
@@ -1078,6 +1213,28 @@ footer {
         width: 100%;
         padding: 35px 0px;
     }
+
+    #create-team-form > p:nth-child(2) > input {
+        margin-bottom: 10px;
+    }
+
+    #create-team-form > p,
+    #create-team-form > div > label {
+        font-size: 1rem;
+    }
+
+    #create-team-form > p:nth-child(2) > input {
+        padding: 0;
+        top: 1px;
+    }
+
+    .team-fixtures {
+        width: 100%;
+    }
+    
+    .team-fixtures > h1 {
+        font-size: 2rem;
+    }
 }
 
 
@@ -1188,5 +1345,19 @@ footer {
 
     .outer-2 {
         width: 90%;
+    }
+
+    #create-team-form > p,
+    #create-team-form > div > label {
+        font-size: 1rem;
+    }
+
+    #create-team-form > p:nth-child(2) > input {
+        padding: 0;
+        top: 1px;
+    }
+
+    .team-fixtures > h1 {
+        font-size: 2.5rem;
     }
 }

@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 from .models import Team, Division
+from fixtures.models import Fixture
+
 from .forms import TeamCreationForm  
 
 @login_required
@@ -48,5 +51,6 @@ def leave_team(request, team_id):
 
 def team_detail(request, team_id):
     team = get_object_or_404(Team, pk=team_id) 
-    context = {'team': team}
+    team_fixtures = Fixture.objects.filter(home_team=team) | Fixture.objects.filter(away_team=team)
+    context = {'team': team, 'team_fixtures': team_fixtures}
     return render(request, 'teams/team_detail.html', context) 
