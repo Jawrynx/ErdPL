@@ -1235,6 +1235,10 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     .team-fixtures > h1 {
         font-size: 2rem;
     }
+
+    .fixture-table {
+        width: 100%;
+    }
 }
 
 
