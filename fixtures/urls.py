@@ -4,5 +4,5 @@ from . import views
 app_name = 'fixtures'
 
 urlpatterns = [
-    path('division1/', views.fixtures_home, name='fixtures_home'),
+    path('<int:division_number>/fixtures/', views.fixtures_by_division, name='fixtures_by_division'), 
 ]
