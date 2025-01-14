@@ -466,10 +466,8 @@ footer {
 .edit-profile-banner img {
     border-radius: 50%;
     margin: 25px 0;
-    max-height: 250px;
-    max-width: 250px;
-    height: 100%;
-    width: 100%;
+    height: 250px;
+    width: 250px;
 }
 
 .profile-banner > a {
@@ -931,8 +929,16 @@ footer {
 }
 
 #team-container > div.profile-info > ul > li > a > img {
-    max-height: 32px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
+}
+
+#team-container > div.profile-banner > img {
+    width: 100%;
+    height: 100%;
+    max-height: 250px;
+    max-width: 250px;
 }
 
 #team-container > div.profile-info > ul > li > a > span {
