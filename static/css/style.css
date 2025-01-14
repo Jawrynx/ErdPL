@@ -1026,6 +1026,30 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     text-align: center;
 }
 
+.form-container > .back {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bolder;
+    border: 1px solid darkred;
+    transition: 0.3s ease-in-out;
+}
+
+.form-container > .back:hover {
+    background-color: darkred;
+    color: white;
+    border: 1px solid red;
+    transition: 0.3s ease-in-out;
+}
+
+.m-top {
+    margin-top: 20px;
+}
+
+
+
 
 
 

@@ -44,8 +44,9 @@
 
         {% if request.user == team.captain %} 
             <div class="profile-teams-buttons left right">
-                <a href="#">Edit Team</a> 
-                <a href="#">Delete Team</a> 
+                <a href="#">Edit Team Info</a> 
+                <a href="{% url 'teams:edit_team_members' team_id=team.id %}">Edit Team Members</a>
+                <a href="#">Delete Team</a>  
             </div>
         {% endif %}
         <div class="team-fixtures">
