@@ -14,7 +14,7 @@
                         <th>Date</th>
                         <th>Home Team</th>
                         <th>Away Team</th>
-                        <th>H / A (?)</th>
+                        <th>MATCH DETAILS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,7 @@
                             <td>{{ fixture.date }}</td>
                             <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>
                             <td><a href="{% url 'teams:detail' team_id=fixture.away_team.id %}">{{ fixture.away_team }}</a></td>
-                            <td>{{ fixture.home_or_away }}</td>
+                            <td><a href="#">VIEW</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

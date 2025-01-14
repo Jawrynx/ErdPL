@@ -423,7 +423,9 @@ footer {
     text-align: center;
     display: flex;
     justify-content: center;
-    background-color: var(--erdpl-text-secondary);
+    background-color: var(--erdpl-color-green);
+    box-shadow: -1px -1px 9px 2px black;
+    z-index: 1;
     margin: 50px 50px 0px 50px;
     padding: 20px;
     border-radius: 25px;
@@ -727,7 +729,7 @@ footer {
 }
 
 .profile-teams-buttons {
-    background-color: rgb(0, 8, 24);
+    background-color: var(--erdpl-text-secondary-dark);
     padding: 20px 100px;
     width: 70%;
     display: flex;
@@ -761,6 +763,8 @@ footer {
 
 #team-container {
     background-color: var(--erdpl-color-green);
+    box-shadow: -1px -1px 9px 2px black;
+    z-index: 1;
 }
 
 .team-profile-image {
@@ -1007,7 +1011,6 @@ footer {
     width: 80%;
     padding: 50px;
     border-radius: 25px;
-    border: 2px solid red;
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -1230,7 +1233,7 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
     .team-fixtures {
         width: 100%;
-        padding: 0;
+        padding: 20px 0;
     }
     
     .team-fixtures > h1 {
@@ -1245,8 +1248,7 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
 
 @media (max-width: 992px) and (min-width: 490px) { 
-    main,
-    footer {
+    main {
         top: 70px;
     }
 
