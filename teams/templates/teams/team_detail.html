@@ -16,6 +16,9 @@
                 {% endif %}
                 
                 <p><strong>Captain:</strong><a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
+                <p><strong>Division:</strong> {{ team.division.name }}</p>
+                <p><strong>Location:</strong> {{ team.location }}</p>
+                <p><strong>Bio:</strong> {{ team.bio }}</p>
             </div>
             <div class="profile-info">
                 <h3>Team Members:</h3>
@@ -29,10 +32,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-
-                {% if team.division %}
-                    <p><strong>Division:</strong> {{ team.division.name }}</p>
-                {% endif %}
             </div>
         </div>
         {% if request.user in team.members.all and request.user != team.captain %}
@@ -44,7 +43,7 @@
 
         {% if request.user == team.captain %} 
             <div class="profile-teams-buttons left right">
-                <a href="#">Edit Team Info</a> 
+                <a href="{% url 'teams:edit_team' team_id=team.id %}">Edit Team Info</a> 
                 <a href="{% url 'teams:edit_team_members' team_id=team.id %}">Edit Team Members</a>
                 <a href="#">Delete Team</a>  
             </div>

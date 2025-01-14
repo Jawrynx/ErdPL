@@ -65,7 +65,7 @@ def edit_team(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
     if request.user == team.captain:
         if request.method == 'POST':
-            form = TeamEditForm(request.POST, instance=team)
+            form = TeamEditForm(request.POST, request.FILES, instance=team)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Team information updated successfully!')
