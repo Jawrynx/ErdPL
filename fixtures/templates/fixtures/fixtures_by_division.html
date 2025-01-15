@@ -1,13 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Fixtures: Division 1
+    Fixtures: Division 2
 {% endblock %}
 
 {% block content %}
     <div class="center">
         <div class="outer-2">
-            <h1>Division 1 Fixtures</h1>
+            <h1>Division 2 Fixtures</h1>
             <table class="fixture-table">
                 <thead class="fixture-head">
                     <tr class="fixture-row">
@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for fixture in fixtures %}
+                    {% for fixture in fixtures|dictsort:'date' %}
                         <tr>
                             <td>{{ fixture.date }}</td>
                             <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>

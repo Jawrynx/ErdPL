@@ -60,7 +60,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for fixture in team_fixtures %}
+                    {% for fixture in team_fixtures|dictsort:'date' %}
                     <tr>
                         <td>{{ fixture.date }}</td>
                         <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>
