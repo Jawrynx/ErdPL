@@ -1,14 +1,18 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.files.storage import FileSystemStorage
+from django.utils import timezone
 
 User = get_user_model()
 
 class Division(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    start_date = models.DateField(default=timezone.now)
+    num_weeks = models.IntegerField(default=22) 
 
     def __str__(self):
         return self.name
+
 
 class Team(models.Model):
     name = models.CharField(max_length=255, unique=True)
