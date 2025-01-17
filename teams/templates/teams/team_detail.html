@@ -14,7 +14,7 @@
                 {% else %}
                     <img src="../../../media/team_default.png" alt="Blank Team Photo" class="team-profile-image">
                 {% endif %}
-                
+
                 <p><strong>Captain:</strong><a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
                 <p><strong>Division:</strong> {{ team.division.name }}</p>
                 <p><strong>Location:</strong> {{ team.location }}</p>
@@ -35,17 +35,17 @@
             </div>
         </div>
         {% if request.user in team.members.all and request.user != team.captain %}
-            <div id='team-button'><a href="{% url 'teams:leave' team_id=team.id %}">Leave Team</a></div>
+            <div id='team-button'><a href="{% url 'teams:leave' team_name=team.name %}">Leave Team</a></div>
         {% endif %}
         {% if request.user not in team.members.all %}
             <div id='team-button-2'><a href="{% url 'teams:join' team_id=team.id %}">Join Team</a></div>
         {% endif %}
 
-        {% if request.user == team.captain %} 
+        {% if request.user == team.captain %}
             <div class="profile-teams-buttons left right">
-                <a href="{% url 'teams:edit_team' team_id=team.id %}">Edit Team Info</a> 
-                <a href="{% url 'teams:edit_team_members' team_id=team.id %}">Edit Team Members</a>
-                <a href="#">Delete Team</a>  
+                <a href="{% url 'teams:edit_team' team_name=team.name %}">Edit Team Info</a>
+                <a href="{% url 'teams:edit_team_members' team_name=team.name %}">Edit Team Members</a>
+                <a href="#">Delete Team</a>
             </div>
         {% endif %}
         <div class="team-fixtures">
@@ -63,8 +63,8 @@
                     {% for fixture in team_fixtures|dictsort:'date' %}
                     <tr>
                         <td>{{ fixture.date }}</td>
-                        <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>
-                        <td><a href="{% url 'teams:detail' team_id=fixture.away_team.id %}">{{ fixture.away_team }}</a></td>
+                        <td><a href="{% url 'teams:detail' team_name=fixture.home_team %}">{{ fixture.home_team }}</a></td>
+                        <td><a href="{% url 'teams:detail' team_name=fixture.away_team %}">{{ fixture.away_team }}</a></td>
                         <td><a href="#">VIEW</a></td>
                     </tr>
                 {% endfor %}

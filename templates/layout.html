@@ -27,7 +27,7 @@
                     <li class="left"><a href="{% url 'users:logout' %}">Logout</a></li>
                     <li><a href="{% url 'users:profile' username=user.username %}">Profile</a></li>
                     {% if user.teams.exists %} 
-                        <li><a href="{% url 'teams:detail' team_id=user.teams.first.id %}">Team</a></li> 
+                        <li><a href="{% url 'teams:detail' team_name=user.teams.first.name %}">Team</a></li> 
                     {% endif %} 
                 {% else %}
                     <li class="left"><a href="{% url 'users:login' %}">Login</a></li>
@@ -49,7 +49,7 @@
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'users:profile' username=user.username %}">Profile</a></li>
                         {% if user.teams.exists %} 
-                            <li><a href="{% url 'teams:detail' team_id=user.teams.first.id %}">Team</a></li> 
+                            <li><a href="{% url 'teams:detail' team_name=user.teams.first.name %}">Team</a></li> 
                         {% endif %} 
                         <li id="nav-edge"><a href="{% url 'users:logout' %}">Logout</a></li>
                     {% else %}

@@ -1,34 +1,36 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Fixtures: Division 2
+    Fixtures: {{ division }}
 {% endblock %}
 
 {% block content %}
     <div class="center">
         <div class="outer-2">
-            <h1>Division 2 Fixtures</h1>
-            <table class="fixture-table">
-                <thead class="fixture-head">
-                    <tr class="fixture-row">
-                        <th>Date</th>
-                        <th>Home Team</th>
-                        <th>Away Team</th>
-                        <th>MATCH DETAILS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for fixture in fixtures|dictsort:'date' %}
-                        <tr>
-                            <td>{{ fixture.date }}</td>
-                            <td><a href="{% url 'teams:detail' team_id=fixture.home_team.id %}">{{ fixture.home_team }}</a></td>
-                            <td><a href="{% url 'teams:detail' team_id=fixture.away_team.id %}">{{ fixture.away_team }}</a></td>
-                            <td><a href="#">VIEW</a></td>
+            <h1>{{ division }} Fixtures</h1>
+            {% for week, fixtures in fixtures_by_week.items %}
+                <h2>Week {{ week }}</h2>
+                <table class="fixture-table">
+                    <thead class="fixture-head">
+                        <tr class="fixture-row">
+                            <th>Date</th>
+                            <th>Home Team</th>
+                            <th>Away Team</th>
+                            <th>MATCH DETAILS</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for fixture in fixtures %}
+                            <tr>
+                                <td>{{ fixture.date }}</td>
+                                <td><a href="{% url 'teams:detail' team_name=fixture.home_team %}">{{ fixture.home_team }}</a></td>
+                                <td><a href="{% url 'teams:detail' team_name=fixture.away_team %}">{{ fixture.away_team }}</a></td>
+                                <td><a href="#">VIEW</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
         </div>
     </div>
-
 {% endblock %}

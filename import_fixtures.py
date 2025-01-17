@@ -20,20 +20,20 @@ def import_fixtures_from_csv(csv_file_path):
         - Home Team
         - Away Team
         - Match Date (YYYY-MM-DD format)
-        - Division 
+        - Division
     """
 
     try:
-        df = pd.read_csv(csv_file_path, header=None, names=['Home Team', 'Away Team', 'Match Date', 'Division']) 
+        df = pd.read_csv(csv_file_path, header=None, names=['Home Team', 'Away Team', 'Match Date', 'Division'])
     except Exception as e:
         print(f"Error reading CSV file: {e}")
         return False
 
     for index, row in df.iterrows():
         try:
-            home_team_name = row['Home Team'].strip() 
+            home_team_name = row['Home Team'].strip()
             away_team_name = row['Away Team'].strip()
-            match_date_str = row['Match Date']
+            match_date_str = row['Match Date'].strip()  # Remove leading/trailing whitespace
             division_name = row['Division'].strip()
 
             # Check if date format is valid (YYYY-MM-DD)
@@ -52,8 +52,8 @@ def import_fixtures_from_csv(csv_file_path):
 
             # Create Fixture object
             fixture = Fixture(
-                home_team=home_team,
-                away_team=away_team,
+                home_team=home_team.name,
+                away_team=away_team.name,
                 date=pd.to_datetime(match_date_str).date(),
                 division=division
             )

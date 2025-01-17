@@ -28,7 +28,7 @@ def create_team(request):
                 team.division = division
                 team.save()
 
-            return redirect('teams:detail', team_id=team.id)
+            return redirect('teams:detail', team_name=team.name)
         else:
             return render(request, 'teams/create_team.html', {'team_creation_form': form, 'divisions': divisions})
     else:
@@ -43,42 +43,44 @@ def create_team(request):
 def join_team(request, team_id):
     team = get_object_or_404(Team, id=team_id)
     if request.user in team.members.all():
-        return redirect('teams:detail', team_id=team_id)  # User is already a member
+        return redirect('teams:detail', team_name=team.name)  # User is already a member
     team.members.add(request.user)
-    return redirect('teams:detail', team_id=team_id)
+    return redirect('teams:detail', team_name=team.name)
 
 @login_required
-def leave_team(request, team_id):
-    team = get_object_or_404(Team, id=team_id)
+def leave_team(request, team_name):
+    team = get_object_or_404(Team, name=team_name)
     if request.user == team.captain:
-        return redirect('teams:detail', team_id=team_id)  # Captain cannot leave their own team
+        return redirect('teams:detail', team_name=team_name)  # Captain cannot leave their own team
     team.members.remove(request.user)
-    return redirect('teams:detail', team_id=team_id)
+    return redirect('teams:detail', team_name=team_name)
 
-def team_detail(request, team_id):
-    team = get_object_or_404(Team, pk=team_id) 
+def team_detail(request, team_name):
+    team = get_object_or_404(Team, name=team_name)
+    print(team)
     team_fixtures = Fixture.objects.filter(home_team=team) | Fixture.objects.filter(away_team=team)
+    print(team_fixtures)  # Add this line
     context = {'team': team, 'team_fixtures': team_fixtures}
-    return render(request, 'teams/team_detail.html', context) 
+    return render(request, 'teams/team_detail.html', context)
 
-def edit_team(request, team_id):
-    team = get_object_or_404(Team, pk=team_id)
+def edit_team(request, team_name):
+    team = get_object_or_404(Team, pk=team_name)
     if request.user == team.captain:
         if request.method == 'POST':
             form = TeamEditForm(request.POST, request.FILES, instance=team)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Team information updated successfully!')
-                return redirect('teams:detail', team_id=team_id)
+                return redirect('teams:detail', team_name=team_name)
         else:
             form = TeamEditForm(instance=team)
         return render(request, 'teams/edit_team.html', {'form': form, 'team': team})
     else:
         messages.error(request, 'You are not the captain of this team.')
-        return redirect('teams:detail', team_id=team_id)
+        return redirect('teams:detail', team_name=team_name)
 
-def edit_team_members(request, team_id):
-    team = get_object_or_404(Team, pk=team_id)
+def edit_team_members(request, team_name):
+    team = get_object_or_404(Team, pk=team_name)
     CustomUser = get_user_model()
 
     if request.user == team.captain:
@@ -97,7 +99,7 @@ def edit_team_members(request, team_id):
                     pass 
 
             messages.success(request, 'Team members updated successfully!')
-            return redirect('teams:detail', team_id=team_id)
+            return redirect('teams:detail', team_name=team_name)
         else:
             # Get a list of all users 
             all_users = CustomUser.objects.all()
@@ -113,20 +115,20 @@ def edit_team_members(request, team_id):
             return render(request, 'teams/edit_team_members.html', context)
     else:
         messages.error(request.user, 'You are not the captain of this team.')
-        return redirect('teams:team_detail', team_id=team_id)
+        return redirect('teams:team_detail', team_name=team_name)
     
-def delete_team(request, team_id):
-    team = get_object_or_404(Team, pk=team_id)
+def delete_team(request, team_name):
+    team = get_object_or_404(Team, pk=team_name)
     if request.user == team.captain:
         team.delete()
         messages.success(request, 'Team deleted successfully!')
         return redirect('teams:team_list')  # Redirect to a team list view
     else:
         messages.error(request, 'You are not the captain of this team.')
-        return redirect('teams:detail', team_id=team_id)
+        return redirect('teams:detail', team_name=team_name)
     
-def remove_team_member(request, team_id, member_id):
-    team = get_object_or_404(Team, pk=team_id)
+def remove_team_member(request, team_name, member_id):
+    team = get_object_or_404(Team, pk=team_name)
     member = get_object_or_404(CustomUser, pk=member_id)
 
     if request.user == team.captain:
@@ -138,4 +140,4 @@ def remove_team_member(request, team_id, member_id):
     else:
         messages.error(request, 'You are not the captain of this team.')
 
-    return redirect('teams:edit_team_members', team_id=team_id)
+    return redirect('teams:edit_team_members', team_name=team_name)

@@ -31,7 +31,7 @@
                 <p>
                     <div class="team-inner">
                         <strong>Team:</strong>
-                        <a href="{% url 'teams:detail' team_id=user_team.id %}">
+                        <a href="{% url 'teams:detail' team_name=user_team %}">
                             {% if user_team.team_image %}
                                 <img src="{{ user_team.team_image.url }}" alt="{{ profile.user.team.name }} Image" class="team-profile-image">
                             {% else %}
