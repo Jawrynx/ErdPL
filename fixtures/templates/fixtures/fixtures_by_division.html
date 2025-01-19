@@ -6,6 +6,14 @@
 
 {% block content %}
     <div class="center">
+        <h1 class='title-text'>FIXTURES</h1>
+        <div class="outer-2" id='division-links'>
+            <ul class="division-nav">
+                {% for div in all_divisions %}
+                    <li><a href="{% url 'fixtures:fixtures_by_division' division_name=div.name %}">{{ div.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
         <div class="outer-2">
             <h1>{{ division }} Fixtures</h1>
             {% for week, fixtures in fixtures_by_week.items %}
@@ -23,9 +31,23 @@
                         {% for fixture in fixtures %}
                             <tr>
                                 <td>{{ fixture.date }}</td>
-                                <td><a href="{% url 'teams:detail' team_name=fixture.home_team %}">{{ fixture.home_team }}</a></td>
-                                <td><a href="{% url 'teams:detail' team_name=fixture.away_team %}">{{ fixture.away_team }}</a></td>
-                                <td><a href="#">VIEW</a></td>
+                                {% if fixture.home_team == 'X' %}
+                                    <td>{{ fixture.home_team }}</td>
+                                {% else %}
+                                    <td><a href="{% url 'teams:detail' team_name=fixture.home_team %}">{{ fixture.home_team }}</a></td>
+                                {% endif %}
+                                {% if fixture.away_team == 'X' %}
+                                    <td>{{ fixture.away_team }}</td>
+                                {% else %}
+                                    <td><a href="{% url 'teams:detail' team_name=fixture.away_team %}">{{ fixture.away_team }}</a></td>
+                                {% endif %}
+                                {% if fixture.home_team == 'X' %}
+                                    <td></td>
+                                {% elif fixture.away_team == 'X' %}
+                                    <td></td>
+                                {% else %}
+                                    <td><a href="#">VIEW</a></td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                     </tbody>

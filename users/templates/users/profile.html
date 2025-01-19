@@ -42,7 +42,7 @@
                     </div>
                 </p>
                 {% if request.user == profile.user and request.user != user_team.captain %}
-                    <div id='leave-button'><a href="{% url 'teams:leave' team_id=user_team.id %}">Leave Team</a></div>
+                    <div id='leave-button'><a href="{% url 'teams:leave' team_name=user_team.name %}">Leave Team</a></div>
                 {% endif %}
             {% else %}
                 {% if request.user == profile.user %}

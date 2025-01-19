@@ -4,28 +4,27 @@ from .models import Fixture
 from datetime import timedelta
 from teams.models import Team
 
-def fixtures_by_division(request, division_number):
-    division = Division.objects.get(id=division_number)
-    fixtures = Fixture.objects.filter(division=division)
+def fixtures_by_division(request, division_name):
+    division = Division.objects.get(name=division_name)
+    fixtures = Fixture.objects.filter(division=division).order_by('date')
+    all_divisions = Division.objects.all()
 
-    # Calculate the start and end date of each week based on the division's start date and number of weeks.
-    start_date = division.start_date
-    end_date = start_date + timedelta(weeks=division.num_weeks - 1)
-
-    # Group fixtures by week
+    # Group fixtures by week, considering gaps
     fixtures_by_week = {}
-    for week in range(1, division.num_weeks + 1):
-        week_start = start_date + timedelta(weeks=week - 1)
-        week_end = week_start + timedelta(days=6)
-        week_fixtures = fixtures.filter(date__gte=week_start, date__lte=week_end)
-        fixtures_by_week[week] = week_fixtures
+    week_number = 1
+    current_week_start = fixtures.first().date  # Start with the first fixture's date
+    current_week_end = current_week_start + timedelta(days=6)
 
-    for week, fixtures in fixtures_by_week.items():
-        for fixture in fixtures:
-            if fixture.home_team != "X" and fixture.home_team is not None:
-                fixture.home_team = Team.objects.get(name=fixture.home_team)  # Fetch Team object by name
-            if fixture.away_team != "X" and fixture.away_team is not None:
-                fixture.away_team = Team.objects.get(name=fixture.away_team)  # Fetch Team object by name
+    for fixture in fixtures:
+        if fixture.date > current_week_end:  # Move to the next week
+            week_number += 1
+            current_week_start = fixture.date
+            current_week_end = current_week_start + timedelta(days=6)
 
-    context = {'division': division.name, 'fixtures_by_week': fixtures_by_week}
+        # Add fixture to the current week
+        if week_number not in fixtures_by_week:
+            fixtures_by_week[week_number] = []
+        fixtures_by_week[week_number].append(fixture)
+
+    context = {'division': division.name, 'fixtures_by_week': fixtures_by_week, 'all_divisions': all_divisions}
     return render(request, 'fixtures/fixtures_by_division.html', context)

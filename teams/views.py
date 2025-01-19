@@ -64,7 +64,7 @@ def team_detail(request, team_name):
     return render(request, 'teams/team_detail.html', context)
 
 def edit_team(request, team_name):
-    team = get_object_or_404(Team, pk=team_name)
+    team = get_object_or_404(Team, name=team_name)
     if request.user == team.captain:
         if request.method == 'POST':
             form = TeamEditForm(request.POST, request.FILES, instance=team)
@@ -80,7 +80,7 @@ def edit_team(request, team_name):
         return redirect('teams:detail', team_name=team_name)
 
 def edit_team_members(request, team_name):
-    team = get_object_or_404(Team, pk=team_name)
+    team = get_object_or_404(Team, name=team_name)
     CustomUser = get_user_model()
 
     if request.user == team.captain:
@@ -128,7 +128,7 @@ def delete_team(request, team_name):
         return redirect('teams:detail', team_name=team_name)
     
 def remove_team_member(request, team_name, member_id):
-    team = get_object_or_404(Team, pk=team_name)
+    team = get_object_or_404(Team, name=team_name)
     member = get_object_or_404(CustomUser, pk=member_id)
 
     if request.user == team.captain:

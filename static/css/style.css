@@ -1029,6 +1029,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 1px 1px 1px 1px black;
 }
 
 .outer-2 > h1 {
@@ -1089,8 +1090,44 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 }
 
 
+#division-links {
+    background-color: rgb(1, 197, 204);
+    margin-top: 40px;
+    box-shadow: 2px 2px 3px 1px black;
+}
 
+.division-nav {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
 
+.division-nav > li {
+    background-color: darkblue;
+    padding: 20px 10px;
+    min-width: 150px;
+    list-style: none;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+}
+
+.division-nav > li:hover {
+    background-color: blue;
+    transition: 0.3s ease-in-out;
+}
+
+.division-nav > li > a {
+    text-decoration: none;
+    color: var(--erdpl-text-primary);
+    font-weight: bolder;
+}
+
+.title-text {
+    color: var(--erdpl-text-primary);
+    font-size: 5rem;
+    margin-top: 40px;
+}
 
 
 
@@ -1307,6 +1344,21 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     .fixture-table {
         width: 100%;
     }
+
+    .division-nav {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .division-nav > li {
+        margin-bottom: 10px;
+        width: 90%;
+    }
+
+    .title-text {
+        font-size: 3rem;
+    }
 }
 
 
@@ -1430,5 +1482,20 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
     .team-fixtures > h1 {
         font-size: 2.5rem;
+    }
+
+    .division-nav {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .division-nav > li {
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+    .title-text {
+        font-size: 4rem;
     }
 }
