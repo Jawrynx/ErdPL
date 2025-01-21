@@ -1129,14 +1129,106 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     margin-top: 40px;
 }
 
+/* SCORES */
 
+#scores-container {
+    margin-top: 0;
+    background-color: rgb(0, 92, 167);
+}
 
+body > main > div > div.add-score {
+    margin-top: 100px;
+    width: 40%;
+    text-align: right;
+}
 
+body > main > div > div.add-score > a {
+    background-color: rgb(5, 136, 243);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
 
+body > main > div > div.add-score > a:hover {
+    background-color: rgb(0, 92, 167);
+    transition: 0.3s ease-in-out;
+}
 
+#create-score-form,
+#create-score-form > p {
+    width: 100%;
+}
 
+#create-score-form > p {
+    display: flex;
+    justify-content: space-between;
+}
 
+#create-score-form > p > input,
+#create-score-form > p > label,
+#create-score-form > p > select {
+    width: 50%;
+}
 
+#create-score-form > p:nth-child(2),
+#create-score-form > p:nth-child(3) {
+    background-color: blue;
+    padding: 10px;
+    color: white;
+}
+
+#create-score-form > p:nth-child(2) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#create-score-form > p:nth-child(3) {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 25px;
+}
+
+#create-score-form > p:nth-child(4),
+#create-score-form > p:nth-child(5) {
+    background-color: rgb(0, 153, 255);
+    padding: 10px;
+}
+
+#create-score-form > p:nth-child(4) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#create-score-form > p:nth-child(5) {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 25px;
+}
+
+#create-score-form > p:nth-child(6) {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    padding: 10px;
+    width: 40%;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 7px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: darkred;
+    transition: 0.3s ease-in-out;
+}
 
 
 

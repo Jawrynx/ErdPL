@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Add Score{% endblock %}
+
+{% block content %}
+<div class="center">
+    <h1 class="title-text">ADD SCORE</h1>
+    <div class="outer-2">
+        <h2>{{ division_name }}<h2>
+        <form method="post" enctype="multipart/form-data" id='create-score-form'> {## Add enctype for file uploads if needed #}
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <button type="submit" class="btn btn-primary">Add Score</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
