@@ -81,7 +81,7 @@ def edit_profile(request, username):
         if form.is_valid():
             form.save()
             messages.success(request, f'Your profile has been updated!')
-            return redirect('users:profile', username=username)
+            return redirect('users:profile', username=user)
 
     else:
         user = request.user
