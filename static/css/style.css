@@ -278,7 +278,7 @@ nav li a,
 
 .latest-results {
     text-align: center;
-    background-color: var(--erdpl-text-secondary);
+    background-color: var(--erdpl-text-tertiary-light);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1230,6 +1230,97 @@ body > main > div > div.add-score > a:hover {
     transition: 0.3s ease-in-out;
 }
 
+#team-scores {
+    background-color: rgb(0, 92, 167);
+}
+
+#team-scores > table.fixture-table {
+    background-color: blue;
+    color: white;
+}
+
+#team-scores > table.fixture-table > tbody {
+    color: black;
+}
+
+.mobile-table {
+    display: none;
+}
+
+.table {
+    display: block;
+}
+
+.latest-results > h2 {
+    color: white;
+    margin-bottom: 20px;
+    background-color: var(--erdpl-background);
+    padding: 10px 40px;
+    border-radius: 25px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1451,7 +1542,59 @@ body > main > div > div.add-score > a:hover {
     .title-text {
         font-size: 3rem;
     }
+
+    .mobile-table {
+        display: block;
+        width: 100%;
+    }
+
+    .table {
+        display: none;
+    }
+
+    .latest-results > table > thead > tr > th,
+    .latest-results > table > tbody > tr > td {
+        padding: 0 5px;
+        width: 100%;
+    }
+
+    .latest-results > h1 {
+        font-size: 2rem;
+    }
+
+    .latest-results > h2 {
+        color: white;
+        margin-bottom: 20px;
+        background-color: var(--erdpl-background);
+        padding: 10px;
+        border-radius: 25px;
+        font-size: 1.5rem;
+    }
+
+    body > main > div.latest-results > table > thead > tr > th:nth-child(7),
+    body > main > div.latest-results > table > tbody > tr > td:nth-child(7) {
+        display: none;
+    }
+
+    body > main > div.latest-results > table {
+        font-size: 1rem;
+    }
+
+    body > main > div.latest-results > table > thead > tr > th:nth-child(1),
+    body > main > div.latest-results > table > tbody > tr > td:nth-child(1) {
+        width: 20%;
+    }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1589,5 +1732,44 @@ body > main > div > div.add-score > a:hover {
 
     .title-text {
         font-size: 4rem;
+    }
+
+    .mobile-table {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .mobile-table > tbody
+    .mobile-table > tbody > tr {
+        width: 100%;
+    }
+
+    .table {
+        display: none;
+    }
+
+    .latest-results > table > thead > tr > th, .latest-results > table > tbody > tr > td {
+        width: 100%;
+        padding: 0px 8px;
+    }
+
+    .latest-results > h1 {
+        font-size: 2.5rem;
+    }
+
+    .latest-results > h2 {
+        color: white;
+        margin-bottom: 20px;
+        background-color: var(--erdpl-background);
+        padding: 10px;
+        border-radius: 25px;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+    }
+
+    body > main > div.latest-results > table > thead > tr > th:nth-child(1),
+    body > main > div.latest-results > table > tbody > tr > td:nth-child(1) {
+        width: 20%;
     }
 }

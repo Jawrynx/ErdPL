@@ -48,6 +48,33 @@
                 <a href="#">Delete Team</a>
             </div>
         {% endif %}
+        <div class="team-fixtures" id="team-scores"> {## Add a container for scores #}
+            <h1>{{ team.name }}: Scores</h1>
+            <table class="fixture-table"> {## You can reuse the fixture-table class #}
+                <thead class="fixture-head">
+                    <tr class="fixture-row">
+                        <th>Date</th>
+                        <th>Home Team</th>
+                        <th>Home Score</th>
+                        <th>Away Team</th>
+                        <th>Away Score</th>
+                        <th>Division</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in team_scores %}
+                        <tr>
+                            <td>{{ score.date }}</td>
+                            <td><a href="{% url 'teams:detail' team_name=score.home_team.name %}">{{ score.home_team.name }}</a></td>
+                            <td>{{ score.home_score }}</td>
+                            <td><a href="{% url 'teams:detail' team_name=score.away_team.name %}">{{ score.away_team.name }}</a></td>
+                            <td>{{ score.away_score }}</td>
+                            <td>{{ score.division.name }}</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         <div class="team-fixtures">
             <h1>{{ team.name }}: Fixtures</h1>
             <table class="fixture-table">

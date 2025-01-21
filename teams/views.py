@@ -4,9 +4,9 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from django.core import serializers
-import json
 
 from .models import Team, Division
+from scores.models import Match
 from fixtures.models import Fixture
 from users.models import CustomUser
 
@@ -51,16 +51,20 @@ def join_team(request, team_id):
 def leave_team(request, team_name):
     team = get_object_or_404(Team, name=team_name)
     if request.user == team.captain:
-        return redirect('teams:detail', team_name=team_name)  # Captain cannot leave their own team
+        return redirect('teams:detail', team_name=team.name)  # Captain cannot leave their own team
     team.members.remove(request.user)
-    return redirect('teams:detail', team_name=team_name)
+    return redirect('teams:detail', team_name=team.name)
 
 def team_detail(request, team_name):
     team = get_object_or_404(Team, name=team_name)
-    print(team)
     team_fixtures = Fixture.objects.filter(home_team=team) | Fixture.objects.filter(away_team=team)
-    print(team_fixtures)  # Add this line
-    context = {'team': team, 'team_fixtures': team_fixtures}
+    team_scores = Match.objects.filter(home_team=team) | Match.objects.filter(away_team=team)
+
+    context = {
+        'team': team,
+        'team_fixtures': team_fixtures,
+        'team_scores': team_scores
+    }
     return render(request, 'teams/team_detail.html', context)
 
 def edit_team(request, team_name):
@@ -71,13 +75,13 @@ def edit_team(request, team_name):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Team information updated successfully!')
-                return redirect('teams:detail', team_name=team_name)
+                return redirect('teams:detail', team_name=team.name)
         else:
             form = TeamEditForm(instance=team)
         return render(request, 'teams/edit_team.html', {'form': form, 'team': team})
     else:
         messages.error(request, 'You are not the captain of this team.')
-        return redirect('teams:detail', team_name=team_name)
+        return redirect('teams:detail', team_name=team.name)
 
 def edit_team_members(request, team_name):
     team = get_object_or_404(Team, name=team_name)
@@ -99,7 +103,7 @@ def edit_team_members(request, team_name):
                     pass 
 
             messages.success(request, 'Team members updated successfully!')
-            return redirect('teams:detail', team_name=team_name)
+            return redirect('teams:detail', team_name=team.name)
         else:
             # Get a list of all users 
             all_users = CustomUser.objects.all()

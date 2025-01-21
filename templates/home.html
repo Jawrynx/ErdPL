@@ -11,29 +11,78 @@
         <p>North Birmingham based pool league, hosting leagues and tournaments in 8-Ball Pool across the region.</p>
         <a href="{% url 'users:register' %}">Register <span>Today</span></a>
     </div>
+
     <div class="latest-results">
-        <h1>Latest Results</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Home Team</th>
-                    <th>Home Score</th>
-                    <th>Away Team</th>
-                    <th>Away Score</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in results_table %}
-                <tr>
-                    <td>{{ result.home_team }}</td>
-                    <td>{{ result.home_score }}</td>
-                    <td>{{ result.away_team }}</td>
-                    <td>{{ result.away_score }}</td>
-                    <td>{{ result.date }}</td>
-                </tr>
+        <h1>LEADERBOARDS</h1>
+
+        {% for division in all_divisions %}  {# Assuming you pass all_divisions in the context #}
+            <h2>{{ division.name }}</h2>
+            <table class="mobile-table">
+                <thead>
+                    <tr>
+                        <th class="mobile-header">Pos</th> 
+                        <th class="mobile-header">Name</th>
+                        <th class="mobile-header">P</th> 
+                        <th class="mobile-header">W</th> 
+                        <th class="mobile-header">L</th> 
+                        <th class="mobile-header">F</th> 
+                        <th class="mobile-header">A</th> 
+                        <th class="mobile-header">BP</th>
+                        <th class="mobile-header">PTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for standing in division.leaderboard %}
+                        {% if standing.team.name == 'X' %}
+                        {% else %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ standing.team.name }}</td>
+                                <td>{{ standing.played }}</td>
+                                <td>{{ standing.wins }}</td>
+                                <td>{{ standing.losses }}</td>
+                                <td>{{ standing.frames_won }}</td>
+                                <td>{{ standing.frames_lost }}</td>
+                                <td>{{ standing.bonus_points }}</td>
+                                <td>{{ standing.points }}</td>
+                            </tr>
+                        {%endif%}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <table class="table"> 
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th>Played</th>
+                        <th>Won</th>
+                        <th>Lost</th>
+                        <th>Frames Won</th>
+                        <th>Frames Lost</th>
+                        <th>Bonus Points</th>
+                        <th>Total Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for standing in division.leaderboard %} 
+                    {% if standing.team.name == 'X' %}
+                    {% else %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>  {# Display the position #}
+                            <td><a href="{% url 'teams:detail' team_name=standing.team.name %}">{{ standing.team.name }}</a></td>
+                            <td>{{ standing.played }}</td>  {# You'll need to calculate this #}
+                            <td>{{ standing.wins }}</td>
+                            <td>{{ standing.losses }}</td>
+                            <td>{{ standing.frames_won }}</td>  {# You'll need to calculate this #}
+                            <td>{{ standing.frames_lost }}</td>  {# You'll need to calculate this #}
+                            <td>{{ standing.bonus_points }}</td>  {# You'll need to calculate this #}
+                            <td>{{ standing.frames_won|add:standing.bonus_points }}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        {% endfor %}
     </div>
-{%endblock %}
+{% endblock %}
