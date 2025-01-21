@@ -66,7 +66,7 @@ def import_fixtures_from_csv(csv_file_path):
     return True
 
 if __name__ == "__main__":
-    csv_file_path = 'fixtures.csv'  # Adjust path as needed
+    csv_file_path = 'csv/scores_prem.csv'  # Adjust path as needed
     success = import_fixtures_from_csv(csv_file_path)
 
     if success:

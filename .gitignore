@@ -1,1 +1,4 @@
 .venv
+csv
+import_scores.py
+import_fixtures.py
