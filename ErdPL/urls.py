@@ -30,6 +30,7 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('teams/', include('teams.urls', namespace='teams')),
     path('fixtures/', include('fixtures.urls', namespace='fixtures')),
+    path('scores/', include('scores.urls', namespace='scores')),
     path('', views.home, name='home'),
     path('about/', views.about),
     path('contact/', views.contact),
