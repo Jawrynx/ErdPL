@@ -2,6 +2,19 @@ const menuToggle = document.getElementById('menu-toggle');
 const mobileNav = document.getElementById('mobile-nav');
 const navBar = document.getElementById('header');
 
+const homeScores = document.getElementsByClassName('home-score');
+const awayScores = document.getElementsByClassName('away-score');
+
+for (let i = 0; i < homeScores.length; i++) {
+  const homeScore = parseInt(homeScores[i].textContent, 10); 
+  const awayScore = parseInt(awayScores[i].textContent, 10); 
+
+  if (homeScore > awayScore) {
+    homeScores[i].classList.add('bold'); 
+  } else if (awayScore > homeScore) {
+    awayScores[i].classList.add('bold'); 
+  }
+}
 
 menuToggle.addEventListener('click', () => {
     mobileNav.classList.toggle('active');

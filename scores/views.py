@@ -26,12 +26,17 @@ def view_scores(request, division_name=None):
 
     if division_name:
         matches = Match.objects.filter(division__name=division_name).order_by('-date')
+        # Get teams associated with the division
+        teams = Team.objects.filter(division__name=division_name) 
     else:
-        matches = Match.objects.all().order_by('-date') 
+        matches = Match.objects.all().order_by('-date')
+        # Get all teams
+        teams = Team.objects.all()
 
     context = {
         'matches': matches,
         'division_name': division_name,
         'all_divisions': all_divisions,
+        'teams': teams, 
     }
     return render(request, 'scores/view_scores.html', context)

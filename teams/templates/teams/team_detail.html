@@ -67,9 +67,9 @@
                         <tr>
                             <td>{{ score.date }}</td>
                             <td><a href="{% url 'teams:detail' team_name=score.home_team.name %}">{{ score.home_team.name }}</a></td>
-                            <td>{{ score.home_score }}</td>
+                            <td class="home-score">{{ score.home_score }}</td>
                             <td>V</td>
-                            <td>{{ score.away_score }}</td>
+                            <td class="away-score">{{ score.away_score }}</td>
                             <td><a href="{% url 'teams:detail' team_name=score.away_team.name %}">{{ score.away_team.name }}</a></td>
                             <td><a href="#">VIEW</a></td>
                         </tr>

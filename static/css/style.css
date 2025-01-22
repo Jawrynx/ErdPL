@@ -1137,8 +1137,8 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 }
 
 body > main > div > div.add-score {
-    margin-top: 100px;
-    width: 40%;
+    margin: 25px;
+    width: 60%;
     text-align: right;
 }
 
@@ -1147,8 +1147,8 @@ body > main > div > div.add-score > a {
     color: white;
     text-decoration: none;
     padding: 10px 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid white;
     text-transform: uppercase;
     font-weight: bold;
     transition: 0.3s ease-in-out;
@@ -1284,6 +1284,9 @@ body > main > div > div.add-score > a:hover {
     margin: 5px 0px;
 }
 
+.bold {
+    font-weight: bolder;
+}
 
 
 
@@ -1608,6 +1611,10 @@ body > main > div > div.add-score > a:hover {
     body > main > div.latest-results > table > tbody > tr > td:nth-child(1) {
         width: 20%;
     }
+
+    body > main > div > div.add-score {
+        width: 90%;
+    }
 }
 
 
@@ -1832,5 +1839,9 @@ body > main > div > div.add-score > a:hover {
     body > main > div.latest-results > table > thead > tr > th:nth-child(1),
     body > main > div.latest-results > table > tbody > tr > td:nth-child(1) {
         width: 20%;
+    }
+
+    body > main > div > div.add-score {
+        width: 90%;
     }
 }

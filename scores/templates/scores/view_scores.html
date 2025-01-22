@@ -14,9 +14,13 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="add-score">
-            <a href="{% url 'scores:create_score' division_name=division_name %}">Add Score</a>
-        </div>
+        {% for team in teams %}
+            {% if request.user == team.captain %}
+                <div class="add-score">
+                    <a href="{% url 'scores:create_score' division_name=division_name %}">Add Score</a>
+                </div>
+            {% endif %}
+        {% endfor %}
         <div class="outer-2" id="scores-container">
             <h1>{{ division_name|default:"All Divisions" }} Scores</h1> 
             <table class="fixture-table">
@@ -36,11 +40,11 @@
                         <tr>
                             <td>{{ match.date }}</td>
                             <td><a href="{% url 'teams:detail' team_name=match.home_team.name %}">{{ match.home_team }}</a></td> 
-                            <td>{{ match.home_score }}</td>
+                            <td class='home-score'>{{ match.home_score }}</td>
                             <td>V</td>
-                            <td>{{ match.away_score }}</td>
+                            <td class="away-score">{{ match.away_score }}</td>
                             <td><a href="{% url 'teams:detail' team_name=match.away_team.name %}">{{ match.away_team }}</a></td>
-                            <td>VIEW</td>
+                            <td><a href="#">VIEW</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
