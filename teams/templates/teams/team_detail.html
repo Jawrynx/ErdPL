@@ -56,9 +56,10 @@
                         <th>Date</th>
                         <th>Home Team</th>
                         <th>Home Score</th>
-                        <th>Away Team</th>
+                        <th>(9)</th>
                         <th>Away Score</th>
-                        <th>Division</th>
+                        <th>Away Team</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,9 +68,10 @@
                             <td>{{ score.date }}</td>
                             <td><a href="{% url 'teams:detail' team_name=score.home_team.name %}">{{ score.home_team.name }}</a></td>
                             <td>{{ score.home_score }}</td>
-                            <td><a href="{% url 'teams:detail' team_name=score.away_team.name %}">{{ score.away_team.name }}</a></td>
+                            <td>V</td>
                             <td>{{ score.away_score }}</td>
-                            <td>{{ score.division.name }}</td> 
+                            <td><a href="{% url 'teams:detail' team_name=score.away_team.name %}">{{ score.away_team.name }}</a></td>
+                            <td><a href="#">VIEW</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

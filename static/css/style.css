@@ -1261,6 +1261,28 @@ body > main > div > div.add-score > a:hover {
     text-transform: uppercase;
 }
 
+#join-team-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkred;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#join-team-form > button {
+    width: 100%;
+    margin: 10px;
+    padding: 3px 0px;
+    border-radius: 8px;
+}
+
+#join-team-form > select {
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0px;
+}
 
 
 
@@ -1441,6 +1463,7 @@ body > main > div > div.add-score > a:hover {
     .profile-teams-buttons {
         padding: 15px;
         width: 85%;
+        flex-direction: column;
     }
 
     .profile-teams-buttons > a {
@@ -1526,6 +1549,7 @@ body > main > div > div.add-score > a:hover {
 
     .fixture-table {
         width: 100%;
+        font-size: 0.8rem;
     }
 
     .division-nav {
@@ -1585,6 +1609,43 @@ body > main > div > div.add-score > a:hover {
         width: 20%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+    .fixture-table,
+    .team-fixtures {
+        width: 100%;
+        padding: 0px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
