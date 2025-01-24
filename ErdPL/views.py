@@ -64,7 +64,7 @@ def calculate_leaderboard(division):
         })
 
     # Sort the leaderboard by points (descending)
-    leaderboard.sort(key=lambda x: x['points'], reverse=True)
+    leaderboard.sort(key=lambda x: (-x['points'], -x['wins']))
 
     return leaderboard
 
