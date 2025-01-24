@@ -244,6 +244,7 @@ nav li a,
 .home-banner > h1 > span,
 .home-banner a > span {
     color: var(--erdpl-text-secondary);
+    font-weight: bolder;
 }
 
 .home-banner h1 {
@@ -255,19 +256,24 @@ nav li a,
     margin-bottom: 30px;
 }
 
+.home-banner > .register-button {
+    background-color: var(--erdpl-text-quaternary);
+    border: 1px solid var(--erdpl-text-tertiary);
+    padding: 10px;
+    border-radius: 15px;
+    width: 25%;
+    text-align: center;
+}
+
 .home-banner a {
     color: var(--erdpl-text-primary);
     transition: ease-in-out 0.3s;
     font-size: 1.5rem;
-    background-color: var(--erdpl-text-quaternary);
-    border-radius: 15px;
-    border: 1px solid var(--erdpl-text-tertiary);
-    padding: 10px;
     text-decoration: none;
 }
 
 
-.home-banner a:hover {
+.home-banner .register-button:hover {
     background-color: var(--erdpl-text-tertiary);
     border: 1px solid var(--erdpl-text-quaternary);
     color: var(--erdpl-text-secondary);
@@ -1397,8 +1403,12 @@ body > main > div > div.add-score > a:hover {
     }
 
     .home-banner a {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         padding: 10px;
+    }
+
+    .home-banner > .register-button {
+        width: 100%;
     }
 
 
@@ -1682,6 +1692,10 @@ body > main > div > div.add-score > a:hover {
 
     nav ul { 
         display: none; 
+    }
+
+    .home-banner > .register-button {
+        width: 65%;
     }
 
     /* Profile Pages */
