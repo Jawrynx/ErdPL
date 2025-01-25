@@ -6,10 +6,10 @@
 
 {% block content %}
     <div class="center">
-        <h1 class='title-text'>SCORES</h1>
+        <h1 class='title-text' style='text-transform: uppercase;'>{{ division_name }} Scores</h1>
         <div class="outer-2" id='division-links'>
             <ul class="division-nav">
-                {% for div in all_divisions %} 
+                {% for div in all_divisions|dictsortreversed:'name' %} 
                     <li><a href="{% url 'scores:view_scores' division_name=div.name %}">{{ div.name }}</a></li>
                 {% endfor %}
             </ul>
@@ -44,7 +44,7 @@
                             <td>V</td>
                             <td class="away-score">{{ match.away_score }}</td>
                             <td><a href="{% url 'teams:detail' team_name=match.away_team.name %}">{{ match.away_team }}</a></td>
-                            <td><a href="#">VIEW</a></td>
+                            <td><a href="{% url 'scores:match_details' division_name=match.division.name match_id=match.id %}">VIEW</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
