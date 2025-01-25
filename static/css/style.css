@@ -572,8 +572,101 @@ footer {
     height: 250px;
 }
 
-#create-team-form {
-    margin-top: 25px;
+#team-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#team-form > p {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#team-form > p > label,
+#team-form > label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+#team-form > p > input,
+#team-form > p > textarea {
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#add-members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#add-members > select {
+    width: 80%;
+    height: 200px;
+    text-align: center;
+}
+
+#add-members > select > option {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+}
+
+#team-form > button {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1rem;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
+    transition: 0.3s ease-in-out;
+}
+
+#add-members > button {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1rem;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--erdpl-color-green);
+    color: var(--erdpl-text-primary);
+    transition: 0.3s ease-in-out;
+}
+
+#team-container > div.profile-info > ul > li > form > button {
+    padding: 5px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 0.7rem;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
+    margin-top: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+#team-container > div.profile-info > ul > li > form > button:hover,
+#team-form > button:hover,
+#add-members > button:hover {
+    transition: 0.3s ease-in-out;
+    background-color: darkred;
+}
+
+#team-container > div.profile-info > #edit-team-members > li {
+    display: flex;
+    justify-content: space-between;
 }
 
 #create-team-form > p:nth-child(2) {
@@ -758,7 +851,6 @@ footer {
 
 .profile-teams-buttons {
     background-color: var(--erdpl-text-secondary-dark);
-    padding: 20px 100px;
     width: 70%;
     display: flex;
     justify-content: center;
@@ -768,13 +860,12 @@ footer {
 }
 
 .profile-teams-buttons > a {
-    background-color: var(--erdpl-text-secondary);
+    background-color: darkred;
     text-decoration: none;
     color: var(--erdpl-text-primary);
-    border: 3px solid var(--erdpl-text-primary);
-    padding: 25px;
-    margin: 0px 25px;
-    border-radius: 15px;
+    border: 1px solid var(--erdpl-text-primary);
+    padding: 5px;
+    margin: 0px 2px;
     text-align: center;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -1292,6 +1383,52 @@ body > main > div > div.add-score > a:hover {
 
 .bold {
     font-weight: bolder;
+}
+
+.contact-info {
+    background-color: var(--erdpl-color-green);
+    width: 80%;
+    border-radius: 25px;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+.contact-info > h2 {
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.contact-info > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-info > ul > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    font-size: 1.2rem;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    width: 90%;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.contact-info > ul > li > span {
+    text-align: right;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contact-info > ul > li > a {
+    color: lightblue;
 }
 
 

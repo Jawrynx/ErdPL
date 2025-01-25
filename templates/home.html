@@ -39,7 +39,7 @@
                         {% else %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td>{{ standing.team.name }}</td>
+                                <td><a href="{% url 'teams:detail' team_name=standing.team.name %}">{{ standing.team.name }}</a></td>
                                 <td>{{ standing.played }}</td>
                                 <td>{{ standing.wins }}</td>
                                 <td>{{ standing.losses }}</td>

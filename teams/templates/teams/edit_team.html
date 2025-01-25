@@ -6,21 +6,34 @@
 
 {% block content %}
     <div class="center">
-        <div class="outer">
-            <div class="form-container">
-                <h2>Edit Team Information</h2>
-                <form method="post" enctype="multipart/form-data"> 
-                    {% csrf_token %}
-                    <label for="id_team_image">Team Picture:</label>
-                    {% if team.team_image %}
-                        <img src="{{ team.team_image.url }}" alt="Current Team Picture" id='edit-team-image'> 
-                    {% else %}
-                        <img src="../../../../media/team_default.png" alt="Current Team Picture" id='edit-team-image'>
-                    {% endif %}
-                    {{ form.as_p }} 
-                    <button type="submit">Save Changes</button>
-                </form>
-            </div>
+        <div class="profile-container" id='team-container'>
+                <div class="profile-banner">
+                    <h2>Edit Team Information</h2>
+                    <form method="post" enctype="multipart/form-data" id='team-form'> 
+                        {% csrf_token %}
+                        <label for="id_team_image">Team Picture:</label>
+                        {% if team.team_image %}
+                            <img src="{{ team.team_image.url }}" alt="Current Team Picture" id='edit-team-image'> 
+                        {% else %}
+                            <img src="../../../../media/team_default.png" alt="Current Team Picture" id='edit-team-image'>
+                        {% endif %}
+                        {{ form.as_p }} 
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
+                <div class="profile-info">
+                    <h3>Team Members:</h3>
+                    <ul>
+                        {% for member in team.members.all %}
+                            <li>
+                                <a href="{% url 'users:profile' username=member.username %}">
+                                    <img src="{% if member.profile.profile_picture %}{{ member.profile.profile_picture.url }}{% else %}../../../media/profile_default.jpeg{% endif %}" alt="{{ member.username }} Profile Picture" class="profile-image">
+                                    <span>{{ member.username }}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
         </div>
     </div>
 {% endblock %}
