@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}Match Details{% endblock %}
+
+{% block content %}
+<div class="center">
+    <h1 class="title-text">DETAILS</h1>
+    <div class="match-options">
+        <a href="javascript:history.back()"><i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+    <div class="outer-2" id='match-outer'>
+        <div id='match-details'>
+            <div class="match-home">
+                <h1><a href="{% url 'teams:detail' team_name=home_team.name %}">{{ match.home_team }}</a></h1>
+                <div class="match-image">
+                    {% if home_team.image %}
+                            <img src="{{ home_team.image.url }}" alt="{{ home_team.name }}" class="match-profile-image">
+                    {% else %}
+                            <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="match-middle">
+                <h1>VS</h1>
+                <h1 class='m-top-50'>{{ match.home_score }} (9) {{ match.away_score }}</h1>
+            </div>
+            <div class="match-away">
+                <h1><a href="{% url 'teams:detail' team_name=away_team.name %}">{{ match.away_team }}</a></h1>
+                <div class="match-image">
+                    {% if away_team.image %}
+                            <img src="{{ away_team.image.url }}" alt="{{ away_team.name }}" class="match-profile-image">
+                    {% else %}
+                            <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="match-extra-info">
+            <h2 class="match-extra-h2">{{ match.division.name }}</h2>
+            <h3 class="match-extra-h3">Played at {{ home_team.location }}</h3>
+            <h3 class="match-extra-h3">Date played:<br>{{ match.date }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

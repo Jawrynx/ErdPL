@@ -40,3 +40,15 @@ def view_scores(request, division_name=None):
         'teams': teams, 
     }
     return render(request, 'scores/view_scores.html', context)
+
+def match_details(request, division_name, match_id):
+    match = get_object_or_404(Match, pk=match_id)
+    
+    context = {
+        'match': match,
+        'division_name': division_name,
+        'home_team': match.home_team,
+        'away_team': match.away_team,
+    }
+
+    return render(request, 'scores/match_details.html', context)

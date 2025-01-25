@@ -884,6 +884,7 @@ footer {
     background-color: var(--erdpl-color-green);
     box-shadow: -1px -1px 9px 2px black;
     z-index: 1;
+    margin: 25px 0 0 0;
 }
 
 .team-profile-image {
@@ -1191,6 +1192,7 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     background-color: rgb(1, 197, 204);
     margin-top: 40px;
     box-shadow: 2px 2px 3px 1px black;
+    margin-bottom: 100px;
 }
 
 .division-nav {
@@ -1432,7 +1434,124 @@ body > main > div > div.add-score > a:hover {
 }
 
 
+/* MATCH DETAILS */
 
+#match-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    gap: 10px;
+    width: 100%;
+}
+
+#match-outer {
+    background-color: lightgreen;
+    border: 15px solid green;
+    margin-top: 25px;
+    width: 80%;
+}
+
+.match-home, .match-middle, .match-away {
+    padding: 10px;
+    text-align: center; 
+    color: black;
+    width: 100%;
+}
+
+.match-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.match-middle > h1:nth-child(1) {
+    margin-top: 8px;
+}
+
+.match-middle > h1:nth-child(2) {
+    background-color: var(--erdpl-text-secondary);
+    border-radius: 15px;
+    padding: 10px 0px;
+}
+
+.match-home, .match-away {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 15px;
+    color: white;
+    padding-bottom: 25px;
+}
+
+.match-extra-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.match-extra-h2 {
+    margin-top: 25px;
+    background-color: yellow;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    font-size: 2rem;
+}
+
+.match-extra-h3 {
+    margin-top: 25px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    font-size: 1.3rem;
+    width: 100%;
+}
+
+.match-home > h1, .match-away > h1 {
+    background-color: rgba(0,0,0,0.5);
+    padding: 15px 0px;
+    border-radius: 7px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.match-home > h1 > a, .match-away > h1 > a {
+    color: white;
+}
+
+.match-image {
+    margin-top: 50px;
+}
+
+.match-profile-image {
+    border: 1px solid var(--erdpl-text-primary);
+    border-radius: 50%;
+    max-height: 200px;
+}
+
+.match-options {
+    display: flex;
+    justify-content: flex-start;
+    width: 75%;
+}
+
+.match-options > a {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.m-top-50 {
+    margin-top: 125px;
+}
 
 
 
@@ -1762,7 +1881,77 @@ body > main > div > div.add-score > a:hover {
     body > main > div > div.add-score {
         width: 90%;
     }
+
+    /* Match Details */
+
+    #match-outer {
+        width: 100%;
+        padding: 3px;
+    }
+
+    #match-details {
+        display: flex;
+        justify-content:space-evenly;
+        gap: 0px;
+    }
+
+    .match-options {
+        width: 90%;
+    }
+
+    .match-options > a {
+        font-size: 0.9rem;
+    }
+
+    .match-profile-image {
+        max-width: 80px;
+    } 
+    
+    .match-middle {
+        width: 100%;
+    }
+
+    .match-away > h1, .match-home > h1 {
+        font-size: 1.2rem;
+        min-width: 100px;
+        min-height: 100px;
+    }
+
+    .match-middle > h1 {
+        font-size: 1.1rem;
+    }
+
+    .match-image {
+        margin-top: 15px;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1994,5 +2183,38 @@ body > main > div > div.add-score > a:hover {
 
     body > main > div > div.add-score {
         width: 90%;
+    }
+
+    /* Match Details */
+
+    #match-outer {
+        width: 100%;
+        padding: 3px;
+    }
+
+    #match-details {
+        display: flex;
+        justify-content:space-evenly;
+        gap: 0px;
+    }
+
+    .match-options {
+        width: 90%;
+    }
+
+    .match-profile-image {
+        max-width: 140px;
+    } 
+    
+    .match-middle {
+        width: 100%;
+    }
+
+    .match-away > h1, .match-home > h1 {
+        font-size: 1.8rem;
+    }
+
+    .match-middle > h1 {
+        font-size: 1.4rem;
     }
 }
