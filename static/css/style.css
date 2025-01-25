@@ -572,6 +572,46 @@ footer {
     height: 250px;
 }
 
+#team-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#team-form > p {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#team-form > p > label,
+#team-form > label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+#team-form > p > input,
+#team-form > p > textarea {
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#team-form > button {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1rem;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--erdpl-text-secondary);
+    color: var(--erdpl-text-primary);
+}
+
 #create-team-form {
     margin-top: 25px;
 }
