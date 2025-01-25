@@ -6,26 +6,42 @@
 
 {% block content %}
     <div class="center">
-        <div class="outer">
-            <div class="form-container">
+        <div class="profile-container" id='team-container'>
+            <div class="profile-banner">
+                <h2>{{ team.name }}</h2>
+                {% if team.team_image %}
+                    <img src="{{ team.team_image.url }}" alt="{{ team.name }} Image" class="team-profile-image">
+                {% else %}
+                    <img src="../../../media/team_default.png" alt="Blank Team Photo" class="team-profile-image">
+                {% endif %}
+
+                <p><strong>Captain:</strong><a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
+                <p><strong>Division:</strong> {{ team.division.name }}</p>
+                <p><strong>Location:</strong> {{ team.location }}</p>
+                <p><strong>Bio:</strong> {{ team.bio }}</p>
+            </div>
+            <div class="profile-info">
                 <a href="{% url 'teams:detail' team_name=team.name %}" class='back'>BACK</a>
                 <h2 class='m-top'>Edit Team Members</h2>
 
                 <h3>Current Team Members</h3>
-                <ul>
+                <ul id='edit-team-members'>
                     {% for member in team.members.all %}
                         <li>
-                            {{ member.username }}
+                            <a href="{% url 'users:profile' username=member.username %}">
+                                <img src="{% if member.profile.profile_picture %}{{ member.profile.profile_picture.url }}{% else %}../../../media/profile_default.jpeg{% endif %}" alt="{{ member.username }} Profile Picture" class="profile-image">
+                                <span>{{ member.username }}</span>
+                            </a>
                             <form method="post" action="{% url 'teams:remove_team_member' team_name=team.name member_id=member.id %}">
                                 {% csrf_token %}
-                                <button type="submit">Remove</button>
+                                <button type="submit">DEL</button>
                             </form>
                         </li>
                     {% endfor %}
                 </ul>
 
                 <h3>Add New Members</h3>
-                <form method="post">
+                <form method="post" id='add-members'>
                     {% csrf_token %}
                     <select name="new_members" multiple>
                         {% for user in available_users %}
