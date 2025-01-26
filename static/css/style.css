@@ -336,6 +336,41 @@ nav li a,
 }
 
 
+/* About */
+
+
+.about {
+    background-color: var(--erdpl-text-secondary);
+}
+
+.about > h1 {
+    padding: 50px 0px;
+    font-size: 4rem;
+    text-align: center;
+    color: white;
+    background-color: darkred;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.about-info {
+    background-color: rgba(0,0,0,0.7);
+    margin: 50px;
+    text-align: center;
+    padding: 25px;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.about-info > ul > li {
+    margin: 20px;
+    list-style: circle;
+}
+
 
 
 
@@ -894,15 +929,14 @@ footer {
 }
 
 #profile-team-container {
-    padding: 20px 0;
+    padding: 5px;
 }
 
 .team-inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 95%;
-    margin: 20px 0;
+    width: 100%;
 }
 
 .team-inner > a {
@@ -915,9 +949,9 @@ footer {
     background-color: var(--erdpl-text-quaternary);
     padding: 25px;
     border-radius: 10px;
-    margin: 15px;
+    margin: 5px;
     transition: 0.3s ease-in-out;
-    width: 70%;
+    width: 100%;
 }
 
 .team-inner > a:hover {
@@ -929,7 +963,7 @@ footer {
     color: var(--erdpl-text-primary);
     background-color: var(--erdpl-background);
     padding: 30px 0;
-    margin-left: 15px;
+    margin-left: 5px;
     border-radius: 10px;
     text-shadow: 1px 1px 2px lightgreen;
     text-transform: uppercase;
@@ -1667,6 +1701,15 @@ body > main > div > div.add-score > a:hover {
         width: 100%;
     }
 
+    .about-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-info {
+        font-size: 1.2rem;
+    }
+
 
     /* Login / Registration Forms */
     #login-outer,
@@ -2022,6 +2065,11 @@ body > main > div > div.add-score > a:hover {
 
     .home-banner > .register-button {
         width: 65%;
+    }
+
+    .about-container {
+        display: flex;
+        flex-direction: column;
     }
 
     /* Profile Pages */
