@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block title %}Live Match{% endblock %}
+
+{% block content %}
+<div class="center">
+  <h1 class="title-text">LIVE MATCH</h1>
+  <div class="outer-2">
+    <h2>{{ match.home_team }} vs {{ match.away_team }}</h2>
+    <h2>Score: {{ match.home_score }} - {{ match.away_score }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Home Player</th>
+          <th>Away Player</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for score in scores %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ score.home_player }}</td>
+          <td>{{ score.away_player }}</td>
+          <td>
+            <button class="win-button" data-score-id="{{ score.id }}" data-winner="home">Home Win</button>
+            <button class="win-button" data-score-id="{{ score.id }}" data-winner="away">Away Win</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+    const matchDivisionName = '{{ match.division.name }}';
+    const matchId = '{{ match.id }}';
+    const winButtons = document.querySelectorAll('.win-button');
+
+  winButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const scoreId = button.dataset.scoreId;
+      const winner = button.dataset.winner;
+
+      // Send AJAX request to update the score
+      fetch(`/scores/${matchDivisionName}/scores/${matchId}/${scoreId}/update_score/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: new URLSearchParams({
+          'winner': winner
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          // Update the UI or display a success message
+          console.log('Score updated successfully!');
+          location.reload();
+        } else {
+          console.error('Failed to update score.');
+        }
+      })
+      .catch(error => {
+          console.error('Error updating score:', error);
+      });
+    });
+  });
+</script>
+{% endblock %}

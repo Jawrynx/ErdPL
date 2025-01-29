@@ -25,3 +25,8 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_team_score(self, match):
+        home_wins = self.individualscore_set.filter(match=match, home_or_away_win='home').count()
+        away_wins = self.individualscore_set.filter(match=match, home_or_away_win='away').count()
+        return home_wins + away_wins
