@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block title %}Select Players{% endblock %}
+
+{% block content %}
+<div class="center">
+  <h1 class="title-text">SELECT PLAYERS</h1>
+  <div class="outer-2">
+    <h2>{{ match.home_team }} vs {{ match.away_team }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Home Player</th>
+            <th>Away Player</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in '123456789' %}
+          <tr>
+            <td>{{ i }}</td>
+            <td>
+              <select name="home_player_{{ i }}">
+                {% for player in match.home_team.members.all %}
+                <option value="56">X</option>
+                <option value="{{ player.id }}">{{ player }}</option> 
+                {% endfor %}
+              </select>
+            </td>
+            <td>
+              <select name="away_player_{{ i }}">
+                {% for player in match.away_team.members.all %}
+                <option value="56">X</option>
+                <option value="{{ player.id }}">{{ player }}</option> 
+                {% endfor %}
+              </select>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-primary">Start Match</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

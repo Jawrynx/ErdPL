@@ -10,8 +10,7 @@
     </div>
     <div class="outer-2" id='match-outer'>
         <div id='match-details'>
-            <div class="match-home">
-                <h1><a href="{% url 'teams:detail' team_name=home_team.name %}">{{ match.home_team }}</a></h1>
+            <div class="match-images">
                 <div class="match-image">
                     {% if home_team.image %}
                             <img src="{{ home_team.image.url }}" alt="{{ home_team.name }}" class="match-profile-image">
@@ -19,13 +18,19 @@
                             <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
                     {% endif %}
                 </div>
-            </div>
-            <div class="match-middle">
-                <h1>VS</h1>
-                <h1 class='m-top-50'>{{ match.home_score }} (9) {{ match.away_score }}</h1>
-            </div>
-            <div class="match-away">
-                <h1><a href="{% url 'teams:detail' team_name=away_team.name %}">{{ match.away_team }}</a></h1>
+                {% if match.home_score >= 5 %}
+                    <div class="match-status">
+                        <h2>{{ match.home_team }} Win!</h2>
+                    </div>
+                {% elif match.away_score >= 5 %}
+                    <div class="match-status">
+                        <h2>{{ match.away_team }} Win!</h2>
+                    </div>
+                {% else %}
+                    <div class="match-status">
+                        <h2 class='live-title'>LIVE</h2>
+                    </div>
+                {% endif %}
                 <div class="match-image">
                     {% if away_team.image %}
                             <img src="{{ away_team.image.url }}" alt="{{ away_team.name }}" class="match-profile-image">
@@ -33,6 +38,11 @@
                             <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
                     {% endif %}
                 </div>
+            </div>
+            <div class="match-teams">
+                <h1><a href="{% url 'teams:detail' team_name=home_team.name %}">{{ match.home_team }}</a></h1>
+                <h1 id='match-score'>{{ match.home_score }} VS {{ match.away_score }} </h1>
+                <h1><a href="{% url 'teams:detail' team_name=away_team.name %}">{{ match.away_team }}</a></h1>
             </div>
         </div>
         <div class="match-extra-info">
