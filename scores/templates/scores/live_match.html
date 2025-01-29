@@ -24,13 +24,22 @@
           <td>{{ score.home_player }}</td>
           <td>{{ score.away_player }}</td>
           <td>
-            <button class="win-button" data-score-id="{{ score.id }}" data-winner="home">Home Win</button>
-            <button class="win-button" data-score-id="{{ score.id }}" data-winner="away">Away Win</button>
-          </td>
+            {% if not score.home_or_away_win %}
+                <button class="win-button" data-score-id="{{ score.id }}" data-winner="home">Home Win</button>
+                <button class="win-button" data-score-id="{{ score.id }}" data-winner="away">Away Win</button>
+            {% endif %}
+        </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    {% if match.home_score >= 5 %}
+        <h2 class="winning-title">{{ match.home_team }} Won The Match!</h2>
+    {% elif match.away_score >= 5 %}
+        <h2 class="winning-title">{{ match.away_team }} Won The Match!</h2>
+    {% else %}
+        <h2 class="winning-title">Match in play...</h2>
+    {% endif %}
   </div>
 </div>
 
