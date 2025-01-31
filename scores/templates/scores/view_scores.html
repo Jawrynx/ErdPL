@@ -9,7 +9,7 @@
         <h1 class='title-text' style='text-transform: uppercase;'>{{ division_name }} Scores</h1>
         <div class="outer-2" id='division-links'>
             <ul class="division-nav">
-                {% for div in all_divisions|dictsortreversed:'name' %} 
+                {% for div in all_divisions|dictsort:'name' %} 
                     <li><a href="{% url 'scores:view_scores' division_name=div.name %}">{{ div.name }}</a></li>
                 {% endfor %}
             </ul>

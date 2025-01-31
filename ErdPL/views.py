@@ -71,11 +71,33 @@ def calculate_leaderboard(division):
 
 def home(request):
     all_divisions = Division.objects.all()
+
+    # Pre-defined order of divisions
+    division_order = ["Premier Division", "Division One", "Division Two"]
+    ordered_divisions = []
+
+    # Add divisions in the specified order first
+    for division_name in division_order:
+        try:
+            division = all_divisions.get(name=division_name)  # Use.get() for single object
+            division.leaderboard = calculate_leaderboard(division)
+            ordered_divisions.append(division)
+        except Division.DoesNotExist:
+            pass # Handle if division doesn't exist
+
+    # Add remaining divisions (if any) alphabetically
+    other_divisions = []
     for division in all_divisions:
-        division.leaderboard = calculate_leaderboard(division)
+        if division.name not in division_order:
+            other_divisions.append(division)
+
+    other_divisions.sort(key=lambda x: x.name) # Sort alphabetically
+    for division in other_divisions:
+      division.leaderboard = calculate_leaderboard(division)
+      ordered_divisions.append(division)
 
     context = {
-        'all_divisions': all_divisions,
+        'all_divisions': ordered_divisions,  # Use the ordered list
     }
     return render(request, 'home.html', context)
 

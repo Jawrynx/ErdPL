@@ -6,29 +6,61 @@
 <div class="center">
   <h1 class="title-text">LIVE MATCH</h1>
   <div class="outer-2">
+    <div class="match-images">
+      <div class="match-image">
+          {% if home_team.image %}
+                  <img src="{{ home_team.image.url }}" alt="{{ home_team.name }}" class="match-profile-image">
+          {% else %}
+                  <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
+          {% endif %}
+      </div>
+      <div class="match-image">
+          {% if away_team.image %}
+                  <img src="{{ away_team.image.url }}" alt="{{ away_team.name }}" class="match-profile-image">
+          {% else %}
+                  <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
+          {% endif %}
+      </div>
+    </div>
     <h2>{{ match.home_team }} vs {{ match.away_team }}</h2>
     <h2>Score: {{ match.home_score }} - {{ match.away_score }}</h2>
-    <table>
+
+
+
+    <table class="liveTable">
       <thead>
         <tr>
           <th>Game</th>
           <th>Home Player</th>
+          <th></th>
+          <th></th>
+          <th></th>
           <th>Away Player</th>
-          <th>Winner</th>
         </tr>
       </thead>
       <tbody>
         {% for score in scores %}
-        <tr>
+        <tr id="player-score">
           <td>{{ forloop.counter }}</td>
           <td>{{ score.home_player }}</td>
+          {% if not score.home_or_away_win %}
+            <td>
+              <button class="win-button" data-score-id="{{ score.id }}" data-winner="home">WIN</button>
+            </td>
+            <td>VS</td>
+            <td>
+              <button class="win-button" data-score-id="{{ score.id }}" data-winner="away">WIN</button>
+            </td>
+          {% elif score.home_or_away_win == "home" %}
+            <td><strong>1</strong></td>
+            <td>VS</td>
+            <td>0</td>
+          {% else %}
+            <td>0</td>
+            <td>VS</td>
+            <td><strong>1</strong></td>
+          {% endif %}
           <td>{{ score.away_player }}</td>
-          <td>
-            {% if not score.home_or_away_win %}
-                <button class="win-button" data-score-id="{{ score.id }}" data-winner="home">Home Win</button>
-                <button class="win-button" data-score-id="{{ score.id }}" data-winner="away">Away Win</button>
-            {% endif %}
-        </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -47,7 +79,31 @@
     const matchDivisionName = '{{ match.division.name }}';
     const matchId = '{{ match.id }}';
     const winButtons = document.querySelectorAll('.win-button');
+    const playerScores = document.querySelectorAll('#player-score');
 
+    playerScores.forEach(playerScore => {
+      const winStatusCell = playerScore.querySelector('td:nth-child(3)');
+      const loseStatusCell = playerScore.querySelector('td:nth-child(5)');
+
+      if ((winStatusCell.textContent.trim() === "1" || winStatusCell.textContent.trim() === "0") && (loseStatusCell.textContent.trim() === "1" || loseStatusCell.textContent.trim() === "0")) {
+          const tds = playerScore.querySelectorAll('td');
+          const homePlayerCell = playerScore.querySelector('td:nth-child(2)'); // Get Home Player cell
+          const awayPlayerCell = playerScore.querySelector('td:nth-child(6)'); // Get Away Player cell
+
+          tds.forEach((td, index) => {
+              if (index !== 0) {
+                  td.classList.add('player-done');
+              }
+          });
+
+          // Add 'player-won' class based on who won
+          if (winStatusCell.textContent.trim() === "1") {
+              homePlayerCell.classList.add('player-won');
+          } else if (loseStatusCell.textContent.trim() === "1") {
+              awayPlayerCell.classList.add('player-won');
+          }
+      }
+  });
   winButtons.forEach(button => {
     button.addEventListener('click', () => {
       const scoreId = button.dataset.scoreId;

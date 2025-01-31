@@ -9,7 +9,7 @@ class MatchForm(forms.ModelForm):
 
     class Meta:
         model = Match
-        fields = ['home_team', 'away_team', 'date', 'division']
+        fields = ['home_team', 'away_team', 'date']
 
 class IndividualScoreForm(forms.ModelForm):
     class Meta:
