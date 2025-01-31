@@ -75,6 +75,7 @@ main {
 
 nav img {
     height: 70px;
+    margin: 10px;
 }
 
 header {
@@ -1583,6 +1584,69 @@ div.match-images {
 
 .m-top-50 {
     margin-top: 125px;
+}
+
+#select-players > .liveTable {
+    margin: 10px 0;
+}
+
+#select-players > .liveTable > tbody > tr > td > select {
+    width: 100%;
+    padding: 5px 0;
+}
+
+#select-players > .liveTable > tbody > tr > td > select,
+#select-players > .liveTable > tbody > tr > td > select > option {
+    font-family: 'Ubuntu', serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.liveTable { 
+    margin: 10px;
+    background-color: var(--erdpl-background);
+    width: 100%;
+    color: var(--erdpl-text-primary-light);
+    border: 3px solid red;
+    border-spacing: 0;
+    border-radius: 10px;
+}
+
+.liveTable > thead > tr > th,
+.liveTable > tbody > tr > td {
+    border: 3px solid red;
+    padding: 3px;
+}
+
+.liveTable > thead > tr > th:nth-child(1),
+.liveTable > tbody > tr > td:nth-child(1) {
+    width: 50px;
+    font-weight: bold;
+}
+
+.liveTable > tbody > tr > td > button {
+    width: 100%;
+    padding: 5px 0;
+    font-family: 'Ubuntu', serif;
+    background-color: var(--erdpl-color-green);
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+.liveTable > tbody > tr > td {
+    background-color: var(--erdpl-text-primary);
+    color: var(--erdpl-background);
+    font-weight: bold;
+}
+
+.liveTable > tbody > tr > td.player-done {
+    background-color: var(--erdpl-background);
+    color: var(--erdpl-text-primary-dark);
+}
+
+.liveTable > tbody > tr > td.player-win {
+    background-color: var(--erdpl-color-green);
 }
 
 
