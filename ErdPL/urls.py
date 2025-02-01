@@ -31,6 +31,7 @@ urlpatterns = [
     path('teams/', include('teams.urls', namespace='teams')),
     path('fixtures/', include('fixtures.urls', namespace='fixtures')),
     path('scores/', include('scores.urls', namespace='scores')),
+    path('tournaments/', include('tournaments.urls', namespace='tournaments')),
     path('', views.home, name='home'),
     path('about/', views.about),
     path('contact/', views.contact),

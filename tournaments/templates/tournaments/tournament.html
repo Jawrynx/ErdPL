@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+    <h1>{{ tournament.name }}</h1>
+
+    <div class="tournament-grid-container">  <div class="tournament-grid">  
+        {% for round_number, games in rounds.items %}
+                <div class="round">
+                    <h2>Round {{ round_number }}</h2>
+                    {% for game in games %}
+                        <div class="game">
+                            <div class="player">
+                                {% if game.player1 %}
+                                    {{ game.player1.username }}
+                                {% else %}
+                                    TBD
+                                {% endif %}
+                            </div>
+                            <div class="vs">vs</div>
+                            <div class="player">
+                                {% if game.player2 %}
+                                    {{ game.player2.username }}
+                                {% else %}
+                                    TBD
+                                {% endif %}
+                            </div>
+                            {% if game.winner %}
+                                <div class="winner">Winner: {{ game.winner.username }} ({{ game.score1 }} - {{ game.score2 }})</div>
+                                <div class="date_played">{{ game.date_played }}</div>
+                            {% else %}
+                                <div class="score-input">
+                                    <input type="number" name="score1" placeholder="Score Player 1">
+                                    <input type="number" name="score2" placeholder="Score Player 2">
+                                    <button>Submit Score</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <style>.tournament-grid-container {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+        width: 100%; /* Or a specific width */
+    }.tournament-grid {
+        display: flex; /* Arrange rounds horizontally */
+        flex-wrap: nowrap; /* Prevent rounds from wrapping */
+        /* Add some spacing between rounds if you like */
+        padding: 20px;
+    }.round {
+        flex: 0 0 auto; /* Rounds should not shrink or grow */
+        margin-right: 20px; /* Space between rounds */
+        border: 1px solid #ccc; /* Add border for visual separation */
+        padding: 20px;
+        min-width: 250px; /* Ensure each round has a minimum width */
+    }.game {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Distribute space between player names and winner */
+    }.player {
+        padding: 5px;
+    }.vs {
+        margin: 0 10px;
+    }.winner {
+        margin-left: 10px;
+        font-weight: bold;
+    }.score-input {
+        display: flex;
+        align-items: center;
+    }.score-input input {
+        width: 50px;
+        margin-right: 5px;
+    }.date_played {
+        font-size: small;
+    }
+
+    /* Media query for smaller screens (optional) */
+    @media (max-width: 768px) {
+    .round {
+            min-width: 90vw; /* Make each round take up almost the entire screen width */
+        }
+    }
+    </style>
+
+    <script>
+        const gridContainer = document.querySelector('.tournament-grid-container');
+
+        let startX;
+        let scrollLeft;
+
+        gridContainer.addEventListener('mousedown', (e) => {
+            startX = e.pageX - gridContainer.offsetLeft;
+            scrollLeft = gridContainer.scrollLeft;
+        });
+
+        gridContainer.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        gridContainer.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        gridContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - gridContainer.offsetLeft;
+            const walk = (x - startX) * 3; // Adjust scroll speed
+            gridContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events for mobile
+        gridContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches.pageX - gridContainer.offsetLeft;
+            scrollLeft = gridContainer.scrollLeft;
+        });
+
+        gridContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const x = e.touches.pageX - gridContainer.offsetLeft;
+            const walk = (x - startX) * 3; // Adjust scroll speed
+            gridContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        gridContainer.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+    </script>
+{% endblock %}

@@ -12,6 +12,7 @@
                 {% for div in all_divisions|dictsort:'name' %} 
                     <li><a href="{% url 'scores:view_scores' division_name=div.name %}">{{ div.name }}</a></li>
                 {% endfor %}
+                <li><a href="{% url 'tournaments:tournament_view' tournament_name='EDPL Test Cup Game' %}">EDPL Test Cup Game</a></li>
             </ul>
         </div>
         {% for team in teams %}
