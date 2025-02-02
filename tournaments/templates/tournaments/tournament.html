@@ -10,185 +10,102 @@
     <div class="theme theme-dark">
         <div class="bracket disable-image">
             <div class="column last-32">
-                <h2>Last 32</h2>
-                {% for game in rounds.last_32 %}
-                    <div class="match last-32-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                {% for i in 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' %} {## 32 matches #}
+                    <div class="match last-32-match" data-match-id="">
                         <div class="match-top team">
-                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score1 }}</span>
-                            {% endif %}
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
                         </div>
                         <div class="match-bottom team">
-                            <span class="name">
-                                {% if game.player2 %}
-                                    {{ game.player2.username }}
-                                {% else %}
-                                    TBD
-                                {% endif %}
-                            </span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score2 }}</span>
-                            {% endif %}
+                            <span class="seed">TBD</span>
                         </div>
-                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
-                        {% if game.winner %}
-                            <div class="match-lines">
-                                <div class="line one"></div>
-                                <div class="line two"></div>
-                            </div>
-                            <div class="match-lines alt">
-                                <div class="line one"></div>
-                            </div>
-                        {% endif %}
+                        <div class="match-lines">
+                            <div class="line one"></div>
+                            <div class="line two"></div>
+                        </div>
+                        <div class="match-lines alt">
+                            <div class="line one"></div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="column last-16">
-                <h2>Last 16</h2>
-                {% for game in rounds.last_16 %}
-                    <div class="match last-16-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                {% for i in 'xxxxxxxxxxxxxxxx' %} {## 16 matches #}
+                    <div class="match last-16-match" data-match-id="">
                         <div class="match-top team">
-                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score1 }}</span>
-                            {% endif %}
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
                         </div>
                         <div class="match-bottom team">
-                            <span class="seed">
-                                {% if game.player2 %}
-                                    {{ game.player2.username }}
-                                {% else %}
-                                    TBD
-                                {% endif %}
-                            </span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score2 }}</span>
-                            {% endif %}
+                            <span class="seed">TBD</span>
                         </div>
-                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
-                        {% if game.winner %}
-                            <div class="match-lines">
-                                <div class="line one"></div>
-                                <div class="line two"></div>
-                            </div>
-                            <div class="match-lines alt">
-                                <div class="line one"></div>
-                            </div>
-                        {% endif %}
+                        <div class="match-lines">
+                            <div class="line one"></div>
+                            <div class="line two"></div>
+                        </div>
+                        <div class="match-lines alt">
+                            <div class="line one"></div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="column quarters">
-                <h2>Quarter-Finals</h2>
-                {% for game in rounds.quarters %}
-                    <div class="match quarter-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                {% for i in 'xxxxxxxx' %} {## 8 matches #}
+                    <div class="match quarter-match" data-match-id="">
                         <div class="match-top team">
-                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score1 }}</span>
-                            {% endif %}
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
                         </div>
                         <div class="match-bottom team">
-                            <span class="seed">
-                                {% if game.player2 %}
-                                    {{ game.player2.username }}
-                                {% else %}
-                                    TBD
-                                {% endif %}
-                            </span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score2 }}</span>
-                            {% endif %}
+                            <span class="seed">TBD</span>
                         </div>
-                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
-                        {% if game.winner %}
-                            <div class="match-lines">
-                                <div class="line one"></div>
-                                <div class="line two"></div>
-                            </div>
-                            <div class="match-lines alt">
-                                <div class="line one"></div>
-                            </div>
-                        {% endif %}
+                        <div class="match-lines">
+                            <div class="line one"></div>
+                            <div class="line two"></div>
+                        </div>
+                        <div class="match-lines alt">
+                            <div class="line one"></div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="column semis">
-                <h2>Semi-Finals</h2>
-                {% for game in rounds.semis %}
-                    <div class="match semi-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                {% for i in 'xxxx' %} {## 4 matches #}
+                    <div class="match semi-match" data-match-id="">
                         <div class="match-top team">
-                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score1 }}</span>
-                            {% endif %}
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
                         </div>
                         <div class="match-bottom team">
-                            <span class="seed">
-                                {% if game.player2 %}
-                                    {{ game.player2.username }}
-                                {% else %}
-                                    TBD
-                                {% endif %}
-                            </span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score2 }}</span>
-                            {% endif %}
+                            <span class="seed">TBD</span>
                         </div>
-                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
-                        {% if game.winner %}
-                            <div class="match-lines">
-                                <div class="line one"></div>
-                                <div class="line two"></div>
-                            </div>
-                            <div class="match-lines alt">
-                                <div class="line one"></div>
-                            </div>
-                        {% endif %}
+                        <div class="match-lines">
+                            <div class="line one"></div>
+                            <div class="line two"></div>
+                        </div>
+                        <div class="match-lines alt">
+                            <div class="line one"></div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="column finals">
-                <h2>Final</h2>
-                {% for game in rounds.final %}
-                    <div class="match final-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                {% for i in 'xx' %} {## 2 matches #}
+                    <div class="match final-match" data-match-id="">
                         <div class="match-top team">
-                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score1 }}</span>
-                            {% endif %}
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
                         </div>
                         <div class="match-bottom team">
-                            <span class="seed">
-                                {% if game.player2 %}
-                                    {{ game.player2.username }}
-                                {% else %}
-                                    TBD
-                                {% endif %}
-                            </span>
-                            {% if game.winner %}
-                                <span class="score">{{ game.score2 }}</span>
-                            {% endif %}
+                            <span class="seed">TBD</span>
                         </div>
-                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
-                        {% if game.winner %}
-                            <div class="match-lines">
-                                <div class="line one"></div>
-                                <div class="line two"></div>
-                            </div>
-                            <div class="match-lines alt">
-                                <div class="line one"></div>
-                            </div>
-                        {% endif %}
+                        <div class="match-lines">
+                            <div class="line one"></div>
+                            <div class="line two"></div>
+                        </div>
+                        <div class="match-lines alt">
+                            <div class="line one"></div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="column winner">
-                <h2>Winner</h2>
-                {% if rounds.final.0.winner %}
-                <div class="winner-name">{{ rounds.final.0.winner.username }}</div>
-                {% endif %}
+                <div class="winner-name">TBD</div> {## Placeholder for the winner #}
             </div>
         </div>
     </div>

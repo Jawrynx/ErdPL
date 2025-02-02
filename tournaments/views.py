@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from.models import Tournament, CupGame
-from users.models import CustomUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 
@@ -35,6 +34,18 @@ def update_match_view(request, tournament_name, match_id):
         game.score1 = score1
         game.score2 = score2
         game.save()
+
+        next_round_number = game.round_number + 1
+
+        next_round_match, created = CupGame.objects.get_or_create(
+            tournament=game.tournament,
+            round_number=next_round_number,
+            defaults={'player1': winner}
+        )
+
+        if not created:
+            next_round_match.player2 = winner
+            next_round_match.save()
 
         # Redirect back to the tournament page
         return redirect('tournaments:tournament_view', tournament_name=tournament_name)
