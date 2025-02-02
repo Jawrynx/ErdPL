@@ -1,137 +1,216 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
+{% block title %}
+    {{ tournament.name }}
+{% endblock %}
 
 {% block content %}
     <h1>{{ tournament.name }}</h1>
 
-    <div class="tournament-grid-container">  <div class="tournament-grid">  
-        {% for round_number, games in rounds.items %}
-                <div class="round">
-                    <h2>Round {{ round_number }}</h2>
-                    {% for game in games %}
-                        <div class="game">
-                            <div class="player">
-                                {% if game.player1 %}
-                                    {{ game.player1.username }}
-                                {% else %}
-                                    TBD
-                                {% endif %}
-                            </div>
-                            <div class="vs">vs</div>
-                            <div class="player">
+    <div class="theme theme-dark">
+        <div class="bracket disable-image">
+            <div class="column last-32">
+                <h2>Last 32</h2>
+                {% for game in rounds.last_32 %}
+                    <div class="match last-32-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                        <div class="match-top team">
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score1 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="match-bottom team">
+                            <span class="name">
                                 {% if game.player2 %}
                                     {{ game.player2.username }}
                                 {% else %}
                                     TBD
                                 {% endif %}
-                            </div>
+                            </span>
                             {% if game.winner %}
-                                <div class="winner">Winner: {{ game.winner.username }} ({{ game.score1 }} - {{ game.score2 }})</div>
-                                <div class="date_played">{{ game.date_played }}</div>
-                            {% else %}
-                                <div class="score-input">
-                                    <input type="number" name="score1" placeholder="Score Player 1">
-                                    <input type="number" name="score2" placeholder="Score Player 2">
-                                    <button>Submit Score</button>
-                                </div>
+                                <span class="score">{{ game.score2 }}</span>
                             {% endif %}
                         </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
+                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
+                        {% if game.winner %}
+                            <div class="match-lines">
+                                <div class="line one"></div>
+                                <div class="line two"></div>
+                            </div>
+                            <div class="match-lines alt">
+                                <div class="line one"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="column last-16">
+                <h2>Last 16</h2>
+                {% for game in rounds.last_16 %}
+                    <div class="match last-16-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                        <div class="match-top team">
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score1 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="match-bottom team">
+                            <span class="seed">
+                                {% if game.player2 %}
+                                    {{ game.player2.username }}
+                                {% else %}
+                                    TBD
+                                {% endif %}
+                            </span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score2 }}</span>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
+                        {% if game.winner %}
+                            <div class="match-lines">
+                                <div class="line one"></div>
+                                <div class="line two"></div>
+                            </div>
+                            <div class="match-lines alt">
+                                <div class="line one"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="column quarters">
+                <h2>Quarter-Finals</h2>
+                {% for game in rounds.quarters %}
+                    <div class="match quarter-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                        <div class="match-top team">
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score1 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="match-bottom team">
+                            <span class="seed">
+                                {% if game.player2 %}
+                                    {{ game.player2.username }}
+                                {% else %}
+                                    TBD
+                                {% endif %}
+                            </span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score2 }}</span>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
+                        {% if game.winner %}
+                            <div class="match-lines">
+                                <div class="line one"></div>
+                                <div class="line two"></div>
+                            </div>
+                            <div class="match-lines alt">
+                                <div class="line one"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="column semis">
+                <h2>Semi-Finals</h2>
+                {% for game in rounds.semis %}
+                    <div class="match semi-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                        <div class="match-top team">
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score1 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="match-bottom team">
+                            <span class="seed">
+                                {% if game.player2 %}
+                                    {{ game.player2.username }}
+                                {% else %}
+                                    TBD
+                                {% endif %}
+                            </span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score2 }}</span>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
+                        {% if game.winner %}
+                            <div class="match-lines">
+                                <div class="line one"></div>
+                                <div class="line two"></div>
+                            </div>
+                            <div class="match-lines alt">
+                                <div class="line one"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="column finals">
+                <h2>Final</h2>
+                {% for game in rounds.final %}
+                    <div class="match final-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                        <div class="match-top team">
+                            <span class="seed">{{ forloop.counter }}</span> <span class="name">{{ game.player1.username }}</span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score1 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="match-bottom team">
+                            <span class="seed">
+                                {% if game.player2 %}
+                                    {{ game.player2.username }}
+                                {% else %}
+                                    TBD
+                                {% endif %}
+                            </span>
+                            {% if game.winner %}
+                                <span class="score">{{ game.score2 }}</span>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
+                        {% if game.winner %}
+                            <div class="match-lines">
+                                <div class="line one"></div>
+                                <div class="line two"></div>
+                            </div>
+                            <div class="match-lines alt">
+                                <div class="line one"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="column winner">
+                <h2>Winner</h2>
+                {% if rounds.final.0.winner %}
+                <div class="winner-name">{{ rounds.final.0.winner.username }}</div>
+                {% endif %}
+            </div>
         </div>
     </div>
 
-
-    <style>.tournament-grid-container {
-        overflow-x: auto; /* Enable horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
-        width: 100%; /* Or a specific width */
-    }.tournament-grid {
-        display: flex; /* Arrange rounds horizontally */
-        flex-wrap: nowrap; /* Prevent rounds from wrapping */
-        /* Add some spacing between rounds if you like */
-        padding: 20px;
-    }.round {
-        flex: 0 0 auto; /* Rounds should not shrink or grow */
-        margin-right: 20px; /* Space between rounds */
-        border: 1px solid #ccc; /* Add border for visual separation */
-        padding: 20px;
-        min-width: 250px; /* Ensure each round has a minimum width */
-    }.game {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between; /* Distribute space between player names and winner */
-    }.player {
-        padding: 5px;
-    }.vs {
-        margin: 0 10px;
-    }.winner {
-        margin-left: 10px;
-        font-weight: bold;
-    }.score-input {
-        display: flex;
-        align-items: center;
-    }.score-input input {
-        width: 50px;
-        margin-right: 5px;
-    }.date_played {
-        font-size: small;
-    }
-
-    /* Media query for smaller screens (optional) */
-    @media (max-width: 768px) {
-    .round {
-            min-width: 90vw; /* Make each round take up almost the entire screen width */
-        }
-    }
-    </style>
-
-    <script>
-        const gridContainer = document.querySelector('.tournament-grid-container');
-
-        let startX;
-        let scrollLeft;
-
-        gridContainer.addEventListener('mousedown', (e) => {
-            startX = e.pageX - gridContainer.offsetLeft;
-            scrollLeft = gridContainer.scrollLeft;
-        });
-
-        gridContainer.addEventListener('mouseleave', () => {
-            isDragging = false;
-        });
-
-        gridContainer.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-
-        gridContainer.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - gridContainer.offsetLeft;
-            const walk = (x - startX) * 3; // Adjust scroll speed
-            gridContainer.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch events for mobile
-        gridContainer.addEventListener('touchstart', (e) => {
-            startX = e.touches.pageX - gridContainer.offsetLeft;
-            scrollLeft = gridContainer.scrollLeft;
-        });
-
-        gridContainer.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const x = e.touches.pageX - gridContainer.offsetLeft;
-            const walk = (x - startX) * 3; // Adjust scroll speed
-            gridContainer.scrollLeft = scrollLeft - walk;
-        });
-
-        gridContainer.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-    </script>
+    <div id="match-edit-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2>Edit Match</h2>
+            <form id="match-edit-form">
+                <input type="hidden" id="match-id" name="match_id">
+                <label for="winner">Winner:</label>
+                <select id="winner" name="winner">
+                    <option value="">Select Winner</option>
+                    <option value="{{ game.player1.id }}">{{ game.player1.username }}</option> {## Example options #}
+                    <option value="{{ game.player2.id }}">{{ game.player2.username }}</option>
+                </select>
+                <label for="score1">Score 1:</label>
+                <input type="number" id="score1" name="score1">
+                <label for="score2">Score 2:</label>
+                <input type="number" id="score2" name="score2">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
