@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Update Match</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="winner">Winner:</label>
+        <select id="winner" name="winner">
+            <option value="{{ game.player1.id }}">{{ game.player1.username }}</option>
+            <option value="{{ game.player2.id }}">{{ game.player2.username }}</option>
+        </select>
+        <label for="score1">Score 1:</label>
+        <input type="number" id="score1" name="score1">
+        <label for="score2">Score 2:</label>
+        <input type="number" id="score2" name="score2">
+        <button type="submit">Update Match</button>
+    </form>
+{% endblock content %}
+    
