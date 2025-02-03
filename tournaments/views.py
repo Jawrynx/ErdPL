@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from.models import Tournament, CupGame
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from users.models import CustomUser
 
 User = get_user_model()
 
@@ -59,14 +60,15 @@ def update_match_view(request, tournament_name, match_id):
 def tournament_view(request, tournament_name):
     tournament = get_object_or_404(Tournament, name=tournament_name)
     games = tournament.games.order_by('round_number')
+    players = CustomUser.objects.all()
 
     # Organize games into rounds with specific keys
     rounds = {
-        'last_32': [],
-        'last_16': [],
-        'quarters': [],
-        'semis': [],
-        'final': []
+        'last_32':[],
+        'last_16':[],
+        'quarters':[],
+        'semis':[],
+        'final':[],
     }
 
     for game in games:
@@ -84,5 +86,6 @@ def tournament_view(request, tournament_name):
     context = {
         'tournament': tournament,
         'rounds': rounds,
+        'players': players,
     }
     return render(request, 'tournaments/tournament.html', context)

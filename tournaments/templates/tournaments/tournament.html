@@ -10,22 +10,84 @@
     <div class="theme theme-dark">
         <div class="bracket disable-image">
             <div class="column last-32">
-                {% for i in 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' %} {## 32 matches #}
-                    <div class="match last-32-match" data-match-id="">
-                        <div class="match-top team">
-                            <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
+                {% for i in 'xxxxxxxxxxxxxxxx' %}
+                    {% for game in rounds.last_32 %}
+                        {% if forloop.parentloop.counter == forloop.counter %}
+                            <div class="match last-32-match {% if game.winner and game.winner == game.player1 %}winner-top{% elif game.winner and game.winner == game.player2 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                                <div class="match-top team"> {## Player 1 Name #}
+                                    <span class="seed">{{ forloop.counter }}</span>
+                                    <span class="name">
+                                        {% if game.player1 %}
+                                            {{ game.player1 }}
+                                        {% else %}
+                                            TBD
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="match-bottom team"> {## Player 1 Team #}
+                                    <span class="seed">
+                                        {% if game.player1 == game.winner %}
+                                            {{ game.player1 }} Wins!
+                                        {% else %}
+                                            TBD
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="match-lines">
+                                    <div class="line one"></div>
+                                    <div class="line two"></div>
+                                </div>
+                                <div class="match-lines alt">
+                                    <div class="line one"></div>
+                                </div>
+                            </div>
+                            <div class="match last-32-match {% if game.winner and game.winner == game.player2 %}winner-top{% elif game.winner and game.winner == game.player1 %}winner-bottom{% endif %}" data-match-id="{{ game.id }}">
+                                <div class="match-top team"> {## Player 2 Name #}
+                                    <span class="seed">{{ forloop.counter }}</span>
+                                    <span class="name">
+                                        {% if game.player2 %}
+                                            {{ game.player2 }}
+                                        {% else %}
+                                            TBD
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="match-bottom team"> {## Player 2 Team #}
+                                    {% if game.player2 == game.winner %}
+                                        <span class="seed">
+                                            {{ game.player2 }} Wins!
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                {% if game.player1 and game.player2 %}
+                                    <a href="{% url 'tournaments:update_match_view' tournament_name=tournament.name match_id=game.id %}">Edit</a>
+                                {% endif %}
+                                <div class="match-lines">
+                                    <div class="line one"></div>
+                                    <div class="line two"></div>
+                                </div>
+                                <div class="match-lines alt">
+                                    <div class="line one"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% if forloop.counter > rounds.last_32|length %} {## If no game exists for this slot, display a placeholder #}
+                        <div class="match last-32-match" data-match-id="">
+                            <div class="match-top team">
+                                <span class="seed">{{ forloop.counter }}</span> <span class="name">TBD</span>
+                            </div>
+                            <div class="match-bottom team">
+                            </div>
+                            <div class="match-lines">
+                                <div class="line one"></div>
+                                <div class="line two"></div>
+                            </div>
+                            <div class="match-lines alt">
+                                <div class="line one"></div>
+                            </div>
                         </div>
-                        <div class="match-bottom team">
-                            <span class="seed">TBD</span>
-                        </div>
-                        <div class="match-lines">
-                            <div class="line one"></div>
-                            <div class="line two"></div>
-                        </div>
-                        <div class="match-lines alt">
-                            <div class="line one"></div>
-                        </div>
-                    </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="column last-16">
