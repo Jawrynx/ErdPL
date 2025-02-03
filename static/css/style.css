@@ -1939,7 +1939,7 @@ div.match-images {
 
     #mobile-nav.active { 
         display: block; 
-        top: 74px;
+        top: 94px;
         transition: 0.3s ease-in-out;
     }
     #menu-toggle {
@@ -2316,7 +2316,7 @@ div.match-images {
 
     #mobile-nav.active { 
         display: block; 
-        top: 74px;
+        top: 94px;
         transition: 0.3s ease-in-out;
     }
     #menu-toggle {
