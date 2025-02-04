@@ -88,8 +88,10 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 AUTH_USER_MODEL = 'users.CustomUser' 
