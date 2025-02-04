@@ -12,3 +12,8 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['fullname', 'profile_picture', 'phone_number', 'bio']
+
+class UsernameEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username',)

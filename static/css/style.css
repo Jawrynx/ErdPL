@@ -464,14 +464,36 @@ footer {
 .edit-profile-container > form {
     text-align: center;
     display: flex;
+    margin-top: 25px;
     justify-content: center;
     background-color: var(--erdpl-color-green);
     box-shadow: -1px -1px 9px 2px black;
     z-index: 1;
-    margin: 50px 50px 0px 50px;
     padding: 20px;
     border-radius: 25px;
-    min-width: 80%;
+    width: 80%;
+}
+
+.edit-profile-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-profile-banner > h1 > input {
+    width: 100%;
+    background-color: var(--erdpl-background);
+    color: var(--erdpl-text-primary);
+    font-size: 2.5rem;
+    font-family: 'Ubuntu', serif;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.edit-profile-banner > h1 > input::placeholder {
+    color: white;
+    opacity: 0.8;
 }
 
 .profile-banner,
@@ -806,20 +828,42 @@ footer {
     transition: 0.3s ease-in-out;
 }
 
-.edit-profile-container > form > .edit-profile-info > button {
-    margin-top: 25px;
-    width: 120px;
-    height: 70px;
-    border-radius: 10px;
+.edit-profile-container > form > .edit-profile-info > .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-profile-container > form > .edit-profile-info > .buttons > button {
+    margin-top: 40px;
+    border-radius: 7px;
+    padding: 5px;
+    border: none;
     background-color: #4CAF50;
     color: rgb(240, 240, 240);
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.2rem;
+    font-weight: bold;
     text-transform: uppercase;
     transition: 0.3s ease-in-out;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-.edit-profile-container > form > .edit-profile-info > button:hover {
+.edit-profile-container > form > .edit-profile-info > .buttons > a {
+    text-decoration: none;
+    background-color: var(--erdpl-text-secondary-dark);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 7px;
+    transition: 0.3s ease-in-out;
+    width: 100%;
+}
+
+.edit-profile-container > form > .edit-profile-info > .buttons > button:hover,
+.edit-profile-container > form > .edit-profile-info > .buttons > a:hover {
     background-color: var(--erdpl-text-secondary);
     transition: 0.3s ease-in-out;
 }
@@ -899,7 +943,6 @@ footer {
     background-color: darkred;
     text-decoration: none;
     color: var(--erdpl-text-primary);
-    border: 1px solid var(--erdpl-text-primary);
     padding: 5px;
     margin: 0px 2px;
     text-align: center;
@@ -2045,15 +2088,13 @@ div.match-images {
     }
 
     .profile-teams-buttons {
-        padding: 15px;
         width: 85%;
-        flex-direction: column;
     }
 
     .profile-teams-buttons > a {
         margin: 0px 5px;
         font-size: 1rem;
-        padding: 5px;
+        padding: 10px;
     }
 
     #profile-team-container > .team-inner > strong {
@@ -2231,6 +2272,10 @@ div.match-images {
     #match-score {
         font-size: 1.8rem;
     }
+
+    #back-1 {
+        width: 90%;
+    }
 }
 
 
@@ -2379,7 +2424,7 @@ div.match-images {
     }
 
     .profile-teams-buttons {
-        padding: 5px;
+        width: 60%;
     }
 
     .profile-teams-buttons > a {
@@ -2495,6 +2540,10 @@ div.match-images {
 
     body > main > div > div.add-score {
         width: 90%;
+    }
+
+    #back-1 {
+        width: 50%;
     }
 
     /* Match Details */

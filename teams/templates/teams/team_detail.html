@@ -6,6 +6,7 @@
 
 {% block content %}
     <div class="center profile-center">
+        <h1 class="title-text">TEAM PROFILE</h1>
         <div class="match-options" style='margin-top: 50px;'>
             <a href="javascript:history.back()"><i class="fa-solid fa-arrow-left"></i> Back</a>
         </div>
@@ -46,9 +47,8 @@
 
         {% if request.user == team.captain %}
             <div class="profile-teams-buttons left right">
-                <a href="{% url 'teams:edit_team' team_name=team.name %}">Edit Team Info</a>
-                <a href="{% url 'teams:edit_team_members' team_name=team.name %}">Edit Team Members</a>
-                <a href="#">Delete Team</a>
+                <a class="left right" href="{% url 'teams:edit_team' team_name=team.name %}">Edit Team Info</a>
+                <a class="left right" href="{% url 'teams:edit_team_members' team_name=team.name %}">Edit Team Members</a>
             </div>
         {% endif %}
         <div class="team-fixtures" id="team-scores"> {## Add a container for scores #}

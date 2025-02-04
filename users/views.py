@@ -3,9 +3,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db import transaction
 
 from .forms import CustomUserCreationForm
 from .forms import ProfileEditForm
+from .forms import UsernameEditForm
 
 from .models import Profile, CustomUser
 from teams.models import Team
@@ -74,22 +76,34 @@ def logout_view(request):
 
 @login_required
 def edit_profile(request, username):
+    user = request.user
+    profile = user.profile
+
     if request.method == 'POST':
-        user = request.user  # Get the current user
-        profile = user.profile
-        form = ProfileEditForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
+        profile_form = ProfileEditForm(request.POST, request.FILES, instance=profile)
+        username_form = UsernameEditForm(request.POST, instance=user)
+
+        if profile_form.is_valid() and username_form.is_valid():
+            with transaction.atomic():
+                profile_form.save()
+                username_form.save()
+
+            context = {
+                'profile_form': profile_form,
+                'username_form': username_form, 
+                'profile': profile,
+            }
+
             messages.success(request, f'Your profile has been updated!')
-            return redirect('users:profile', username=user)
+            return render(request, 'users/edit_profile.html', context)
 
     else:
-        user = request.user
-        profile = user.profile
-        form = ProfileEditForm(instance=profile)
+        profile_form = ProfileEditForm(instance=profile)
+        username_form = UsernameEditForm(instance=user)  
 
     context = {
-        'form': form,
+        'profile_form': profile_form,
+        'username_form': username_form, 
         'profile': profile,
     }
     return render(request, 'users/edit_profile.html', context)

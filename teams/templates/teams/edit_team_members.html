@@ -6,6 +6,10 @@
 
 {% block content %}
     <div class="center">
+        <h1 class="title-text">EDIT MEMBERS</h1>
+        <div class="match-options" style='margin-top: 50px;'>
+            <a href="javascript:history.back()"><i class="fa-solid fa-arrow-left"></i> Back</a>
+        </div>
         <div class="profile-container" id='team-container'>
             <div class="profile-banner">
                 <h2>{{ team.name }}</h2>
@@ -21,7 +25,6 @@
                 <p><strong>Bio:</strong> {{ team.bio }}</p>
             </div>
             <div class="profile-info">
-                <a href="{% url 'teams:detail' team_name=team.name %}" class='back'>BACK</a>
                 <h2 class='m-top'>Edit Team Members</h2>
 
                 <h3>Current Team Members</h3>
