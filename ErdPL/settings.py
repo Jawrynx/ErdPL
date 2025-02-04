@@ -88,23 +88,9 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default={
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('POSTGRES_DB'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': os.environ.get('POSTGRES_HOST'),
-            'PORT': os.environ.get('POSTGRES_PORT'),
-        }
-    )
-}
-
-if 'DATABASE_URL' not in os.environ: # for local development
-    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'db.sqlite3',
-    }
+}
 
 AUTH_USER_MODEL = 'users.CustomUser' 
 
