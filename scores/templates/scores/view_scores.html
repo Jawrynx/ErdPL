@@ -18,7 +18,7 @@
             </ul>
         </div>
         {% for team in teams %}
-            {% if request.user == team.captain %}
+            {% if request.user.is_superuser %}
                 <div class="add-score">
                     <a href="{% url 'scores:create_score' division_name=division_name %}">Add Score</a>
                 </div>
