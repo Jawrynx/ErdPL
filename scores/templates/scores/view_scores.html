@@ -13,17 +13,15 @@
                     <li><a href="{% url 'scores:view_scores' division_name=div.name %}">{{ div.name }}</a></li>
                 {% endfor %}
                 {% if request.user.is_superuser  %}
-                <li><a href="{% url 'tournaments:tournament_view' tournament_name='EDPL Test Cup Game' %}">EDPL Test Cup Game</a></li>
+                    <li><a href="{% url 'tournaments:tournament_view' tournament_name='EDPL Test Cup Game' %}">EDPL Test Cup Game</a></li>
                 {% endif %}
             </ul>
         </div>
-        {% for team in teams %}
-            {% if request.user.is_superuser %}
-                <div class="add-score">
-                    <a href="{% url 'scores:create_score' division_name=division_name %}">Add Score</a>
-                </div>
-            {% endif %}
-        {% endfor %}
+        {% if request.user.is_superuser %}
+            <div class="add-score">
+                <a href="{% url 'scores:create_score' division_name=division_name %}">Add Score</a>
+            </div>
+        {% endif %}
         <div class="outer-2" id="scores-container">
             <h1>{{ division_name|default:"All Divisions" }} Scores</h1> 
             <table class="fixture-table">
