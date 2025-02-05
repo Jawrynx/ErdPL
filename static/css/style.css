@@ -1349,6 +1349,7 @@ body > main > div > div.add-score > a:hover {
 #create-score-form > p > label,
 #create-score-form > p > select {
     width: 50%;
+    margin-left: 5px;
 }
 
 #create-score-form > p:nth-child(2),
@@ -1356,6 +1357,11 @@ body > main > div > div.add-score > a:hover {
     background-color: blue;
     padding: 10px;
     color: white;
+    margin-top: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform:uppercase;
+    text-align: right;
 }
 
 #create-score-form > p:nth-child(2) {
@@ -1373,6 +1379,12 @@ body > main > div > div.add-score > a:hover {
 #create-score-form > p:nth-child(5) {
     background-color: rgb(0, 153, 255);
     padding: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 #create-score-form > p:nth-child(4) {
@@ -1397,6 +1409,8 @@ body > main > div > div.add-score > a:hover {
     color: white;
     font-weight: bold;
     font-family: 'Ubuntu', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.8rem;
     border-radius: 7px;
     transition: 0.3s ease-in-out;
 }
@@ -1625,12 +1639,24 @@ div.match-images {
     font-weight: bold;
 }
 
+#create-score-form > p:nth-child(2),
+#create-score-form > p:nth-child(3) {
+    display: flex;
+}
+
 .m-top-50 {
     margin-top: 125px;
 }
 
 #select-players > .liveTable {
     margin: 10px 0;
+}
+
+#select-players > table > tbody > tr > td > input[type=text] {
+    width: 100%;
+    text-align: center;
+    font-family: 'Ubuntu', serif;
+    margin-top: 5px;
 }
 
 #select-players > .liveTable > tbody > tr > td > select {
@@ -2274,6 +2300,10 @@ div.match-images {
     }
 
     #back-1 {
+        width: 90%;
+    }
+
+    #create-score-form {
         width: 90%;
     }
 }
