@@ -74,7 +74,7 @@
                             <td>V</td>
                             <td class="away-score">{{ score.away_score }}</td>
                             <td><a href="{% url 'teams:detail' team_name=score.away_team.name %}">{{ score.away_team.name }}</a></td>
-                            <td><a href="#">VIEW</a></td>
+                            <td><a href="{% url 'scores:match_details' division_name=score.division match_id=score.id %}">VIEW</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

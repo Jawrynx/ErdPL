@@ -1027,13 +1027,12 @@ footer {
 }
 
 #leave-button {
-    position: absolute;
     width: 40%;
 }
 
 #leave-button > a {
     position: relative;
-    top: 198px;
+    top: 10px;
     left: 100%;
     background-color: var(--erdpl-text-secondary);
     color: var(--erdpl-text-primary);
@@ -1607,6 +1606,7 @@ div.match-images {
     border: 1px solid var(--erdpl-text-primary);
     border-radius: 50%;
     max-height: 200px;
+    min-width: 200px;
 }
 
 .match-options {
@@ -2113,14 +2113,13 @@ div.match-images {
     }
 
     #leave-button {
-        width: 40%;
-        right: 160px;
+        position: relative;
+        width: 25%;
+        top: -5px;
     }
 
     #leave-button > a {
-        font-size: 0.8rem;
-        top: 143px;
-
+        font-size: 0.6rem;
     }
 
     #team-button,
@@ -2254,7 +2253,8 @@ div.match-images {
     }
 
     .match-profile-image {
-        max-width: 80px;
+        min-width: 64px;
+        max-height: 64px;
     } 
 
     .match-teams > h1 {
@@ -2419,12 +2419,12 @@ div.match-images {
     .profile-container,
     .edit-profile-container {
         max-width: 100%;
-        width: 70%;
+        width: 90%;
         margin: 30px 0px 0px 0px;
     }
 
     .profile-teams-buttons {
-        width: 60%;
+        width: 80%;
     }
 
     .profile-teams-buttons > a {
@@ -2448,12 +2448,8 @@ div.match-images {
     }
 
     #leave-button {
-        width: 30%;
-        left: 140px;
-    }
-
-    #leave-button > a {
-        top: 172px;
+        position: relative;
+        right: 6%;
     }
 
     #team-button,
@@ -2558,7 +2554,8 @@ div.match-images {
     }
 
     .match-profile-image {
-        max-width: 140px;
+        min-width: 100px;
+        max-height: 100px;
     } 
 
     .match-teams > h1 {

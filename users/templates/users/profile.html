@@ -41,9 +41,6 @@
                         </a>
                     </div>
                 </p>
-                {% if request.user == profile.user and request.user != user_team.captain %}
-                    <div id='leave-button'><a href="{% url 'teams:leave' team_name=user_team.name %}">Leave Team</a></div>
-                {% endif %}
             {% else %}
                 {% if request.user == profile.user %}
                     <a id="join-link">Join Team</a>
@@ -62,5 +59,8 @@
                 {% endif %}
             {% endif %}
         </div>
+        {% if request.user == profile.user and request.user != user_team.captain %}
+            <div id='leave-button'><a href="{% url 'teams:leave' team_name=user_team %}">Leave Team</a></div>
+        {% endif %}
     </div>
 {% endblock %}
