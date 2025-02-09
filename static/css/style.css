@@ -504,6 +504,28 @@ footer {
     border-radius: 15px;
     width: 40%;
     margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-profile-banner > #id_profile_picture {
+    background-color: lightblue;
+    padding: 5px;
+    color: black;
+    width: 100%;
+    border-radius: 9px;
+}
+
+.edit-profile-banner > #id_profile_picture::file-selector-button {
+    background-color: rgb(59, 59, 255);
+    padding: 5px 15px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Ubuntu', serif;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .profile-info,
@@ -568,7 +590,127 @@ footer {
     border-radius: 8px;
 }
 
+.password-form-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--erdpl-text-tertiary-light);
+    border-radius: 15px;
+}
 
+.password-form {
+    width: 80%;
+    margin: 50px;
+}
+
+.password-form-area > .buttons > button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-family: 'Ubuntu', serif;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.title-text { 
+    text-align: center;
+}
+
+.password-form-area > .buttons > a {
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 25px;
+}
+
+.password-form-area > h2 {
+    color: black;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 5px;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.password-form-area > p {
+    background-color: rgb(59, 59, 255);
+    width: 95%;
+    display: flex;
+    padding: 5px;
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.info {
+    margin-top: 25px;
+    width: 90%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: rgb(194, 232, 255);
+    color: red;
+    text-shadow: 0px 0px 1px blue;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.required {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.required > label {
+    width: 30%;
+}
+
+.required > input {
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#edit-profile-form > div.edit-profile-info > div.password-form-area > p:nth-child(5) {
+    display: none;
+}
+
+.password-form-area > ul > li {
+    list-style: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.password-form-area > p > label {
+    width: 30%;
+}
+
+.password-form-area > p > input {
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.password-form-area > p > .helptext {
+    display: none;
+}
 
 /* Logins & Registrations */
 
@@ -882,10 +1024,13 @@ footer {
 .edit-profile-container > form > .edit-profile-banner > input,
 .edit-profile-container > form > .edit-profile-info > textarea {
     padding: 5px 0px;
-    border-radius: 5px;
-    max-width: 250px;
-    width: 100%;
+    border-radius: 15px;
+    width: 90%;
     border: 2px solid black;
+    text-align: center;
+    font-family: 'Ubuntu', serif;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .form-container > form > div > label,
@@ -2108,9 +2253,6 @@ div.match-images {
     .edit-profile-banner {
         margin-bottom: 25px;
         margin-right: 0px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 
     .profile-teams-buttons {
@@ -2261,6 +2403,16 @@ div.match-images {
 
     body > main > div > div.add-score {
         width: 90%;
+    }
+
+    .password-form {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .password-form-area > .buttons {
+        display: flex;
+        flex-direction: column;
     }
 
     /* Match Details */

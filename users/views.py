@@ -3,6 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.db import transaction
 
 from .forms import CustomUserCreationForm
@@ -82,28 +84,76 @@ def edit_profile(request, username):
     if request.method == 'POST':
         profile_form = ProfileEditForm(request.POST, request.FILES, instance=profile)
         username_form = UsernameEditForm(request.POST, instance=user)
+        password_form = PasswordChangeForm(user, request.POST)  # Initialize here, but don't use it unconditionally
 
         if profile_form.is_valid() and username_form.is_valid():
-            with transaction.atomic():
-                profile_form.save()
-                username_form.save()
+            new_password1 = request.POST.get('new_password1')
+            new_password2 = request.POST.get('new_password2')
 
-            context = {
-                'profile_form': profile_form,
-                'username_form': username_form, 
-                'profile': profile,
-            }
+            if new_password1 and new_password2:  # Check if BOTH new password fields are filled
+                if new_password1!= new_password2:
+                    messages.error(request, "Passwords don't match!")
+                elif password_form.is_valid():  # Only validate/save if new passwords provided
+                    user = password_form.save()
+                    update_session_auth_hash(request, user)
+                    profile_form.save()
+                    username_form.save()
+                    messages.success(request, 'Your profile and password were successfully updated!')
+                    return redirect('users:profile', username=user.username)
+                else:
+                    for error in password_form.errors.values():
+                        messages.error(request, error)  # Display password form errors
+            else:  # No new password provided, just save profile and username
+                 with transaction.atomic():
+                    profile_form.save()
+                    username_form.save()
+                 messages.success(request, 'Your profile was successfully updated!')
+                 return redirect('users:profile', username=user.username)
+        else:
+            for error in profile_form.errors.values():
+                messages.error(request, error)
+            for error in username_form.errors.values():
+                messages.error(request, error)
 
-            messages.success(request, f'Your profile has been updated!')
-            return render(request, 'users/edit_profile.html', context)
-
-    else:
+    else:  # GET request
         profile_form = ProfileEditForm(instance=profile)
-        username_form = UsernameEditForm(instance=user)  
+        username_form = UsernameEditForm(instance=user)
+        password_form = PasswordChangeForm(user) # Important: Initialize even on GET for CSRF
 
     context = {
         'profile_form': profile_form,
-        'username_form': username_form, 
+        'username_form': username_form,
         'profile': profile,
+        'password_form': password_form,  # Add password form to the context
     }
     return render(request, 'users/edit_profile.html', context)
+
+@login_required
+def change_password(request, username):
+    user = request.user
+    if request.method == 'POST':
+        password_form = PasswordChangeForm(user, request.POST)
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        if new_password1 and new_password2:
+            if new_password1!= new_password2:
+                messages.error(request, "Passwords don't match!")
+            elif password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Your password was successfully updated!')
+                return redirect('users:profile', username=user.username)
+            else:
+                for error in password_form.errors.values():
+                    messages.error(request, error)
+        else:
+            messages.error(request, "New password fields are required.")
+    else:
+        password_form = PasswordChangeForm(user)
+
+    context = {
+        'password_form': password_form,
+        'user': user,  # Pass the user object to the template
+    }
+    return render(request, 'users/change_password.html', context)

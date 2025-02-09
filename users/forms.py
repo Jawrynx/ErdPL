@@ -16,4 +16,6 @@ class ProfileEditForm(forms.ModelForm):
 class UsernameEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('username',)
+        fields = ['username']
+
+    username = forms.CharField(required=False)
