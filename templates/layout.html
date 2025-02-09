@@ -43,8 +43,8 @@
             <div id="mobile-nav"> 
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="{% url 'scores:view_scores' division_name='Division 2' %}">Scores</a></li>
-                    <li><a href="{% url 'fixtures:fixtures_by_division' division_name='Division 2' %}">Fixtures</a></li>
+                    <li class="red-nav left"><a href="{% url 'scores:view_scores' division_name='Premier Division' %}">Scores</a></li>
+                    <li class="red-nav right"><a href="{% url 'fixtures:fixtures_by_division' division_name='Premier Division' %}">Fixtures</a></li>
                     <li class="no-border"><a href="/contact">Contact</a></li>
                     <li class="breaker no-border"><span class="bar"></span></li>
                     {% if user.is_authenticated %}
