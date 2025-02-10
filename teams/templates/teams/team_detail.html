@@ -38,12 +38,6 @@
                 </ul>
             </div>
         </div>
-        {% if request.user in team.members.all and request.user != team.captain %}
-            <div id='team-button'><a href="{% url 'teams:leave' team_name=team.name %}">Leave Team</a></div>
-        {% endif %}
-        {% if request.user not in team.members.all %}
-            <div id='team-button-2'><a href="{% url 'teams:join' team_id=team.id %}">Join Team</a></div>
-        {% endif %}
 
         {% if request.user == team.captain %}
             <div class="profile-teams-buttons left right">

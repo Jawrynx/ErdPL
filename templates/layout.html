@@ -32,7 +32,7 @@
                     {% endif %} 
                 {% else %}
                     <li class="left"><a href="{% url 'users:login' %}">Login</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{% url 'users:register' %}">Register</a></li>
                 {% endif %}
             </ul>
             <div id="menu-toggle">
@@ -55,7 +55,7 @@
                         <li id="nav-edge"><a href="{% url 'users:logout' %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'users:login' %}">Login</a></li>
-                        <li id="nav-edge"><a href="#">Register</a></li>
+                        <li id="nav-edge"><a href="{% url 'users:register' %}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>

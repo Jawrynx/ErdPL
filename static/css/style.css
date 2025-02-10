@@ -556,6 +556,7 @@ footer {
     margin: 25px 0;
     height: 250px;
     width: 250px;
+    object-fit: cover;
 }
 
 .profile-banner > a {
@@ -1278,6 +1279,7 @@ footer {
     height: 32px;
     width: 32px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 #team-container > div.profile-banner > img {

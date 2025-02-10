@@ -42,7 +42,7 @@
                     </div>
                 </p>
             {% else %}
-                {% if request.user == profile.user %}
+                {% comment %} {% if request.user == profile.user %}
                     <a id="join-link">Join Team</a>
                     <form id="join-team-form" method="post" action="" style="display: none;"> 
                         {% csrf_token %}
@@ -56,11 +56,8 @@
                     </form>
                     
                     <a href="{% url 'teams:create' %}">Create Team</a>
-                {% endif %}
+                {% endif %} {% endcomment %}
             {% endif %}
         </div>
-        {% if request.user == profile.user and request.user != user_team.captain %}
-            <div id='leave-button'><a href="{% url 'teams:leave' team_name=user_team %}">Leave Team</a></div>
-        {% endif %}
     </div>
 {% endblock %}
