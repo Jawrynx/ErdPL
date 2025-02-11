@@ -169,6 +169,8 @@ GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     "edpl-450616-336a8dc4922e.json"
 )
+
+"""
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
@@ -185,8 +187,10 @@ STORAGES = {
         },
     },
 }
+"""
 
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
