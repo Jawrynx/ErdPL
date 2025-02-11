@@ -169,14 +169,28 @@ GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     "edpl-450616-336a8dc4922e.json"
 )
-STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "credentials": GS_CREDENTIALS,
+            "bucket_name": GS_BUCKET_NAME,
+        },
+    },
+    "staticfiles": {  # Add this for static files
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "credentials": GS_CREDENTIALS,
+            "bucket_name": GS_BUCKET_NAME,
+        },
+    },
+}
+
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
 # Default primary key field typee
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
