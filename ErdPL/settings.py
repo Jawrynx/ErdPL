@@ -138,34 +138,35 @@ import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-GS_TYPE = os.environ.get('GS_TYPE')
-GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID')
-GS_PRIVATE_KEY_ID = os.environ.get('GS_PRIVATE_KEY_ID')
-GS_PRIVATE_KEY = os.environ.get('GS_PRIVATE_KEY')
-GS_CLIENT_EMAIL = os.environ.get('GS_CLIENT_EMAIL')
-GS_CLIENT_ID = os.environ.get('GS_CLIENT_ID')
-GS_AUTH_URI = os.environ.get('GS_AUTH_URI')
-GS_TOKEN_URI = os.environ.get('GS_TOKEN_URI')
-GS_AUTH_PROVIDER_X509_CERT_URL = os.environ.get('GS_AUTH_PROVIDER_X509_CERT_URL')
-GS_CLIENT_X509_CERT_URL = os.environ.get('GS_CLIENT_X509_CERT_URL')
-GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
+# GS_TYPE = os.environ.get('GS_TYPE')
+# GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID')
+# GS_PRIVATE_KEY_ID = os.environ.get('GS_PRIVATE_KEY_ID')
+# GS_PRIVATE_KEY = os.environ.get('GS_PRIVATE_KEY')
+# GS_CLIENT_EMAIL = os.environ.get('GS_CLIENT_EMAIL')
+# GS_CLIENT_ID = os.environ.get('GS_CLIENT_ID')
+# GS_AUTH_URI = os.environ.get('GS_AUTH_URI')
+# GS_TOKEN_URI = os.environ.get('GS_TOKEN_URI')
+# GS_AUTH_PROVIDER_X509_CERT_URL = os.environ.get('GS_AUTH_PROVIDER_X509_CERT_URL')
+# GS_CLIENT_X509_CERT_URL = os.environ.get('GS_CLIENT_X509_CERT_URL')
+# GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
 
-GS_CREDENTIALS = {
-    "type": GS_TYPE,
-    "project_id": GS_PROJECT_ID,
-    "private_key_id": GS_PRIVATE_KEY_ID,
-    "private_key": GS_PRIVATE_KEY.replace('\\\\n', '\\n').encode('utf-8').decode('unicode_escape'),  # Important!
-    "client_email": GS_CLIENT_EMAIL,
-    "client_id": GS_CLIENT_ID,
-    "auth_uri": GS_AUTH_URI,
-    "token_uri": GS_TOKEN_URI,
-    "auth_provider_x509_cert_url": GS_AUTH_PROVIDER_X509_CERT_URL,
-    "client_x509_cert_url": GS_CLIENT_X509_CERT_URL,
-}
+# GS_CREDENTIALS = {
+#    "type": GS_TYPE,
+#    "project_id": GS_PROJECT_ID,
+#    "private_key_id": GS_PRIVATE_KEY_ID,
+#    "private_key": GS_PRIVATE_KEY.replace('\\\\n', '\\n').encode('utf-8').decode('unicode_escape'),  # Important!
+#    "client_email": GS_CLIENT_EMAIL,
+#    "client_id": GS_CLIENT_ID,
+#    "auth_uri": GS_AUTH_URI,
+#    "token_uri": GS_TOKEN_URI,
+#    "auth_provider_x509_cert_url": GS_AUTH_PROVIDER_X509_CERT_URL,
+#    "client_x509_cert_url": GS_CLIENT_X509_CERT_URL,
+#}
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
