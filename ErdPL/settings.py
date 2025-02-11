@@ -163,10 +163,9 @@ STATIC_URL = '/static/'
 #    "client_x509_cert_url": GS_CLIENT_X509_CERT_URL,
 #}
 
+GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
-MEDIA_URL = '/media/'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
