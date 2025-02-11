@@ -16,7 +16,7 @@
                 {% if team.team_image %}
                     <img src="{{ team.team_image.url }}" alt="{{ team.name }} Image" class="team-profile-image">
                 {% else %}
-                    <img src="{% static 'team_default.png' %}" alt="Blank Team Photo" class="team-profile-image">
+                    <img src="../../../media/team_default.png" alt="Blank Team Photo" class="team-profile-image">
                 {% endif %}
 
                 <p><strong>Captain:</strong><a href="{% url 'users:profile' username=team.captain.username %}"> {{ team.captain.username }}</a></p>
