@@ -165,7 +165,6 @@ GS_CREDENTIALS = {
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 
 STATICFILES_DIRS = [
