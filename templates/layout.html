@@ -16,7 +16,7 @@
 <body>
     <header id="header" class="">
         <nav>
-            <a href="{% url 'home' %}"><img class="logo" src="{% get_media_prefix %}logo-new3.png" alt="ErdPL"></a>
+            <a href="{% url 'home' %}"><img class="logo" src="{% static 'logo-new3.png' %}" alt="ErdPL"></a>
             <ul>
                 <li class="left right"><a href="/">Home</a></li>
                 <li class="red-nav left"><a href="{% url 'scores:view_scores' division_name='Premier Division' %}">Scores</a></li>
