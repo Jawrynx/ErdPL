@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'fixtures',
     'scores',
     'tournaments',
+    'storages',
 ]
 
 MIDDLEWARE = [
