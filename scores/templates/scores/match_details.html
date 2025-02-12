@@ -15,7 +15,7 @@
                     {% if match.home_team.team_image %}
                             <img src="{{ match.home_team.team_image.url }}" alt="{{ home_team.name }}" class="match-profile-image">
                     {% else %}
-                            <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
+                            <img src="{{ MEDIA_URL }}team_default.png" alt="Blank Team Photo" class="match-profile-image">
                     {% endif %}
                 </div>
                 {% if match.home_score >= 5 %}
@@ -35,7 +35,7 @@
                     {% if match.away_team.team_image %}
                             <img src="{{ match.away_team.team_image.url }}" alt="{{ away_team.name }}" class="match-profile-image">
                     {% else %}
-                            <img src="../../../../../../media/team_default.png" alt="Blank Team Photo" class="match-profile-image">
+                            <img src="{{ MEDIA_URL }}team_default.png" alt="Blank Team Photo" class="match-profile-image">
                     {% endif %}
                 </div>
             </div>

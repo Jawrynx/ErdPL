@@ -25,6 +25,13 @@ def fixtures_by_division(request, division_name):
         if week_number not in fixtures_by_week:
             fixtures_by_week[week_number] = []
         fixtures_by_week[week_number].append(fixture)
+    
+    teams = Team.objects.all()
 
-    context = {'division': division.name, 'fixtures_by_week': fixtures_by_week, 'all_divisions': all_divisions}
+    context = {
+        'division': division.name,
+        'fixtures_by_week': fixtures_by_week,
+        'all_divisions': all_divisions,
+        'teams': teams,
+    }
     return render(request, 'fixtures/fixtures_by_division.html', context)
