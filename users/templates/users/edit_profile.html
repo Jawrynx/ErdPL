@@ -29,9 +29,9 @@
           {% if profile.profile_picture %}
             <img src="{{ profile.profile_picture.url }}" alt="Current Profile Picture">
           {% else %}
-            <img src="../../../../media/profile_default.jpeg">
+            <img src="{{ MEDIA_URL }}profile_default.jpeg">
           {% endif %}
-          <input type="file" id="id_profile_picture" name="profile_picture" />
+          <input type="file" id="id_profile_picture" name="profile_picture" style="display: none;"/>
         </div>
 
         <div class="edit-profile-info">
