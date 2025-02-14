@@ -174,14 +174,9 @@ STORAGES = {
             "credentials": credentials,
         },
     },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage" if DEBUG else "storages.backends.gcloud.GoogleCloudStorage",
-        "OPTIONS": {
-            "bucket_name": "edpl-project-media",  
-            "project_id": "edpl-450616",       
-            "credentials": credentials,         
-            "default_acl": "publicRead",       
-        } if not DEBUG else {}
+    "staticfiles": { 
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "OPTIONS": {}
     },
 }
 
