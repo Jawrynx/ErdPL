@@ -176,7 +176,7 @@ STORAGES = {
             "bucket_name": "edpl-project-media",
             "project_id": "edpl-450616",
             "credentials": service_account.Credentials.from_service_account_file(
-                "../edpl-450616-336a8dc4922e.json"
+                "edpl-450616-336a8dc4922e.json"
             ),
         },
     },
@@ -186,7 +186,7 @@ STORAGES = {
             "bucket_name": "edpl-project-media",
             "project_id": "edpl-450616", 
             "credentials": service_account.Credentials.from_service_account_file(
-                "../edpl-450616-336a8dc4922e.json"
+                "edpl-450616-336a8dc4922e.json"
             ),
             "default_acl": "publicRead",
         },
