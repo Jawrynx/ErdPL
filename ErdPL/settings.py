@@ -121,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -133,50 +132,37 @@ USE_I18N = True
 
 USE_TZ = True
 
-import os
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-# GS_TYPE = os.environ.get('GS_TYPE')
-# GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID')
-# GS_PRIVATE_KEY_ID = os.environ.get('GS_PRIVATE_KEY_ID')
-# GS_PRIVATE_KEY = os.environ.get('GS_PRIVATE_KEY')
-# GS_CLIENT_EMAIL = os.environ.get('GS_CLIENT_EMAIL')
-# GS_CLIENT_ID = os.environ.get('GS_CLIENT_ID')
-# GS_AUTH_URI = os.environ.get('GS_AUTH_URI')
-# GS_TOKEN_URI = os.environ.get('GS_TOKEN_URI')
-# GS_AUTH_PROVIDER_X509_CERT_URL = os.environ.get('GS_AUTH_PROVIDER_X509_CERT_URL')
-# GS_CLIENT_X509_CERT_URL = os.environ.get('GS_CLIENT_X509_CERT_URL')
-# GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
-
-# GS_CREDENTIALS = {
-#    "type": GS_TYPE,
-#    "project_id": GS_PROJECT_ID,
-#    "private_key_id": GS_PRIVATE_KEY_ID,
-#    "private_key": GS_PRIVATE_KEY.replace('\\\\n', '\\n').encode('utf-8').decode('unicode_escape'),  # Important!
-#    "client_email": GS_CLIENT_EMAIL,
-#    "client_id": GS_CLIENT_ID,
-#    "auth_uri": GS_AUTH_URI,
-#    "token_uri": GS_TOKEN_URI,
-#    "auth_provider_x509_cert_url": GS_AUTH_PROVIDER_X509_CERT_URL,
-#    "client_x509_cert_url": GS_CLIENT_X509_CERT_URL,
-#}
-
 from google.oauth2 import service_account
 
 GS_BUCKET_NAME = "edpl-project-media"
 
 try:
-    credentials_json = os.environ['GOOGLE_CREDENTIALS_JSON']
-    credentials_info = json.loads(credentials_json)
-    credentials = service_account.Credentials.from_service_account_info(credentials_info)
-except KeyError:
-    raise Exception("GOOGLE_CREDENTIALS_JSON config var not set.")
-except json.JSONDecodeError:
-    raise Exception("Invalid JSON in GOOGLE_CREDENTIALS_JSON config var.")
+    credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+    if credentials_json:  
+        credentials_info = json.loads(credentials_json)
+        credentials = service_account.Credentials.from_service_account_info(credentials_info)
+    else:
+        raise ValueError("GOOGLE_CREDENTIALS_JSON config var not set.") 
+
+except (ValueError, json.JSONDecodeError): 
+    try:
+        CREDENTIALS_FILE = os.path.join(BASE_DIR, "ErdPL/edpl-450616-336a8dc4922e.json") 
+        credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_FILE)
+        print("Credentials loaded from file (development mode).")
+    except FileNotFoundError:
+        raise Exception(
+            "Credentials file not found. Set GOOGLE_CREDENTIALS_JSON config var or place credentials file at "
+            f"{CREDENTIALS_FILE}."
+        )
+    except Exception as e: 
+        raise Exception(f"An unexpected error occurred: {e}")
+
 
 
 STORAGES = {
@@ -188,19 +174,27 @@ STORAGES = {
             "credentials": credentials,
         },
     },
-    "staticfiles": { # For STATIC files
-        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage" if DEBUG else "storages.backends.gcloud.GoogleCloudStorage",
         "OPTIONS": {
-            "bucket_name": "edpl-project-media",
-            "project_id": "edpl-450616", 
-            "credentials": credentials,
-            "default_acl": "publicRead",
-        },
+            "bucket_name": "edpl-project-media",  
+            "project_id": "edpl-450616",       
+            "credentials": credentials,         
+            "default_acl": "publicRead",       
+        } if not DEBUG else {}
     },
 }
 
 DEFAULT_FILE_STORAGE = STORAGES["default"]["BACKEND"]
-STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"] 
+
+
+DEFAULT_FILE_STORAGE = STORAGES["default"]["BACKEND"]
+
+if DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' 
+else:
+    STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
 
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
