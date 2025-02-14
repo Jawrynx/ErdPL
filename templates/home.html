@@ -6,14 +6,17 @@
 
 {% block content %}
     <div class="home-banner">
-        <h1><span>Erdington</span> & District Pool League</h1>
-        <em>EST :- 1976</em>
-        <p>North Birmingham based pool league, hosting leagues and tournaments in 8-Ball Pool across the region.</p>
+        <div class="banner">
+            <h1>
+                <span>Erdington</span> & District Pool League<p>EST:- 1976</p>
+            </h1>
+        </div>
+        <a href="#leaderboards"><i class="fa-solid fa-arrow-down"></i></a>
         <div class="register-button">
             <a href="{% url 'users:register' %}">Register <span> from Today!</span></a>
         </div>
     </div>
-
+    <i id='leaderboards' style='position:absolute; top: 90vh;'> </i>
     <div class="latest-results">
         <h1>LEADERBOARDS</h1>
 
@@ -95,7 +98,7 @@
             <div class="about-info">
                 <h2>Erdington & District Pool League</h2>
                 <br>
-                <p></p>
+                <p>North Birmingham based pool league, hosting leagues and tournaments in 8-Ball Pool across the region.</p>
             </div>
             <div class="about-info">
                 <h2>About this website:</h2>

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 /* General Styling */
 
 html, body, * {
@@ -86,6 +85,8 @@ header {
     position: fixed;
     width: 100%;
     z-index: 2;
+    font-family: 'Righteous', serif;
+    text-transform: uppercase;
 }
 
 nav {
@@ -247,50 +248,81 @@ nav li a,
 /* Home Page */
 
 .home-banner {
-    background-color: var(--erdpl-background);
+    background-image: url('https://storage.googleapis.com/edpl-project-media/media/home.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    /* background-color: var(--erdpl-background); */
     color: var(--erdpl-text-primary);
-    padding: 150px 100px;
+
+    padding: 40px 0;
     text-align: left;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.banner {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    margin: 20px 0px;
+    width: 100%;
+}
 
-.home-banner > h1 > span,
+.home-banner > .banner > h1 > span,
 .home-banner a > span {
     color: var(--erdpl-text-secondary);
     font-weight: bolder;
 }
 
-.home-banner > h1 {
+.home-banner > .banner > h1 {
     font-size: 4rem;
     text-shadow: 0px 2px 10px black;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Righteous', serif;
 }
 
-.home-banner > p {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+.home-banner > .banner > h1 > p {
+    font-size: 1rem;
     text-shadow: 0px 1px 1px var(--erdpl-text-tertiary-light);
+    text-align: right;
 }
 
 .home-banner > .register-button {
-    background-color: var(--erdpl-text-quaternary);
-    border: 1px solid var(--erdpl-text-tertiary);
-    padding: 10px;
-    border-radius: 15px;
-    width: 25%;
     text-align: center;
+    position: relative;
+    font-family: 'Righteous', serif;
+    top: 150px;
 }
 
-.home-banner a {
+.home-banner > a > i {
+    position: absolute;
+    scale: 5;
+    text-align: center;
+    padding: 3px;
+    top: 80vh;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.home-banner > .register-button > a {
     color: var(--erdpl-text-primary);
     transition: ease-in-out 0.3s;
     font-size: 1.5rem;
     text-decoration: none;
+    text-shadow: 1px 1px 3px black;
+    background-color: rgb(173, 0, 0);
+    border: 3px solid black;
+    padding: 10px;
+    border-radius: 15px;
 }
 
 
-.home-banner .register-button:hover {
-    background-color: var(--erdpl-text-tertiary);
-    border: 1px solid var(--erdpl-text-quaternary);
+.home-banner .register-button > a:hover {
+    background-color: var(--erdpl-text-secondary);
     color: var(--erdpl-text-secondary);
     transition: ease-in-out 0.3s;
 }
@@ -314,6 +346,7 @@ nav li a,
     margin-bottom: 50px;
     text-shadow: 0px 2px 10px black;
     box-shadow: 0px 4px 30px 15px black;
+    font-family: 'Righteous', serif;
 }
 
 .latest-results > table {
@@ -366,6 +399,7 @@ nav li a,
     text-align: center;
     color: white;
     background-color: darkred;
+    font-family: 'Righteous', serif;
 }
 
 .about-container {
@@ -381,6 +415,11 @@ nav li a,
     border-radius: 20px;
     color: white;
     font-size: 1.5rem;
+}
+
+.about-info > h2 {
+    font-family: 'Righteous', serif;
+    text-transform: uppercase;
 }
 
 .about-info > ul > li {
@@ -598,6 +637,7 @@ footer {
     padding: 10px;
     font-size: 2.5rem;
     text-shadow: 1px 0px 5px darkred;
+    font-family: 'Righteous', serif;
 }
 
 .edit-profile-container > form > .edit-profile-banner > h1 {
@@ -635,6 +675,7 @@ footer {
 
 .title-text { 
     text-align: center;
+    font-family: 'Righteous', serif;
 }
 
 .password-form-area > .buttons > a {
@@ -1180,7 +1221,8 @@ footer {
 
 .team-inner > a > span {
     margin-left: 15px;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
 .team-inner {
@@ -1333,6 +1375,10 @@ footer {
 
 /* Fixtures & Scores */
 
+.outer-2 h1, .outer-2 h2 {
+    font-family: 'Righteous', serif;
+}
+
 .fixture-table {
     background-color: var(--erdpl-text-secondary);
     margin-top: 20px;
@@ -1439,6 +1485,8 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    font-family: 'Righteous', serif;
+    font-size: 1.5rem;
 }
 
 .division-nav > li {
@@ -1473,6 +1521,26 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 #scores-container {
     margin-top: 0;
     background-color: rgb(0, 92, 167);
+}
+
+#scores-container > h1,
+#team-scores > h1,
+.team-fixtures > h1,
+.profile-info > h3,
+.contact-info > h2,
+.contact-info > ul > li > span,
+.latest-results > h2,
+.team-inner > strong,
+.team-inner > a > span {
+    font-family: 'Righteous', serif;
+}
+
+#scores-container > table {
+    background-color: darkblue;
+}
+
+#scores-container > table > thead {
+    color: white;
 }
 
 body > main > div > div.add-score {
@@ -2215,12 +2283,16 @@ div.match-images {
         padding: 2px 5px;
     }
 
-    .home-banner h1 {
+    .home-banner {
+        background-size: 250%;
+    }
+
+    .home-banner > .banner > h1 {
         font-size: 3rem;
     }
 
-    .home-banner p {
-        font-size: 1.3rem;
+    .home-banner > .banner > h1 > p {
+        font-size: 1rem;
     }
 
     .home-banner a {
