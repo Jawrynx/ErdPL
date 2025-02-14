@@ -166,22 +166,38 @@ STATIC_URL = '/static/'
 #}
 
 from google.oauth2 import service_account
-from datetime import timedelta
 
 GS_BUCKET_NAME = "edpl-project-media"
 
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+STORAGES = {
+    "default": {  # For MEDIA files
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "bucket_name": "edpl-project-media",
+            "project_id": "edpl-450616",
+            "credentials": service_account.Credentials.from_service_account_file(
+                "../edpl-450616-336a8dc4922e.json"
+            ),
+        },
+    },
+    "staticfiles": { # For STATIC files
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "bucket_name": "edpl-project-media",
+            "project_id": "edpl-450616", 
+            "credentials": service_account.Credentials.from_service_account_file(
+                "../edpl-450616-336a8dc4922e.json"
+            ),
+            "default_acl": "publicRead",
+        },
+    },
+}
+
+DEFAULT_FILE_STORAGE = STORAGES["default"]["BACKEND"]
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
+
 
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
-
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    "edpl-450616-336a8dc4922e.json"
-)
-
-GS_EXPIRATION = timedelta(minutes=5)
-
-
-
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
