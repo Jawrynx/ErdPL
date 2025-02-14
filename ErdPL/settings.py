@@ -169,15 +169,23 @@ from google.oauth2 import service_account
 
 GS_BUCKET_NAME = "edpl-project-media"
 
+try:
+    credentials_json = os.environ['GOOGLE_CREDENTIALS_JSON']
+    credentials_info = json.loads(credentials_json)
+    credentials = service_account.Credentials.from_service_account_info(credentials_info)
+except KeyError:
+    raise Exception("GOOGLE_CREDENTIALS_JSON config var not set.")
+except json.JSONDecodeError:
+    raise Exception("Invalid JSON in GOOGLE_CREDENTIALS_JSON config var.")
+
+
 STORAGES = {
     "default": {  # For MEDIA files
         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
         "OPTIONS": {
             "bucket_name": "edpl-project-media",
             "project_id": "edpl-450616",
-            "credentials": service_account.Credentials.from_service_account_file(
-                "edpl-450616-336a8dc4922e.json"
-            ),
+            "credentials": credentials,
         },
     },
     "staticfiles": { # For STATIC files
@@ -185,9 +193,7 @@ STORAGES = {
         "OPTIONS": {
             "bucket_name": "edpl-project-media",
             "project_id": "edpl-450616", 
-            "credentials": service_account.Credentials.from_service_account_file(
-                "edpl-450616-336a8dc4922e.json"
-            ),
+            "credentials": credentials,
             "default_acl": "publicRead",
         },
     },
