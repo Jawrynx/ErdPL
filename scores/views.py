@@ -1,28 +1,34 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from.models import Match, IndividualScore, Team, Division
-from.forms import MatchForm, IndividualScoreForm, IndividualPlayersForm
+from.forms import MatchForm, IndividualScoreForm, IndividualPlayersForm, DirectMatchForm
 from users.models import CustomUser
 
-def create_score(request, division_name=None):
-    if division_name:
-        try:
-            division = Division.objects.get(name=division_name)
-        except Division.DoesNotExist:
-            return redirect('scores:view_scores')
-
+def create_score(request):
     if request.method == 'POST':
         form = MatchForm(request.POST)
         if form.is_valid():
             match = form.save(commit=False)
-            match.division = division
             match.save()
-            return redirect('scores:select_players', division_name=division_name, match_id=match.id)
+            return redirect('scores:select_players', match_id=match.id)
     else:
         form = MatchForm()
         # Create a list of IndividualScoreForms for each game
         score_forms = [IndividualScoreForm() for _ in range(9)]
-    return render(request, 'scores/create_score.html', {'form': form, 'division_name': division_name, 'score_forms': score_forms})
+    return render(request, 'scores/create_score.html', {'form': form, 'score_forms': score_forms})
+
+def add_match_score(request):
+    if request.method == 'POST':
+        form = DirectMatchForm(request.POST)
+        if form.is_valid():
+            match = form.save(commit=False)
+            division = match.division
+            match.save()
+            return redirect('scores:view_scores', division_name=division)
+    else:
+        form = DirectMatchForm()
+
+    return render(request, 'scores/add_match_score.html', {'form': form})
 
 def select_players(request, match_id, division_name):
     match = get_object_or_404(Match, pk=match_id)

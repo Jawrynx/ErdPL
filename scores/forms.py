@@ -9,7 +9,21 @@ class MatchForm(forms.ModelForm):
 
     class Meta:
         model = Match
-        fields = ['home_team', 'away_team', 'date']
+        fields = ['division', 'home_team', 'away_team', 'date']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'})
+        }
+
+class DirectMatchForm(forms.ModelForm):
+    home_team = forms.ModelChoiceField(queryset=Team.objects.all())
+    away_team = forms.ModelChoiceField(queryset=Team.objects.all())
+
+    class Meta:
+        model = Match
+        fields = ['division', 'home_team', 'home_score', 'away_score', 'away_team', 'date']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'})
+        }
 
 class IndividualScoreForm(forms.ModelForm):
     class Meta:

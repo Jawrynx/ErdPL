@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}Create Match{% endblock %}
+
+{% block content %}
+<div class="center">
+    <h1 class="title-text">ADD MATCH SCORE</h1>
+    <div class="outer-3">
+        <h2>DIRECT SCORE</h2>
+        <form method="post" enctype="multipart/form-data" id='add-match-form'>
+            {% csrf_token %}
+            <p><label for="{{ form.division.id_for_label }}">Division:</label> {{ form.division }}</p>
+            <div>
+                <p><label for="{{ form.home_team.id_for_label }}">Home Team</label> {{ form.home_team }}</p>
+                <p><label for="{{ form.home_score.id_for_label }}"></label> {{ form.home_score }}</p>
+                <p>VS</p>
+                <p><label for="{{ form.away_score.id_for_label }}"></label> {{ form.away_score }}</p>
+                <p><label for="{{ form.away_team.id_for_label }}">Away Team</label> {{ form.away_team }}</p>
+            </div>
+            <p><label for="{{ form.date.id_for_label }}">Date:</label> {{ form.date }}</p>
+            <button type="submit">Submit Score</button> 
+        </form>
+    </div>
+</div>
+{% endblock %}

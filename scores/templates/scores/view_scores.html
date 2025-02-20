@@ -19,7 +19,8 @@
         </div>
         {% if request.user.is_superuser %}
             <div class="add-score">
-                <a href="{% url 'scores:create_score' division_name=division_name %}">Add Score</a>
+                <a href="{% url 'scores:add_match_score' %}">Add Match Score</a>
+                <a href="{% url 'scores:create_score' %}" id='live-match-button'><i class="fa-solid fa-record-vinyl"></i>Live Mode</a>
             </div>
         {% endif %}
         <div class="outer-2" id="scores-container">
@@ -29,11 +30,11 @@
                     <tr class="fixture-row">
                         <th>Date</th>
                         <th>Home Team</th>
-                        <th>Home Score</th>
+                        <th>H<span>ome Score</span></th>
                         <th>(9)</th>
-                        <th>Away Score</th>
+                        <th>A<span>way Score</span></th>
                         <th>Away Team</th>
-                        <th>Details</th> 
+                        <th></th> 
                     </tr>
                 </thead>
                 <tbody>
