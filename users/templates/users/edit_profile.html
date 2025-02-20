@@ -8,7 +8,7 @@
   <div class="center profile-center">
     <h1 class="title-text" style="margin-bottom: 25px;">EDIT PROFILE</h1>
     <div class="match-options" id='back-1'>
-      <a href="{% url 'users:profile' username=profile.user.username %}"><i class="fa-solid fa-arrow-left"></i> Back</a>
+      <a href="{% url 'users:profile' username=user.username %}"><i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
     {% if messages %}
       <ul class="messages">
@@ -23,11 +23,11 @@
         <div class="edit-profile-banner">
           <label for="id_username">Edit Username:</label>
           <h1>
-            <input type="text" id="id_username" name="username" value="{{ username_form.username.value }}" placeholder="{{ profile.user.username }}" /> 
+            <input type="text" id="id_username" name="username" value="{{ user_form.username.value }}" placeholder="{{ user.username }}" /> 
           </h1>
           <label for="id_profile_picture">Profile Picture:</label>
-          {% if profile.profile_picture %}
-            <img src="{{ profile.profile_picture.url }}" alt="Current Profile Picture">
+          {% if user.profile_picture %}
+            <img src="{{ user.profile_picture.url }}" alt="Current Profile Picture">
           {% else %}
             <img src="{{ MEDIA_URL }}profile_default.jpeg">
           {% endif %}
@@ -36,19 +36,19 @@
 
         <div class="edit-profile-info">
           <label for="id_fullname">Full Name:</label>
-          <input type="text" id="id_fullname" name="fullname" value="{{ profile_form.fullname.value }}" /> 
+          <input type="text" id="id_fullname" name="fullname" value="{{ user_form.fullname.value }}" /> 
           <br>
           <label for="id_phone_number">(Optional) Phone Number:</label>
-          <input type="text" id="id_phone_number" name="phone_number" value="{{ profile_form.phone_number.value }}" /> 
+          <input type="text" id="id_phone_number" name="phone_number" value="{{ user_form.phone_number.value }}" /> 
           <br>
           <label for="id_bio">Bio:</label>
-          <textarea id="id_bio" name="bio">{{ profile_form.bio.value }}</textarea> 
+          <textarea id="id_bio" name="bio">{{ user_form.bio.value }}</textarea> 
           <br>
           <div class="buttons">
             <a href="{% url 'users:change_password' username=user.username %}" style="background-color: blue;">CHANGE PASSWORD</a>
             <br>
             <button type="submit">Save Changes</button>
-            <a href="{% url 'users:profile' username=profile.user.username %}">BACK TO PROFILE</a>
+            <a href="{% url 'users:profile' username=user.username %}">BACK TO PROFILE</a>
           </div>
         </div>
       </form>

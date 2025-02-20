@@ -1756,8 +1756,10 @@ body > main > div > div.add-score > a#live-match-button:hover {
     text-align: right;
 }
 
-#create-score-form > p:nth-child(2) {
-    background-color: rgb(0, 255, 0);
+#create-score-form > p:nth-child(2),
+#create-score-form > p:nth-child(5) {
+    background-color: red;
+    color: white;
     padding: 10px;
     border-radius: 10px;
     text-align: right;
@@ -1765,19 +1767,13 @@ body > main > div > div.add-score > a#live-match-button:hover {
     font-weight: bold;
 }
 
-#create-score-form > p:nth-child(3) {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    margin-bottom: 25px;
-}
-
 #create-score-form > p:nth-child(4),
-#create-score-form > p:nth-child(5) {
-    background-color: rgb(0, 153, 255);
+#create-score-form > p:nth-child(3) {
+    background-color: rgb(255, 208, 0);
     padding: 10px;
     text-align: right;
     text-transform: uppercase;
-    color: white;
+    color: black;
     font-weight: bold;
     border-radius: 10px;
     margin-bottom: 15px;

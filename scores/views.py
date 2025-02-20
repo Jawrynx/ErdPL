@@ -9,8 +9,9 @@ def create_score(request):
         form = MatchForm(request.POST)
         if form.is_valid():
             match = form.save(commit=False)
+            division = match.division
             match.save()
-            return redirect('scores:select_players', match_id=match.id)
+            return redirect('scores:select_players', division_name=division, match_id=match.id)
     else:
         form = MatchForm()
         # Create a list of IndividualScoreForms for each game
@@ -31,7 +32,7 @@ def add_match_score(request):
     return render(request, 'scores/add_match_score.html', {'form': form})
 
 def select_players(request, match_id, division_name):
-    match = get_object_or_404(Match, pk=match_id)
+    match = get_object_or_404(Match.objects.select_related('home_team', 'away_team').prefetch_related('home_team__members', 'away_team__members'), pk=match_id)
     existing_scores = IndividualScore.objects.filter(match=match)
     if existing_scores.exists():
         # Redirect to live_match if scores already exist

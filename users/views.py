@@ -8,10 +8,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.db import transaction
 
 from .forms import CustomUserCreationForm
-from .forms import ProfileEditForm
-from .forms import UsernameEditForm
+from .forms import CustomUserEditForm
 
-from .models import Profile, CustomUser
+from .models import CustomUser
 from teams.models import Team
 from django.urls import reverse
 
@@ -22,14 +21,6 @@ def register_view(request):
             user = form.save(commit=False)
             user.save()
             login(request, user)
-
-            profile = Profile.objects.create(
-                user=user,
-                fullname=request.POST.get('fullname', ''), 
-                profile_picture=request.FILES.get('profile_picture', None), 
-                phone_number=request.POST.get('phone_number', ''), 
-                bio=request.POST.get('bio', '')
-            )
 
             username = user.username
 
@@ -42,7 +33,6 @@ def register_view(request):
 
 def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)
-    profile = user.profile
 
     try:
         user_team = Team.objects.filter(members=user).first()
@@ -52,7 +42,6 @@ def profile_view(request, username):
     teams = Team.objects.all()
 
     context = {
-        'profile': profile,
         'user_team': user_team,
         'teams': teams,
     }
@@ -79,52 +68,23 @@ def logout_view(request):
 @login_required
 def edit_profile(request, username):
     user = request.user
-    profile = user.profile
 
     if request.method == 'POST':
-        profile_form = ProfileEditForm(request.POST, request.FILES, instance=profile)
-        username_form = UsernameEditForm(request.POST, instance=user)
-        password_form = PasswordChangeForm(user, request.POST)  # Initialize here, but don't use it unconditionally
+        user_form = CustomUserEditForm(request.POST, request.FILES, instance=user)
 
-        if profile_form.is_valid() and username_form.is_valid():
-            new_password1 = request.POST.get('new_password1')
-            new_password2 = request.POST.get('new_password2')
-
-            if new_password1 and new_password2:  # Check if BOTH new password fields are filled
-                if new_password1!= new_password2:
-                    messages.error(request, "Passwords don't match!")
-                elif password_form.is_valid():  # Only validate/save if new passwords provided
-                    user = password_form.save()
-                    update_session_auth_hash(request, user)
-                    profile_form.save()
-                    username_form.save()
-                    messages.success(request, 'Your profile and password were successfully updated!')
-                    return redirect('users:profile', username=user.username)
-                else:
-                    for error in password_form.errors.values():
-                        messages.error(request, error)  # Display password form errors
-            else:  # No new password provided, just save profile and username
-                 with transaction.atomic():
-                    profile_form.save()
-                    username_form.save()
-                 messages.success(request, 'Your profile was successfully updated!')
-                 return redirect('users:profile', username=user.username)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('users:profile', username=user.username)
         else:
-            for error in profile_form.errors.values():
-                messages.error(request, error)
-            for error in username_form.errors.values():
+            for error in user_form.errors.values():
                 messages.error(request, error)
 
     else:  # GET request
-        profile_form = ProfileEditForm(instance=profile)
-        username_form = UsernameEditForm(instance=user)
-        password_form = PasswordChangeForm(user) # Important: Initialize even on GET for CSRF
+        user_form = CustomUserEditForm(instance=user)
 
     context = {
-        'profile_form': profile_form,
-        'username_form': username_form,
-        'profile': profile,
-        'password_form': password_form,  # Add password form to the context
+        'user_form': user_form,
     }
     return render(request, 'users/edit_profile.html', context)
 
