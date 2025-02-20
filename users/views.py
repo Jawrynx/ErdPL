@@ -42,6 +42,7 @@ def profile_view(request, username):
     teams = Team.objects.all()
 
     context = {
+        'user': user,
         'user_team': user_team,
         'teams': teams,
     }
