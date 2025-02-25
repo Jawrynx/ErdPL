@@ -23,7 +23,18 @@
                 <a href="{% url 'scores:create_score' %}" id='live-match-button'><i class="fa-solid fa-record-vinyl"></i>Live Mode</a>
             </div>
         {% endif %}
-        <div class="outer-2" id="scores-container">
+        <div
+            class="outer-2 
+                {% if division_name == 'Premier Division' %}
+                premier
+                {% elif division_name == 'Division 1' %}
+                div1
+                {% elif division_name == 'Division 2' %}
+                div2
+                {% endif %}
+                "
+            id="scores-container"
+        >
             <h1>{{ division_name|default:"All Divisions" }} Scores</h1> 
             <table class="fixture-table">
                 <thead class="fixture-head">

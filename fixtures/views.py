@@ -41,7 +41,7 @@ def fixtures_by_division(request, division_name):
     teams = Team.objects.all()
 
     context = {
-        'division': division.name,
+        'division': division_name,
         'fixtures_by_week': fixtures_by_week,
         'all_divisions': ordered_divisions,
         'teams': teams,

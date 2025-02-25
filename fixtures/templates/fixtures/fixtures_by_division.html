@@ -14,7 +14,19 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="outer-2" id="fixtures">
+        <div 
+            class="
+                outer-2
+                {% if division == 'Premier Division' %}
+                premier
+                {% elif division == 'Division 1' %}
+                div1
+                {% elif division == 'Division 2' %}
+                div2
+                {% endif %}
+                " 
+            id="fixtures"
+        >
             <h1>{{ division }} Fixtures</h1>
             {% for week, fixtures in fixtures_by_week.items %}
                 <h2>Week {{ week }}</h2>

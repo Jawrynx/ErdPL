@@ -1581,7 +1581,39 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     margin-top: 40px;
 }
 
+/* DIVISION COLOURS */
+
+.premier > h1 {
+    color: yellow !important;
+    text-shadow: 0px 0px 5px yellow !important;
+}
+
+.premier {
+    box-shadow: 0px 0px 25px 2px yellow !important;
+}
+
+.div1 > h1 {
+    color: red !important;
+    text-shadow: 0px 0px 5px red !important;
+}
+
+.div1 {
+    box-shadow: 0px 0px 25px 2px red !important;
+}
+
+.div2 > h1 {
+    color: lightskyblue !important;
+    text-shadow: 0px 0px 5px lightskyblue !important;
+}
+
+.div2 {
+    box-shadow: 0px 0px 25px 2px lightskyblue !important;
+}
+
+
 /* SCORES */
+
+
 
 #scores-container {
     margin-top: 0;
