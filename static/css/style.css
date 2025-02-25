@@ -1383,6 +1383,24 @@ footer {
     font-family: 'Righteous', serif;
 }
 
+#fixtures {
+    background-color: rgb(49, 28, 28);
+    box-shadow: 0px 0px 15px 2px rgb(100, 100, 100);
+}
+
+#fixtures > table {
+    background-color: rgb(102, 27, 27);
+}
+
+#fixtures > table th {
+    color: white;
+}
+
+#fixtures > h2 {
+    margin-top: 30px;
+    background-color: rgb(102, 27, 27);
+}
+
 .fixture-table {
     background-color: var(--erdpl-text-secondary);
     margin-top: 20px;
@@ -1493,9 +1511,9 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
 
 #division-links {
-    background-color: rgb(1, 197, 204);
+    background-color: rgb(32, 20, 20);
     margin-top: 40px;
-    box-shadow: 2px 2px 3px 1px black;
+    box-shadow: 0px 0px 30px 5px rgb(104, 104, 104);
     margin-bottom: 100px;
 }
 
@@ -1508,13 +1526,42 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 }
 
 .division-nav > li {
-    background-color: darkblue;
+    background-color: black;
     padding: 20px 10px;
     min-width: 150px;
     list-style: none;
     border-radius: 25px;
     text-transform: uppercase;
     transition: 0.3s ease-in-out;
+    width: 100%;
+    margin: 15px;
+}
+
+.division-nav > li:nth-child(1) > a {
+    color: yellow;
+    text-shadow: 0px 0px 5px yellow;
+}
+
+.division-nav > li:nth-child(1) {
+    box-shadow: 0px 0px 25px 2px yellow;
+}
+
+.division-nav > li:nth-child(2) > a {
+    color: red;
+    text-shadow: 0px 0px 5px red;
+}
+
+.division-nav > li:nth-child(2) {
+    box-shadow: 0px 0px 25px 2px red;
+}
+
+.division-nav > li:nth-child(3) > a {
+    color: lightblue;
+    text-shadow: 0px 0px 5px rgb(37, 193, 245);
+}
+
+.division-nav > li:nth-child(3) {
+    box-shadow: 0px 0px 25px 2px rgb(69, 208, 255);
 }
 
 .division-nav > li:hover {
@@ -1538,7 +1585,8 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
 #scores-container {
     margin-top: 0;
-    background-color: rgb(0, 92, 167);
+    background-color: rgb(28, 30, 49);
+    box-shadow: 0px 0px 15px 2px rgb(100, 100, 100);
 }
 
 #scores-container > h1,
@@ -1555,6 +1603,7 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
 #scores-container > table {
     background-color: darkblue;
+    box-shadow: 0px 0px 15px 2px rgb(65, 65, 65);
 }
 
 #scores-container > table > thead {

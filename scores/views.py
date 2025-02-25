@@ -84,6 +84,17 @@ def update_score(request, division_name, match_id, score_id):
 
 def view_scores(request, division_name=None):
     all_divisions = Division.objects.all()
+
+    correct_order = ['Premier Division', 'Division 1', 'Division 2']
+    ordered_divisions = []
+
+    for item in correct_order:
+        for division in all_divisions:
+            if item == division.name:
+                ordered_divisions.append(division)
+
+    print(ordered_divisions)
+
     if division_name:
         matches = Match.objects.filter(division__name=division_name).order_by('-date')
         teams = Team.objects.filter(division__name=division_name)
@@ -93,7 +104,7 @@ def view_scores(request, division_name=None):
     context = {
         'matches': matches,
         'division_name': division_name,
-        'all_divisions': all_divisions,
+        'all_divisions': ordered_divisions,
         'teams': teams,
     }
     return render(request, 'scores/view_scores.html', context)

@@ -9,6 +9,18 @@ def fixtures_by_division(request, division_name):
     fixtures = Fixture.objects.filter(division=division).order_by('date')
     all_divisions = Division.objects.all()
 
+    #Order Divisions by Highest Ranking
+
+    correct_order = ['Premier Division', 'Division 1', 'Division 2']
+    ordered_divisions = []
+
+    for item in correct_order:
+        for division in all_divisions:
+            if item == division.name:
+                ordered_divisions.append(division)
+
+    print(ordered_divisions)
+
     # Group fixtures by week, considering gaps
     fixtures_by_week = {}
     week_number = 1
@@ -31,7 +43,7 @@ def fixtures_by_division(request, division_name):
     context = {
         'division': division.name,
         'fixtures_by_week': fixtures_by_week,
-        'all_divisions': all_divisions,
+        'all_divisions': ordered_divisions,
         'teams': teams,
     }
     return render(request, 'fixtures/fixtures_by_division.html', context)
