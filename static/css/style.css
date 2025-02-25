@@ -1565,7 +1565,7 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 }
 
 .division-nav > li:hover {
-    background-color: blue;
+    background-color: rgb(18, 18, 29);
     transition: 0.3s ease-in-out;
 }
 
