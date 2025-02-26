@@ -5,7 +5,7 @@
 {% block content %}
 <div class="center">
   <h1 class="title-text">SELECT PLAYERS</h1>
-  <div class="outer-2">
+  <div class="outer-2" id='live-mode'>
     <h2>{{ match.home_team }} vs {{ match.away_team }}</h2>
     <form method="post" id='select-players' style="width: 100%;">
       {% csrf_token %}

@@ -58,7 +58,7 @@ main {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 input[type="number"]::-webkit-inner-spin-button, 
@@ -1137,26 +1137,28 @@ footer {
 }
 
 .profile-teams-buttons {
-    background-color: var(--erdpl-text-secondary-dark);
+    background-color: rgb(43, 43, 43);
     width: 70%;
     display: flex;
     justify-content: center;
-    border-left: 3px solid var(--erdpl-text-secondary);
-    border-right: 3px solid var(--erdpl-text-secondary);
-    border-bottom: 3px solid var(--erdpl-text-secondary);
+    padding-bottom: 5px;
+    box-shadow: 0px 0px 30px 5px black;
 }
 
 .profile-teams-buttons > a {
-    background-color: darkred;
+    background-color: rgb(109, 26, 26);
     text-decoration: none;
     color: var(--erdpl-text-primary);
-    padding: 5px;
-    margin: 0px 2px;
+    padding: 5px 15px 10px 15px;
+    margin: 0px 15px 10px 15px !important;
     text-align: center;
     font-size: 1.5rem;
     text-transform: uppercase;
     font-weight: bold;
     transition: 0.3s ease-in-out;
+    width: 100%;
+    box-shadow: 0px 0px 10px 2px rgb(156, 156, 156);
+    text-shadow: 0px 0px 5px black;
 }
 
 .profile-teams-buttons > a:hover {
@@ -1383,13 +1385,14 @@ footer {
     font-family: 'Righteous', serif;
 }
 
-#fixtures {
-    background-color: rgb(49, 28, 28);
-    box-shadow: 0px 0px 15px 2px rgb(100, 100, 100);
+#fixtures, .team-fixtures {
+    background-color: rgb(49, 28, 28) !important;
+    box-shadow: 0px 0px 15px 2px rgb(100, 100, 100) !important;
 }
 
+.team-fixtures > table,
 #fixtures > table {
-    background-color: rgb(102, 27, 27);
+    background-color: rgb(102, 27, 27) !important;
 }
 
 #fixtures > table th {
@@ -1613,12 +1616,14 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
 
 /* SCORES */
 
-
-
 #scores-container {
-    margin-top: 0;
-    background-color: rgb(28, 30, 49);
-    box-shadow: 0px 0px 15px 2px rgb(100, 100, 100);
+    margin-top: 0 !important;
+}
+
+#scores-container, #team-scores {
+    margin-top: 35px;
+    background-color: rgb(28, 30, 49) !important;
+    box-shadow: 0px 0px 15px 2px rgb(100, 100, 100) !important;
 }
 
 #scores-container > h1,
@@ -1633,8 +1638,9 @@ body > main > div > div.team-fixtures > table > tbody > tr > td {
     font-family: 'Righteous', serif;
 }
 
-#scores-container > table {
-    background-color: darkblue;
+#scores-container > table,
+#team-scores > table {
+    background-color: rgb(30, 30, 112) !important;
     box-shadow: 0px 0px 15px 2px rgb(65, 65, 65);
 }
 
@@ -1699,6 +1705,17 @@ body > main > div > div.add-score > a#live-match-button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#live-mode {
+    background-color: #0e0909;
+    border-color: #0d3239 !important;
+    box-shadow: 0px 0px 30px 5px rgb(168, 110, 110);
+}
+
+#live-mode .liveTable > thead > tr > th, .liveTable > tbody > tr > td {
+    background-color: #0d1518 !important;
+    border-color: #0d3239 !important;
 }
 
 .outer-3 > h2 {
@@ -1801,32 +1818,39 @@ body > main > div > div.add-score > a#live-match-button:hover {
 }
 
 #create-score-form {
-    background-color: black;
+    background-color: rgb(44, 27, 27);
     border-radius: 15px;
     padding: 15px;
+    box-shadow: 0px 0px 8px 1px rgb(151, 1, 1);
 }
 
 #create-score-form,
-#create-score-form > p {
+#create-score-form > div > p {
     width: 100%;
 }
 
-#create-score-form > p {
+#create-score-form > div > p {
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 0px 8px 1px var(--erdpl-text-secondary);
+    text-shadow: 0px 0px 5px black;
 }
 
-#create-score-form > p > input,
-#create-score-form > p > label,
-#create-score-form > p > select {
+#live-mode > h2 {
+    text-shadow: 0px 0px 15px black;
+}
+
+#create-score-form > div > p > input,
+#create-score-form > div > p > label,
+#create-score-form > div > p > select {
     width: 50%;
     margin-left: 5px;
     font-family: 'Ubuntu', serif;
     font-weight: bold;
 }
 
-#create-score-form > p:nth-child(3),
-#create-score-form > p:nth-child(4) {
+#create-score-form > div > p:nth-child(3),
+#create-score-form > div > p:nth-child(4) {
     background-color: blue;
     padding: 10px;
     color: white;
@@ -1837,8 +1861,8 @@ body > main > div > div.add-score > a#live-match-button:hover {
     text-align: right;
 }
 
-#create-score-form > p:nth-child(2),
-#create-score-form > p:nth-child(5) {
+#create-score-form > div > p:nth-child(2),
+#create-score-form > div > p:nth-child(5) {
     background-color: red;
     color: white;
     padding: 10px;
@@ -1848,31 +1872,75 @@ body > main > div > div.add-score > a#live-match-button:hover {
     font-weight: bold;
 }
 
-#create-score-form > p:nth-child(4),
-#create-score-form > p:nth-child(3) {
-    background-color: rgb(255, 208, 0);
+#create-score-form > div > p:nth-child(4),
+#create-score-form > div > p:nth-child(3) {
+    background-color: rgb(116, 1, 1);
     padding: 10px;
     text-align: right;
     text-transform: uppercase;
-    color: black;
     font-weight: bold;
     border-radius: 10px;
     margin-bottom: 15px;
 }
 
-#create-score-form > p:nth-child(4) {
+#create-score-form > div > p:nth-child(4) {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-#create-score-form > p:nth-child(5) {
+#create-score-form > div > p:nth-child(5) {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
-#create-score-form > p:nth-child(6) {
+#create-score-form > div > p:nth-child(6) {
     margin-bottom: 15px;
+}
+
+#live-form-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#live-form-info > p {
+    display: block !important;
+    background-color: red;
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: 0px 0px 15px 2px black !important;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+#live-form-info > p:nth-child(2) {
+    margin: 15px 0;
+    text-align: center !important;
+}
+
+#live-form-info > .live-radio {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(255, 88, 88);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+#live-form-info > .live-radio > div > input {
+    scale: 1.5;
+    margin-left: 15px;
+}
+
+#live-form-info > .live-radio > div {
+    background-color: red;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    font-family: 'Righteous', serif;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .btn-primary {
@@ -1884,8 +1952,11 @@ body > main > div > div.add-score > a#live-match-button:hover {
     font-family: 'Ubuntu', sans-serif;
     text-transform: uppercase;
     font-size: 1.8rem;
-    border-radius: 7px;
+    border-radius: 15px;
     transition: 0.3s ease-in-out;
+    border: none;
+    box-shadow: 0px 0px 5px 1px black;
+    text-shadow: 0px 0px 5px black;
 }
 
 .btn-primary:hover {
@@ -2120,6 +2191,7 @@ div.match-images {
     border-radius: 50%;
     max-height: 200px;
     min-width: 200px;
+    margin-bottom: 30px;
 }
 
 .match-options {
@@ -2175,7 +2247,7 @@ div.match-images {
     background-color: var(--erdpl-background);
     width: 100%;
     color: var(--erdpl-text-primary-light);
-    border: 3px solid red;
+    border: 3px solid #0d3239;
     border-spacing: 0;
     border-radius: 10px;
 }
@@ -2817,6 +2889,7 @@ div.match-images {
     .match-profile-image {
         min-width: 64px;
         max-height: 64px;
+
     } 
 
     .match-teams > h1 {

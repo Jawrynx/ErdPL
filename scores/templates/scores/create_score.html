@@ -5,14 +5,54 @@
 {% block content %}
 <div class="center">
     <h1 class="title-text">CREATE MATCH</h1>
-    <div class="outer-2">
+    <div class="outer-2" id='live-mode'>
         <h2><i class="fa-solid fa-record-vinyl"></i>   LIVE MODE</h2>
         <form method="post" enctype="multipart/form-data" id='create-score-form'>
-            {% csrf_token %}
-            {{ form.as_p }}
 
-            <button type="submit" class="btn btn-primary">Set Teams</button> 
+            <div id='live-form-info' class=''>
+                <p>
+                    To use Live Mode, you MUST have added your team members playing in the match to your Team.
+                    To add team members go to your <a href='{% url 'teams:detail' team_name=user.teams.first.name %}'>Team Profile</a> 
+                    and press 'EDIT TEAM MEMBERS', here you can either create a player or select an existing player.
+                </p>
+                <p>HAVE YOU ADDED ALL YOUR TEAM PLAYERS FOR THIS MATCH?</p>
+                <div class='live-radio'>
+                    <div>
+                        <label for="live-confirm-yes">YES</label>
+                        <input type="radio" name="live-confirm" id="live-confirm-yes" />
+                    </div>
+                    <div>
+                        <label for="live-confirm-no">NO</label>
+                        <input type="radio" name="live-confirm" id="live-confirm-no" checked />
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden" id='live-mode-create-form'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Set Teams</button> 
+            </div>
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const liveConfirmYes = document.getElementById('live-confirm-yes');
+        const liveModeCreateForm = document.getElementById('live-mode-create-form');
+        const liveFormInfo = document.getElementById('live-form-info');
+    
+        if (liveConfirmYes && liveModeCreateForm) {
+            liveConfirmYes.addEventListener('click', () => {
+            liveModeCreateForm.classList.remove('hidden');
+            liveFormInfo.classList.add('hidden');
+            });
+        } else {
+            console.error("One or both elements not found!");
+        }
+        });
+    </script>
 {% endblock %}
