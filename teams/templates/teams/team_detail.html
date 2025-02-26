@@ -29,9 +29,9 @@
                 <ul>
                     {% for member in team.members.all %}
                         <li>
-                            <a href="{% url 'users:profile' username=member.username %}">
-                                <img src="{% if member.profile_picture %}{{ member.profile_picture.url }}{% else %}{{ MEDIA_URL }}profile_default.jpeg{% endif %}" alt="{{ member.username }} Profile Picture" class="profile-image">
-                                <span>{{ member.username }}</span>
+                            <a href="{% if member.user %}{% url 'users:profile' username=member.user.username %}{% else %}#{% endif %}">  {# Use member.user.username #}
+                                <img src="{% if member.user.profile_picture %}{{ member.user.profile_picture.url }}{% else %}{{ MEDIA_URL }}profile_default.jpeg{% endif %}" alt="{{ member.user.username }} Profile Picture" class="profile-image">  {# Use member.user.profile_picture and member.user.username #}
+                                <span>{{ member.name }}</span>  {# Use member.name to display the player's name #}
                             </a>
                         </li>
                     {% endfor %}

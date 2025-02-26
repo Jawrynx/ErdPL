@@ -8,7 +8,7 @@ from django.core import serializers
 from .models import Team, Division
 from scores.models import Match
 from fixtures.models import Fixture
-from users.models import CustomUser
+from users.models import CustomUser, Player
 
 from .forms import TeamCreationForm, TeamEditForm
 
@@ -20,7 +20,10 @@ def create_team(request):
             team = form.save(commit=False) 
             team.captain = request.user
             team.save()
-            team.members.add(request.user) 
+
+
+            player = Player.objects.get(user=request.user)
+            team.members.add(player) 
 
             selected_division_id = request.POST.get('division')
             if selected_division_id:
@@ -42,17 +45,19 @@ def create_team(request):
 @login_required
 def join_team(request, team_id):
     team = get_object_or_404(Team, id=team_id)
-    if request.user in team.members.all():
+    player = Player.objects.get(user=request.user)
+    if player in team.members.all():
         return redirect('teams:detail', team_name=team.name)  # User is already a member
-    team.members.add(request.user)
+    team.members.add(player)
     return redirect('teams:detail', team_name=team.name)
 
 @login_required
 def leave_team(request, team_name):
     team = get_object_or_404(Team, name=team_name)
+    player = Player.objects.get(user=request.user)
     if request.user == team.captain:
         return redirect('teams:detail', team_name=team.name)  # Captain cannot leave their own team
-    team.members.remove(request.user)
+    team.members.remove(player)
     return redirect('teams:detail', team_name=team.name)
 
 def team_detail(request, team_name):
@@ -85,36 +90,27 @@ def edit_team(request, team_name):
 
 def edit_team_members(request, team_name):
     team = get_object_or_404(Team, name=team_name)
-    CustomUser = get_user_model()
 
     if request.user == team.captain:
         if request.method == 'POST':
-            # Get the list of user IDs from the POST data
-            new_member_ids = request.POST.getlist('new_members') 
-
-            # Remove existing members (if any)
-
-            # Add new members to the team
-            for user_id in new_member_ids:
+            new_member_ids = request.POST.getlist('new_members')
+            for player_id in new_member_ids:
                 try:
-                    new_member = CustomUser.objects.get(pk=user_id)
+                    new_member = Player.objects.get(pk=player_id)
                     team.members.add(new_member)
-                except CustomUser.DoesNotExist:
+                except Player.DoesNotExist:
                     pass 
 
             messages.success(request, 'Team members updated successfully!')
             return redirect('teams:detail', team_name=team.name)
         else:
-            # Get a list of all users 
-            all_users = CustomUser.objects.all()
-
-            # Get a list of users who are not already members of the team
+            all_players = Player.objects.all()
             existing_member_ids = list(team.members.values_list('id', flat=True))
-            available_users = all_users.exclude(id__in=existing_member_ids) 
+            available_players = all_players.exclude(id__in=existing_member_ids) 
 
             context = {
                 'team': team,
-                'available_users': available_users 
+                'available_users': available_players,
             }
             return render(request, 'teams/edit_team_members.html', context)
     else:
@@ -133,15 +129,27 @@ def delete_team(request, team_name):
     
 def remove_team_member(request, team_name, member_id):
     team = get_object_or_404(Team, name=team_name)
-    member = get_object_or_404(CustomUser, pk=member_id)
+    member = get_object_or_404(Player, pk=member_id)
 
     if request.user == team.captain:
         if member in team.members.all():
             team.members.remove(member)
-            messages.success(request, f'{member.username} removed from team.')
+            messages.success(request, f'{member.name} removed from team.')
         else:
-            messages.warning(request, f'{member.username} is not a member of this team.')
+            messages.warning(request, f'{member.name} is not a member of this team.')
     else:
         messages.error(request, 'You are not the captain of this team.')
 
     return redirect('teams:edit_team_members', team_name=team_name)
+
+@login_required
+def create_player(request, team_name):
+    team = get_object_or_404(Team, name=team_name)
+    if request.method == 'POST':
+        player_name = request.POST.get('player_name')
+        player = Player.objects.create(name=player_name)
+
+        team.members.add(player)
+
+        return redirect('teams:edit_team_members', team_name=team.name)
+    return redirect('teams:edit_team_members', team_name=team.name)

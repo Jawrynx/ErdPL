@@ -10,7 +10,7 @@ from django.db import transaction
 from .forms import CustomUserCreationForm
 from .forms import CustomUserEditForm
 
-from .models import CustomUser
+from .models import CustomUser, Player
 from teams.models import Team
 from django.urls import reverse
 
@@ -35,8 +35,11 @@ def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)
 
     try:
-        user_team = Team.objects.filter(members=user).first()
-    except Team.DoesNotExist:
+        # Get the Player object associated with the user
+        player = Player.objects.get(user=user)
+        # Use the Player object to query for the team
+        user_team = Team.objects.filter(members=player).first()  # Use player instead of user
+    except (Player.DoesNotExist, Team.DoesNotExist):
         user_team = None
 
     teams = Team.objects.all()
@@ -115,6 +118,6 @@ def change_password(request, username):
 
     context = {
         'password_form': password_form,
-        'user': user,  # Pass the user object to the template
+        'user': user,  
     }
     return render(request, 'users/change_password.html', context)
