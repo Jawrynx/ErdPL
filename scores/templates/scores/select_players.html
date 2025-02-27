@@ -25,7 +25,7 @@
               <select name="home_player_{{ i }}">
                 {% for player in match.home_team.members.all %}
                 <option value="56">X</option>
-                <option value="{{ player.id }}">{{ player }}</option> 
+                <option value="{{ player.id }}">{{ player.name }}</option> 
                 {% endfor %}
               </select>
             </td>
@@ -33,7 +33,7 @@
               <select name="away_player_{{ i }}">
                 {% for player in match.away_team.members.all %}
                 <option value="56">X</option>
-                <option value="{{ player.id }}">{{ player }}</option> 
+                <option value="{{ player.id }}">{{ player.name }}</option> 
                 {% endfor %}
               </select>
             </td>

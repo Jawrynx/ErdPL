@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from.models import Match, IndividualScore, Team, Division
 from.forms import MatchForm, IndividualScoreForm, IndividualPlayersForm, DirectMatchForm
-from users.models import CustomUser
+from users.models import CustomUser, Player
 
 def create_score(request):
     if request.method == 'POST':
@@ -46,8 +46,8 @@ def select_players(request, match_id, division_name):
                 away_player_id = form.cleaned_data.get(f'away_player_{i}')
 
                 # Convert player IDs to CustomUser objects or None
-                home_player = CustomUser.objects.get(pk=home_player_id) if home_player_id!= 'X' else None
-                away_player = CustomUser.objects.get(pk=away_player_id) if away_player_id!= 'X' else None
+                home_player = Player.objects.get(pk=home_player_id) if home_player_id!= 'X' else None
+                away_player = Player.objects.get(pk=away_player_id) if away_player_id!= 'X' else None
 
                 IndividualScore.objects.create(
                     match=match,
@@ -61,13 +61,15 @@ def select_players(request, match_id, division_name):
     return render(request, 'scores/select_players.html', {'form': form, 'match': match})
 def live_match(request, match_id, division_name):
     match = get_object_or_404(Match, pk=match_id)
-    scores = IndividualScore.objects.filter(match=match)
+    scores = IndividualScore.objects.filter(match=match).order_by('id')
     return render(request, 'scores/live_match.html', {'match': match, 'scores': scores})
 
 def update_score(request, division_name, match_id, score_id):
     # Get the match and score objects using the provided IDs
     match = get_object_or_404(Match, pk=match_id)
     score = get_object_or_404(IndividualScore, pk=score_id)
+    home_player = score.home_player
+    away_player = score.away_player
 
     # Update the score
     winner = request.POST.get('winner')
@@ -76,8 +78,12 @@ def update_score(request, division_name, match_id, score_id):
 
     if winner == 'home':
         match.home_score += 1
+        home_player.game_wins += 1
+        away_player.game_losses += 1
     elif winner == 'away':
         match.away_score += 1
+        away_player.game_wins += 1
+        home_player.game_losses += 1
     match.save()
 
     return redirect('scores:live_match', division_name=division_name, match_id=match.id)

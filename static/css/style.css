@@ -2304,7 +2304,6 @@ div.match-images {
 
 .liveTable > tbody > tr > td {
     background-color: var(--erdpl-text-primary);
-    color: var(--erdpl-background);
     font-weight: bold;
 }
 

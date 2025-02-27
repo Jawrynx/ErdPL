@@ -42,7 +42,7 @@
         {% for score in scores %}
         <tr id="player-score">
           <td>{{ forloop.counter }}</td>
-          <td>{{ score.home_player }}</td>
+          <td>{{ score.home_player.name }}</td>
           {% if not score.home_or_away_win %}
             <td>
               <button class="win-button" data-score-id="{{ score.id }}" data-winner="home">WIN</button>
@@ -60,7 +60,7 @@
             <td>VS</td>
             <td><strong>1</strong></td>
           {% endif %}
-          <td>{{ score.away_player }}</td>
+          <td>{{ score.away_player.name }}</td>
         </tr>
         {% endfor %}
       </tbody>

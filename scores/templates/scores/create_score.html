@@ -12,7 +12,7 @@
             <div id='live-form-info' class=''>
                 <p>
                     To use Live Mode, you MUST have added your team members playing in the match to your Team.
-                    To add team members go to your <a href='{% url 'teams:detail' team_name=user.teams.first.name %}'>Team Profile</a> 
+                    To add team members go to your <a href='{% url 'teams:detail' team_name=user_team.name %}'>Team Profile</a> 
                     and press 'EDIT TEAM MEMBERS', here you can either create a player or select an existing player.
                 </p>
                 <p>HAVE YOU ADDED ALL YOUR TEAM PLAYERS FOR THIS MATCH?</p>
