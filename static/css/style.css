@@ -2130,10 +2130,11 @@ body > main > div.latest-results > h2:nth-child(8) {
 }
 
 #match-outer {
-    background-color: var(--erdpl-text-primary-light);
-    border: 15px solid var(--erdpl-text-quaternary);
+    background-color: rgb(202, 244, 250);
+    border: 15px solid rgb(32, 28, 28);
     margin-top: 25px;
     width: 80%;
+    box-shadow: 0px 0px 15px 5px rgb(138, 138, 138);
 }
 
 .match-teams, .match-images  {
@@ -2174,11 +2175,12 @@ div.match-images {
 
 .match-extra-h2 {
     margin-top: 25px;
-    background-color: yellow;
-    border-radius: 10px;
-    color: black;
-    padding: 10px;
+    background-color: rgb(36, 36, 34);
+    border-radius: 25px;
+    color: rgb(42, 252, 0);
+    padding: 10px 20px;
     font-size: 1.8rem;
+    box-shadow: 0px 0px 15px 2px green;
 }
 
 .match-extra-h3 {
@@ -2196,8 +2198,13 @@ div.match-images {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: var(--erdpl-text-quaternary-light);
+    background-color: rgb(32, 32, 39);
     padding: 2px;
+    box-shadow: 0px 0px 15px 2px rgb(97, 97, 97);
+}
+
+.match-teams > h1 > a {
+    color: white;
 }
 
 #match-score {
@@ -2210,8 +2217,15 @@ div.match-images {
     margin-top: 20px;
 }
 
+.match-status {
+    background-color: rgb(17, 11, 11);
+    padding: 10px 0;
+    border-radius: 15px;
+}
+
 .match-image, .match-status {
     width: 100%;
+    color: white;
 }
 
 .match-profile-image {
@@ -2236,6 +2250,32 @@ div.match-images {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+#match-games {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.match-games-table {
+    background-color: rgb(44, 44, 44);
+    box-shadow: 0px 0px 30px 2px black;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.match-games-table > tbody > tr {
+    background-color: rgb(255, 244, 244);
+    color: black;
+}
+
+.match-games-table td {
+    padding: 10px 0;
 }
 
 #create-score-form > p:nth-child(2),

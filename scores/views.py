@@ -117,10 +117,20 @@ def view_scores(request, division_name=None):
 
 def match_details(request, division_name, match_id):
     match = get_object_or_404(Match, pk=match_id)
+    match_scores = []
+    all_scores = IndividualScore.objects.all()
+
+    for score in all_scores:
+        if score.match.id == match_id:
+            match_scores.append(score)
+        else:
+            continue
+
     context = {
         'match': match,
         'division_name': division_name,
         'home_team': match.home_team,
         'away_team': match.away_team,
+        'scores': match_scores,
     }
     return render(request, 'scores/match_details.html', context)

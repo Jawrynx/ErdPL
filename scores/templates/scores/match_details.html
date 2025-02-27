@@ -47,6 +47,40 @@
         </div>
         <div class="match-extra-info">
             <h2 class="match-extra-h2">{{ match.division.name }}</h2>
+            {% if scores %}
+                <div id='match-games'>
+                    <table class="match-games-table">
+                        <thead>
+                          <tr>
+                            <th>Game</th>
+                            <th>Home Player</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Away Player</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for score in scores %}
+                          <tr id="player-score">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ score.home_player.name }}</td>
+                            {% if score.home_or_away_win == "home" %}
+                              <td><strong>1</strong></td>
+                              <td>VS</td>
+                              <td>0</td>
+                            {% else %}
+                              <td>0</td>
+                              <td>VS</td>
+                              <td><strong>1</strong></td>
+                            {% endif %}
+                            <td>{{ score.away_player.name }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            {% endif %}
             <h3 class="match-extra-h3">Played at {{ home_team.location }}</h3>
             <h3 class="match-extra-h3">Date played:<br>{{ match.date }}</h3>
         </div>
