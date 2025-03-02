@@ -20,10 +20,18 @@ def register_view(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
+
+            if user.fullname:
+                full_name = user.fullname
+                Player.objects.create(name=full_name)
+            else:
+                username = user.username
+                Player.objects.create(name=username)
+            
             login(request, user)
 
             username = user.username
-
+            
             profile_url = reverse('users:profile', kwargs={'username': username})
 
             return redirect(profile_url)
@@ -78,6 +86,14 @@ def edit_profile(request, username):
 
         if user_form.is_valid():
             user_form.save()
+
+            try:
+                player = Player.objects.get(user=user)
+                player.name = user.fullname
+                player.save()
+            except Player.DoesNotExist:
+                pass
+                
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('users:profile', username=user.username)
         else:

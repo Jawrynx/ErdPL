@@ -153,7 +153,7 @@ try:
 
 except (ValueError, json.JSONDecodeError): 
     try:
-        CREDENTIALS_FILE = os.path.join(BASE_DIR, "ErdPL/edpl-450616-336a8dc4922e.json") 
+        CREDENTIALS_FILE = os.path.join(BASE_DIR, "ErdPL/edpl-450616-26ce60222349.json") 
         credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_FILE)
         print("Credentials loaded from file (development mode).")
     except FileNotFoundError:
