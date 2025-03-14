@@ -67,6 +67,19 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 
 
@@ -1469,6 +1482,10 @@ footer {
     padding: 5px 0;
 }
 
+.fixture-table tr > td:nth-child(1) {
+    font-weight: bold;
+}
+
 .fixture-table > tbody > tr:last-child > td:first-child {
     border-bottom-left-radius: 10px;
 }
@@ -2178,10 +2195,13 @@ body > main > div.latest-results > h2:nth-child(8) {
 
 #match-details {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #match-outer {
-    background-color: rgb(202, 244, 250);
+    background-color: rgb(54, 54, 54);
     border: 15px solid rgb(32, 28, 28);
     margin-top: 25px;
     width: 80%;
@@ -2210,6 +2230,8 @@ body > main > div.latest-results > h2:nth-child(8) {
     width: 100%;
     margin: 5px;
     color: black;
+    padding: 15px;
+    text-decoration: none;
 }
 
 div.match-images {
@@ -2259,9 +2281,14 @@ div.match-images {
 }
 
 #match-score {
-    background-color: red;
+    background-color: rgb(168, 0, 0);
     color: white;
     font-size: 2.8rem;
+    width: fit-content;
+    padding: 15px 40px;
+    border-radius: 35px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 10px rgb(66, 66, 66);
 }
 
 .match-image {
@@ -2269,12 +2296,15 @@ div.match-images {
 }
 
 .match-status {
-    background-color: rgb(17, 11, 11);
+    background-color: rgb(24, 16, 16);
     padding: 10px 0;
     border-radius: 15px;
+    width: 100%;
+    padding: 15px;
+    color: white;
 }
 
-.match-image, .match-status {
+.match-image {
     width: 100%;
     color: white;
 }
@@ -2312,7 +2342,7 @@ div.match-images {
 }
 
 .match-games-table {
-    background-color: rgb(44, 44, 44);
+    background-color: rgb(34, 29, 29);
     box-shadow: 0px 0px 30px 2px black;
     color: white;
     padding: 5px;
@@ -2328,6 +2358,38 @@ div.match-images {
 .match-games-table td {
     padding: 10px 0;
 }
+
+#player-score > td:nth-child(1),
+#player-score > td:nth-child(4) {
+    width: 30px;
+}
+
+#player-score > td:nth-child(3),
+#player-score > td:nth-child(5) {
+    width: 40px;
+}
+
+.pulse {
+    animation: pulse 1.5s infinite;
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #create-score-form > p:nth-child(2),
 #create-score-form > p:nth-child(3) {
@@ -3024,6 +3086,10 @@ div.match-images {
 
     #match-score {
         font-size: 1.8rem;
+    }
+
+    .match-games-table {
+        width: 100%;
     }
 
     #back-1 {

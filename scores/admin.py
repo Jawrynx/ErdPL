@@ -8,7 +8,7 @@ class MatchAdmin(admin.ModelAdmin):
   search_fields = ('home_team__name', 'away_team__name')  # Search by team name
 
 class IndividualScoreAdmin(admin.ModelAdmin):
-    list_display = ('match', 'home_player', 'away_player', 'home_or_away_win')
+    list_display = ('id', 'match', 'home_player', 'away_player', 'home_or_away_win')
     list_filter = ('match', 'home_player', 'away_player', 'home_or_away_win')
     search_fields = ('match__home_team__name', 'match__away_team__name', 'home_player__username', 'away_player__username')  # Assuming 'name' field in Team and 'username' in CustomUser
 

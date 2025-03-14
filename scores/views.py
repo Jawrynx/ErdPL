@@ -31,23 +31,39 @@ def add_match_score(request):
 
     return render(request, 'scores/add_match_score.html', {'form': form})
 
-def select_players(request, match_id, division_name):
-    match = get_object_or_404(Match.objects.select_related('home_team', 'away_team').prefetch_related('home_team__members', 'away_team__members'), pk=match_id)
+def select_players(request, division_name, match_id):
+    match = get_object_or_404(Match, id=match_id)
     existing_scores = IndividualScore.objects.filter(match=match)
-    if existing_scores.exists():
-        # Redirect to live_match if scores already exist
-        return redirect('scores:live_match', division_name=division_name, match_id=match.id)
+    home_team = match.home_team
+    away_team = match.away_team
 
     if request.method == 'POST':
-        form = IndividualPlayersForm(match.home_team, match.away_team, request.POST)
+        form = IndividualPlayersForm(home_team, away_team, request.POST)
         if form.is_valid():
             for i in range(1, 10):
                 home_player_id = form.cleaned_data.get(f'home_player_{i}')
                 away_player_id = form.cleaned_data.get(f'away_player_{i}')
 
-                # Convert player IDs to CustomUser objects or None
-                home_player = Player.objects.get(pk=home_player_id) if home_player_id!= 'X' else None
-                away_player = Player.objects.get(pk=away_player_id) if away_player_id!= 'X' else None
+                print(home_player_id)
+
+                home_player = None
+                away_player = None
+
+                if home_player_id != 'X':
+                    try:
+                        home_player = Player.objects.get(pk=home_player_id)
+                    except Player.DoesNotExist:
+                        print(f"Warning: Home Player with ID {home_player_id} does not exist.")
+                        #Handle the error, for now just skip to the next loop.
+                        continue
+
+                if away_player_id != 'X':
+                    try:
+                        away_player = Player.objects.get(pk=away_player_id)
+                    except Player.DoesNotExist:
+                        print(f"Warning: Away Player with ID {away_player_id} does not exist.")
+                        #Handle the error, for now just skip to the next loop.
+                        continue
 
                 IndividualScore.objects.create(
                     match=match,
@@ -55,10 +71,18 @@ def select_players(request, match_id, division_name):
                     away_player=away_player
                 )
             return redirect('scores:live_match', division_name=division_name, match_id=match.id)
-        
     else:
-        form = IndividualPlayersForm(match.home_team, match.away_team)
-    return render(request, 'scores/select_players.html', {'form': form, 'match': match})
+        form = IndividualPlayersForm(home_team, away_team)
+
+    context = {
+        'form': form,
+        'match': match,
+        'existing_scores': existing_scores,
+    }
+    return render(request, 'scores/select_players.html', context)
+
+
+
 def live_match(request, match_id, division_name):
     match = get_object_or_404(Match, pk=match_id)
     scores = IndividualScore.objects.filter(match=match).order_by('id')
@@ -126,11 +150,13 @@ def match_details(request, division_name, match_id):
         else:
             continue
 
+    match_scores_sorted = sorted(match_scores, key=lambda x: x.id)
+
     context = {
         'match': match,
         'division_name': division_name,
         'home_team': match.home_team,
         'away_team': match.away_team,
-        'scores': match_scores,
+        'scores': match_scores_sorted,
     }
     return render(request, 'scores/match_details.html', context)

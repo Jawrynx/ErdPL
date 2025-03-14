@@ -28,7 +28,7 @@
                     </div>
                 {% else %}
                     <div class="match-status">
-                        <h2 class='live-title'>LIVE</h2>
+                        <h2 class='live-title'><i class="fa-solid fa-record-vinyl pulse"></i> LIVE</h2>
                     </div>
                 {% endif %}
                 <div class="match-image">
@@ -39,9 +39,9 @@
                     {% endif %}
                 </div>
             </div>
+            <h1 id='match-score'>{{ match.home_score }} VS {{ match.away_score }} </h1>
             <div class="match-teams">
                 <h1><a href="{% url 'teams:detail' team_name=home_team.name %}">{{ match.home_team }}</a></h1>
-                <h1 id='match-score'>{{ match.home_score }} VS {{ match.away_score }} </h1>
                 <h1><a href="{% url 'teams:detail' team_name=away_team.name %}">{{ match.away_team }}</a></h1>
             </div>
         </div>
@@ -52,7 +52,7 @@
                     <table class="match-games-table">
                         <thead>
                           <tr>
-                            <th>Game</th>
+                            <th>G</th>
                             <th>Home Player</th>
                             <th></th>
                             <th></th>
@@ -69,10 +69,14 @@
                               <td><strong>1</strong></td>
                               <td>VS</td>
                               <td>0</td>
-                            {% else %}
+                            {% elif score.home_or_away_win == "away" %}
                               <td>0</td>
                               <td>VS</td>
                               <td><strong>1</strong></td>
+                            {% else %}
+                                <td>0</td>
+                                <td>VS</td>
+                                <td>0</td>
                             {% endif %}
                             <td>{{ score.away_player.name }}</td>
                           </tr>
