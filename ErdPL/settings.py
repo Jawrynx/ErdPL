@@ -142,12 +142,16 @@ STATIC_URL = '/static/'
 
 GS_BUCKET_NAME = "edpl-project-media"
 
-credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
-if credentials_json:
-    credentials_info = json.loads(credentials_json)
-    credentials = service_account.Credentials.from_service_account_info(credentials_info)
+credentials = None
+credentials_json_str = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+if credentials_json_str:
+    try:
+        credentials_info = json.loads(credentials_json_str)
+        credentials = service_account.Credentials.from_service_account_info(credentials_info)
+    except json.JSONDecodeError as e:
+        print(f"Error decoding GOOGLE_CREDENTIALS_JSON: {e}")
 else:
-    raise ValueError("GOOGLE_CREDENTIALS_JSON config var not set.")
+    print("GOOGLE_CREDENTIALS_JSON environment variable not set (likely during build).")
 
 
 
@@ -155,12 +159,12 @@ STORAGES = {
     "default": {  # For MEDIA files
         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
         "OPTIONS": {
-            "bucket_name": "edpl-project-media",
+            "bucket_name": GS_BUCKET_NAME,
             "project_id": "edpl-450616",
-            "credentials": credentials,
+            "credentials": credentials if credentials else None,
         },
     },
-    "staticfiles": { 
+    "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         "OPTIONS": {}
     },
