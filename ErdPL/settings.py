@@ -14,6 +14,8 @@ import os
 import dj_database_url
 import json
 from pathlib import Path
+from dotenv import load_dotenv
+from google.oauth2 import service_account
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.!
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,8 +88,6 @@ WSGI_APPLICATION = 'ErdPL.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-from dotenv import load_dotenv
-
 load_dotenv()  # Load environment variables from .env file
 
 if 'DATABASE_URL' in os.environ:
@@ -143,21 +143,19 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-from google.oauth2 import service_account
-
 GS_BUCKET_NAME = "edpl-project-media"
 
 try:
     credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
-    if credentials_json:  
+    if credentials_json:
         credentials_info = json.loads(credentials_json)
         credentials = service_account.Credentials.from_service_account_info(credentials_info)
     else:
-        raise ValueError("GOOGLE_CREDENTIALS_JSON config var not set.") 
+        raise ValueError("GOOGLE_CREDENTIALS_JSON config var not set.")
 
-except (ValueError, json.JSONDecodeError): 
+except (ValueError, json.JSONDecodeError):
     try:
-        CREDENTIALS_FILE = os.path.join(BASE_DIR, "ErdPL/edpl-450616-26ce60222349.json") 
+        CREDENTIALS_FILE = os.path.join(BASE_DIR, "ErdPL/edpl-450616-26ce60222349.json")
         credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_FILE)
         print("Credentials loaded from file (development mode).")
     except FileNotFoundError:
@@ -165,7 +163,7 @@ except (ValueError, json.JSONDecodeError):
             "Credentials file not found. Set GOOGLE_CREDENTIALS_JSON config var or place credentials file at "
             f"{CREDENTIALS_FILE}."
         )
-    except Exception as e: 
+    except Exception as e:
         raise Exception(f"An unexpected error occurred: {e}")
 
 
