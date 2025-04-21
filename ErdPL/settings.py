@@ -14,7 +14,6 @@ import os
 import dj_database_url
 import json
 from pathlib import Path
-from dotenv import load_dotenv
 from google.oauth2 import service_account
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.!
@@ -87,8 +86,6 @@ WSGI_APPLICATION = 'ErdPL.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-load_dotenv()  # Load environment variables from .env file
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
