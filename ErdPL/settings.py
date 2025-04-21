@@ -188,9 +188,6 @@ STORAGES = {
 DEFAULT_FILE_STORAGE = STORAGES["default"]["BACKEND"]
 STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"] 
 
-
-DEFAULT_FILE_STORAGE = STORAGES["default"]["BACKEND"]
-
 if DEBUG:
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' 
 else:
