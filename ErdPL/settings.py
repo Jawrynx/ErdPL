@@ -145,26 +145,12 @@ STATIC_URL = '/static/'
 
 GS_BUCKET_NAME = "edpl-project-media"
 
-try:
-    credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
-    if credentials_json:
-        credentials_info = json.loads(credentials_json)
-        credentials = service_account.Credentials.from_service_account_info(credentials_info)
-    else:
-        raise ValueError("GOOGLE_CREDENTIALS_JSON config var not set.")
-
-except (ValueError, json.JSONDecodeError):
-    try:
-        CREDENTIALS_FILE = os.path.join(BASE_DIR, "ErdPL/edpl-450616-26ce60222349.json")
-        credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_FILE)
-        print("Credentials loaded from file (development mode).")
-    except FileNotFoundError:
-        raise Exception(
-            "Credentials file not found. Set GOOGLE_CREDENTIALS_JSON config var or place credentials file at "
-            f"{CREDENTIALS_FILE}."
-        )
-    except Exception as e:
-        raise Exception(f"An unexpected error occurred: {e}")
+credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+if credentials_json:
+    credentials_info = json.loads(credentials_json)
+    credentials = service_account.Credentials.from_service_account_info(credentials_info)
+else:
+    raise ValueError("GOOGLE_CREDENTIALS_JSON config var not set.")
 
 
 
