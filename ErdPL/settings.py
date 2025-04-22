@@ -27,9 +27,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4=om+%pih5u954)#h5bni$vb92(^mx3kuan%86^dtx#yz%3b)5'
 
 # SECURITY WARNING: don't run with debug turned on in production!!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['edpl.co.uk', 'www.edpl.co.uk', 'localhost', '127.0.0.1', 'edpl.fly.dev']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://edpl.co.uk',
+    'https://www.edpl.co.uk',
+    'https://edpl.fly.dev',
+ ]
 
 
 # Application definition
@@ -86,6 +92,10 @@ WSGI_APPLICATION = 'ErdPL.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
@@ -161,7 +171,7 @@ STORAGES = {
         "OPTIONS": {
             "bucket_name": GS_BUCKET_NAME,
             "project_id": "edpl-450616",
-            "credentials": credentials if credentials else None,
+            "credentials": credentials,
         },
     },
     "staticfiles": {
